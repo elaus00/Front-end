@@ -290,7 +290,8 @@
 .four5 {
   color: #3e4958;
   text-align: left;
-  font-family: "AnekBangla-Light", sans-serif;
+  font-family: var(--light-font);
+  /* font-family: "AnekBangla-Light", sans-serif; */
   font-size: 0.75rem;
   font-weight: 300;
   position: relative;
@@ -301,14 +302,16 @@
   border-color: #e0e0e0;
   border-width: 0.0625rem;
   flex-shrink: 0;
-  width: 0.0625rem;
-  height: 1.1875rem;
+  /* width: 0.0625rem;
+  height: 1.1875rem; */
   position: relative;
 }
 .four8Reviews {
   color: #3e4958;
   text-align: left;
-  font-family: "AnekBangla-Light", sans-serif;
+
+  font-family: var(--light-font);
+  /* font-family: "AnekBangla-Light", sans-serif; */
   font-size: 0.75rem;
   font-weight: 300;
   position: relative;
@@ -433,7 +436,8 @@
 .vegan {
   color: #3e4958;
   text-align: center;
-  font-family: "AnekBangla-Light", sans-serif;
+  font-family: var(--light-font);
+  /* font-family: "AnekBangla-Light", sans-serif; */
   font-size: 1rem;
   line-height: 149.8%;
   font-weight: 300;
@@ -454,7 +458,7 @@
   border-style: solid;
   border-color: #d3d3d3;
   border-width: 0.0625rem;
-  padding: 0.75rem 1rem 0.75rem 1rem;
+  /* padding: 0.75rem 1rem 0.75rem 1rem; */
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
@@ -464,16 +468,26 @@
   height: 3.875rem;
   position: relative;
   overflow: hidden;
+  /* search2 속성 복붙 */
+  color: rgba(0, 0, 0, 0.5);
+  /* text-align: center; */
+  font-family: "AnekBangla-ExtraLight", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 200;
 }
 .search2 {
   color: rgba(0, 0, 0, 0.5);
-  text-align: center;
+  /* text-align: center; */
   font-family: "AnekBangla-ExtraLight", sans-serif;
   font-size: 1.5rem;
-  line-height: 149.8%;
   font-weight: 200;
+
+  line-height: 149.8%;
   position: relative;
-  width: 6.125rem;
+  width: 100%;
+  height: 100%;
+
+  /* width: 6.125rem; */
   display: flex;
   align-items: center;
   justify-content: center;
