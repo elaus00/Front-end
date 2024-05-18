@@ -1,0 +1,10 @@
+.search,
+.search * {
+  box-sizing: border-box;
+}
+.search {
+  width: 1.625rem;
+  height: 1.625rem;
+  position: relative;
+  overflow: visible;
+}
