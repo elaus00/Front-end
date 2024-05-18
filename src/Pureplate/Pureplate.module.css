@@ -498,8 +498,11 @@
   height: 3.875rem;
   position: relative;
   overflow: hidden;
+  background: rgba(74, 124, 89, 0.96);
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
 }
-.rectangle2 {
+/* .rectangle2 {
   background: rgba(74, 124, 89, 0.96);
   border-radius: 0rem 0.5rem 0.5rem 0rem;
   position: absolute;
@@ -507,7 +510,7 @@
   left: 0rem;
   bottom: 0rem;
   top: 0rem;
-}
+} */
 .searchInstance {
   width: 1.625rem !important;
   height: 1.625rem !important;
@@ -553,6 +556,11 @@
   position: absolute;
   right: 1.6875rem;
   top: calc(50% - 1.4375rem);
+
+  /* 로그인 전 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profileImage {
   background: linear-gradient(to left, #d3d3d3, #d3d3d3);
@@ -585,4 +593,17 @@
   position: absolute !important;
   right: 0.625rem !important;
   top: calc(50% - 0.46875rem) !important;
+}
+
+.signin {
+  color: #3e4958;
+  text-align: center;
+  font-family: "AnekBangla-ExtraBold", sans-serif;
+  font-size: 1rem;
+  line-height: 149.8%;
+  font-weight: 800;
+  position: absolute;
+  /* left: calc(50% - 0.84375rem); */
+  /* top: calc(50% - 0.71875rem); */
+  /* width: 2.625rem; */
 }
