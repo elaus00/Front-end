@@ -135,8 +135,11 @@ h5,
   font-size: 0.9375rem;
   font-weight: 400;
   position: absolute;
-  left: 0.875rem;
-  top: calc(50% - 0.625rem);
+  padding-left: 0.875rem;
+  /* left: 0.875rem; */
+  /* top: calc(50% - 0.625rem); */
+  height: 100%;
+  width: 100%;
 }
 
 .nameLabel {

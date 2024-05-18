@@ -37,7 +37,6 @@ function Signin({ isOpen, close }) {
   };
   return isOpen ? (
     <div className={styles.modal}>
-      {/* <div className={styles.loginModal}> */}
       <div className={styles.signIn}>
         <div className={styles.frame37}>
           <div className={styles.signInMain}>Sign-In</div>
@@ -73,7 +72,6 @@ function Signin({ isOpen, close }) {
         </div>
         <img className={styles.x} src="x0.svg" alt="Close" onClick={close} />
       </div>
-      {/* </div> */}
     </div>
   ) : null;
 }
