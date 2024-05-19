@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../pages/Pureplate/Pureplate.module.css";
+import styles from "./DietAttributes.module.css";
 
 function Button({ attribute, selected = false }) {
   const [toggleOn, setToggleOn] = useState(selected);

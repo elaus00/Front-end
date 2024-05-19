@@ -40,7 +40,7 @@ function Signin({ isOpen, close }) {
       {/* <div className={styles.loginModal}> */}
       <div className={styles.signIn}>
         <div className={styles.frame37}>
-          <div className={styles.signInMain}>Sign-In</div>
+          <div className={styles.signInMain}>Sign In</div>
           <div className={styles.frame36}>
             {/* SingIn Area */}
             <div className={styles.SignInArea}>
@@ -66,12 +66,12 @@ function Signin({ isOpen, close }) {
                 <div className={styles.signUpText}>
                   Don’t you have any account?
                 </div>
-                <div className={styles.signUp}>Sign-Up</div>
+                <div className={styles.signUp}>Sign Up</div>
               </div>
             </div>
           </div>
         </div>
-        <img className={styles.x} src="x0.svg" alt="Close" onClick={close} />
+        <img className={styles.x} src="./assets/x0.svg" alt="Close" onClick={close} />
       </div>
       {/* </div> */}
     </div>

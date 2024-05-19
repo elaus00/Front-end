@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
 import styles from "./DietAttributes.module.css";
+import Button from "./DAButton.js";
+
 const attributes = ["Vegan", "Halal", "Gluten-Free", "Lacto-Free"];
 
 function DietAttributes() {
-  const [selectedAttribute, setSelectedAttribute] = useState(attributes[0]);
-
   return (
     <div className={styles.attributes}>
-      {attributes.map(attribute => (
-        <button
-          key={attribute}
-          className={`${styles.button} ${selectedAttribute === attribute ? styles.selected : ''}`}
-          onClick={() => setSelectedAttribute(attribute)}
-        >
-          {attribute}
-        </button>
-      ))}
+      <Button attribute={attributes[0]} selected={true} />
+      <Button attribute={attributes[1]} selected={false} />
+      <Button attribute={attributes[2]} selected={false} />
+      <Button attribute={attributes[3]} selected={false} />
     </div>
   );
 }
 
 export default DietAttributes;
+

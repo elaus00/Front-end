@@ -1,4 +1,4 @@
-import styles from "./SignInButton.module.css";
+import styles from "./Signin.module.css";
 
 function SignInButton({ onSubmit }) {
   const onClick = () => {
@@ -6,7 +6,7 @@ function SignInButton({ onSubmit }) {
   };
   return (
     <button className={styles.signInButton} onClick={onSubmit}>
-      Sign-in
+      Sign In
     </button>
   );
 }

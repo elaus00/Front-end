@@ -2,15 +2,12 @@ import styles from "./Profile.module.css";
 
 import { ChevronDown } from "../ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
-import Signin from ".//Signin/Signin.jsx";
+import Signin from "./Signin/Signin.jsx";
 
 function Profile() {
   const [logedin, setLogedin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // useEffect(() => {
-  //   setLogedin(true);
-  // }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -27,12 +24,11 @@ function Profile() {
   return (
     <>
       <button
-        className={`${styles.profile} ${styles.signin}`}
+        className={styles.signInButton}
         onClick={openModal}
       >
         {!logedin ? (
-          // <div className={styles.signin}>Sign-in</div>
-          "Sign-in"
+          "Sign In"
         ) : (
           <>
             <img className={styles.profileImage} src="profile-image0.png" />

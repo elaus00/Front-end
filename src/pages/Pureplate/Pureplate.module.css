@@ -442,16 +442,7 @@
   align-items: center;
   justify-content: center;
 }
-.button {
-  flex-shrink: 0;
-  width: 3.875rem;
-  height: 3.875rem;
-  position: relative;
-  overflow: hidden;
-  background: rgba(74, 124, 89, 0.96);
-  border-radius: 0rem 0.5rem 0.5rem 0rem;
-  cursor: pointer;
-}
+
 /* .rectangle2 {
   background: rgba(74, 124, 89, 0.96);
   border-radius: 0rem 0.5rem 0.5rem 0rem;
