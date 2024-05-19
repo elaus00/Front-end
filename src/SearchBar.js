@@ -20,10 +20,6 @@ function SearchBar() {
   };
   return (
     <div className={styles.searchBar}>
-      {/* <div className={styles.options}>
-        <div className={styles.vegan}>Vegan </div>
-        <ChevronDown className={styles.chevronDownInstance}></ChevronDown>
-      </div> */}
       <form className={styles.search} onSubmit={onSubmit}>
         <input
           className={styles.search2}

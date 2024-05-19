@@ -64,7 +64,7 @@
   height: 20.769375rem;
   position: static;
 }
-.mapPinInstance {
+/* .mapPinInstance {
   border-style: solid !important;
   border-color: #5e81f4 !important;
   border-width: 0.0625rem !important;
@@ -193,7 +193,7 @@
   position: absolute !important;
   left: 38.688125rem !important;
   top: 30.929375rem !important;
-}
+} */
 .propertyCard {
   flex-shrink: 0;
   width: 8.375rem;
