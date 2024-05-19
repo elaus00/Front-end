@@ -1,39 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
+import styles from './Map.module.css'; // CSS 파일을 임포트
 
 const MapNaverCur = () => {
   const mapElement = useRef(null);
   const { naver } = window;
 
-  const [myLocation, setMyLocation] = useState({});
+  const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 });
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
     }
-    if (!mapElement.current || !naver) return;
+  }, []);
+
+  useEffect(() => {
+    if (!mapElement.current || !naver || !myLocation.latitude || !myLocation.longitude) return;
 
     const location = new naver.maps.LatLng(myLocation.latitude, myLocation.longitude);
     const mapOptions = {
       center: location,
       zoom: 17,
-      zoomControl: false,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: naver.maps.ZoomControlStyle.SMALL,
+        position: naver.maps.Position.TOP_RIGHT,
+      },
+      scaleControl: false,
       mapDataControl: false,
+      padding_top: 15,
     };
-    
+
     const map = new naver.maps.Map(mapElement.current, mapOptions);
     new naver.maps.Marker({
       position: location,
       map,
     });
-  }, [mapElement, myLocation]);
+  }, [myLocation, naver]);
 
   return (
-    <>
-      <div ref={mapElement} style={{ minHeight: '100vh' }} />
-    </>
+    <div ref={mapElement} style={{ minHeight: '100vh' }} />
   );
 
-  // 위치추적에 성공했을때 위치 값을 넣어줍니다.
   function success(position) {
     setMyLocation({
       latitude: position.coords.latitude,
@@ -41,7 +48,6 @@ const MapNaverCur = () => {
     });
   }
 
-  // 위치 추적에 실패 했을때 초기값을 넣어줍니다.
   function error() {
     setMyLocation({ latitude: 37.4979517, longitude: 127.0276188 });
   }
