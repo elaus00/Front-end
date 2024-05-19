@@ -3,76 +3,10 @@ import SignInInputField from "./SignInInputField.jsx";
 import SignInButton from "./SignInButton.jsx";
 import { useAuth } from "../AuthContext.jsx";
 import styles from "./Signin.module.css";
-
-// function SignUp({ switchToSignIn, close }) {
-//   const { signUp } = useAuth();
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [errors, setErrors] = useState({});
-
-//   const validate = () => {
-//     let tempErrors = {};
-//     tempErrors.email = email ? "" : "email을 입력해주세요.";
-//     tempErrors.password =
-//       password.length >= 6 ? "" : "비밀번호는 6자 이상이어야 합니다.";
-//     tempErrors.confirmPassword =
-//       password === confirmPassword ? "" : "비밀번호가 다릅니다.";
-//     setErrors(tempErrors);
-//     return Object.values(tempErrors).every((x) => x === "");
-//   };
-
-//   const handleNameChange = (event) => setName(event.target.value);
-//   const handleIdChange = (event) => setEmail(event.target.value);
-//   const handlePasswordChange = (event) => setPassword(event.target.value);
-//   const handleConfirmPasswordChange = (event) =>
-//     setConfirmPassword(event.target.value);
-
-//   const onSubmit = (event) => {
-//     event.preventDefault();
-//     if (validate()) {
-//       console.log("Submitted:", { email, password });
-//       signUp();
-//     } else {
-//       console.error("Validation failed.");
-//       console.log(errors.email);
-//     }
-//   };
-
-//   return (
-//     // <div className={styles.SignInArea}>
-//     <form className={styles.frame33} onSubmit={onSubmit}>
-//       <SignInInputField label="Name" value={name} onChange={handleNameChange} />
-//       <SignInInputField
-//         label="email"
-//         type="email"
-//         value={email}
-//         onChange={handleIdChange}
-//         errorMessage={errors.email}
-//       />
-//       <SignInInputField
-//         label="Password"
-//         type="password"
-//         value={password}
-//         onChange={handlePasswordChange}
-//       />
-//       <SignInInputField
-//         label="Confirm Password"
-//         type="password"
-//         value={confirmPassword}
-//         onChange={handleConfirmPasswordChange}
-//       />
-//       <SignInButton onSubmit={onSubmit} />
-//     </form>
-//     // </div>
-//   );
-// }
-
-export default SignUp;
+import axios from "axios";
 
 function SignUp({ switchToSignIn, close }) {
-  const { signUp } = useAuth();
+  // const { signUp } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -127,11 +61,31 @@ function SignUp({ switchToSignIn, close }) {
     return Object.values(tempErrors).every((x) => x === "");
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
-      console.log("Submitted:", { email, password });
-      signUp();
+      const data = {
+        name: name,
+        email: email,
+        password: password,
+        // confirmPassword는 서버에서 처리하지 않을 수도 있습니다.
+      };
+      console.log(data);
+
+      const SIGNUP_URL = "api/account/register";
+      try {
+        const response = await axios.post(SIGNUP_URL, data);
+        console.log(response.data);
+        // 회원가입 성공 후의 로직을 여기에 작성하세요.
+        // 예: 로그인 페이지로 리다이렉트하기, 성공 메시지 표시하기 등
+      } catch (error) {
+        console.error(
+          "Error during sign up:",
+          error.response ? error.response.data : error
+        );
+        // 오류 처리 로직을 여기에 작성하세요.
+        // 예: 사용자에게 오류 메시지 표시하기 등
+      }
     } else {
       console.error("Validation failed.");
     }
@@ -166,7 +120,9 @@ function SignUp({ switchToSignIn, close }) {
         onChange={handleConfirmPasswordChange}
         errorMessage={errors.confirmPassword}
       />
-      <SignInButton />
+      <SignInButton onSubmit={onSubmit} label="submit" />
     </form>
   );
 }
+
+export default SignUp;

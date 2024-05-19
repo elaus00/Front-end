@@ -8,30 +8,20 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = () => setIsLoggedIn(true);
-  const logout = () => setIsLoggedIn(false);
-
-  const signUp = async (id, password) => {
-    try {
-      // 서버에 회원가입 요청을 보냅니다.
-      const response = await axios.post("/api/signup", { id, password });
-      // 회원가입 성공 처리...
-    } catch (error) {
-      // 오류 처리...
-      console.error("SignUp failed:", error);
-    }
+  const login = (userData) => {
+    setUser(userData);
+    setIsLoggedIn(true);
   };
-  const value = {
-    isLoggedIn,
-    login,
-    logout,
-    signUp,
+  const logout = () => {
+    setUser(null);
+    setIsLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, signUp }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
