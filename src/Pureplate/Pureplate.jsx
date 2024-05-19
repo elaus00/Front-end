@@ -7,7 +7,8 @@ import SearchBar from "../SearchBar.js";
 import Profile from "../Profile.jsx";
 import Signin from "../Signin/Signin.jsx";
 import Header from "../Header.js";
-import AutoComplete from "../AutoComplete.jsx";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Pureplate = ({ className, ...props }) => {
   return (
@@ -68,7 +69,9 @@ const Pureplate = ({ className, ...props }) => {
           width: "100%",
         }}
       >
-        <img className={styles.purePlateIcon} src="pure-plate-icon0.png" />
+        <Link to="/">
+          <img className={styles.purePlateIcon} src="pure-plate-icon0.png" />{" "}
+        </Link>
         <SearchBar />
         <Attributes />
         <Profile />
