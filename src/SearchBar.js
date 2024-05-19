@@ -41,8 +41,9 @@ function SearchBar() {
       setIsHaveQuery(false);
       setDropDownList([]);
     } else {
+      const lowerCaseQuery = query.toLowerCase();
       const choosenTextList = wholeTextArray.filter((textItem) =>
-        textItem.includes(query)
+        textItem.toLowerCase().includes(lowerCaseQuery)
       );
       setDropDownList(choosenTextList);
     }
@@ -85,8 +86,9 @@ function SearchBar() {
 
   const updateData = async () => {
     const res = await fetchData();
+    const lowerCaseQuery = query.toLowerCase();
     let filteredData = res
-      .filter((list) => list.city.includes(query))
+      .filter((list) => list.city.toLowerCase().includes(query))
       .slice(0, 10);
     setKeyItems(filteredData);
   };
@@ -110,6 +112,7 @@ function SearchBar() {
           id="searchInput"
           placeholder="Search"
           onChange={onChange}
+          onKeyUp={handleDropDownKey}
           value={query}
         />
         {/* {keyItems.length > 0 && query && (
