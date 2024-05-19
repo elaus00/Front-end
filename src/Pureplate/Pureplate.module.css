@@ -64,7 +64,7 @@
   height: 20.769375rem;
   position: static;
 }
-.mapPinInstance {
+/* .mapPinInstance {
   border-style: solid !important;
   border-color: #5e81f4 !important;
   border-width: 0.0625rem !important;
@@ -193,7 +193,7 @@
   position: absolute !important;
   left: 38.688125rem !important;
   top: 30.929375rem !important;
-}
+} */
 .propertyCard {
   flex-shrink: 0;
   width: 8.375rem;
@@ -404,126 +404,6 @@
   left: 0.875rem;
   top: calc(50% - 2.75rem);
   object-fit: cover;
-}
-.searchBar {
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  justify-content: flex-start;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: 30rem;
-  min-width: 15rem;
-  /* width: 37.8125rem; */
-  height: 3.5rem;
-  position: relative;
-  padding-right: 40px;
-}
-/* .options {
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 0.5rem 0rem 0rem 0.5rem;
-  border-style: solid;
-  border-color: #d3d3d3;
-  border-width: 0.0625rem;
-  padding: 0.9375rem 0.6875rem 0.9375rem 0.6875rem;
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  height: 3.875rem;
-  position: relative;
-  overflow: hidden;
-}
-.vegan {
-  color: #3e4958;
-  text-align: center;
-  font-family: var(--light-font);
-  font-size: 1rem;
-  line-height: 149.8%;
-  font-weight: 300;
-  position: relative;
-  width: 3.295625rem;
-  height: 1.725rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.chevronDownInstance {
-  flex-shrink: 0 !important;
-  width: 1rem !important;
-  height: 1rem !important;
-} */
-.search {
-  background: rgba(255, 255, 255, 0.96);
-  border-style: solid;
-  border-color: #d3d3d3;
-  border-width: 0.0625rem;
-  /* padding: 0.75rem 1rem 0.75rem 1rem; */
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex: 1;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  /* search2 속성 복붙 */
-  color: rgba(0, 0, 0, 0.5);
-  /* text-align: center; */
-  font-family: "AnekBangla-ExtraLight", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 200;
-  border-radius: 0.5rem 0rem 0rem 0.5rem;
-}
-.search2 {
-  color: rgba(0, 0, 0, 0.5);
-  /* text-align: center; */
-  font-family: "AnekBangla-ExtraLight", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 200;
-
-  line-height: 149.8%;
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  /* width: 6.125rem; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding-left: 20px;
-}
-.button {
-  flex-shrink: 0;
-  width: 3.875rem;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  background: rgba(74, 124, 89, 0.96);
-  border-radius: 0rem 0.5rem 0.5rem 0rem;
-  cursor: pointer;
-}
-/* .rectangle2 {
-  background: rgba(74, 124, 89, 0.96);
-  border-radius: 0rem 0.5rem 0.5rem 0rem;
-  position: absolute;
-  right: 0rem;
-  left: 0rem;
-  bottom: 0rem;
-  top: 0rem;
-} */
-.searchInstance {
-  width: 1.625rem !important;
-  height: 1.625rem !important;
-  position: absolute !important;
-  left: calc(50% - 0.8125rem) !important;
-  top: calc(50% - 0.75rem) !important;
 }
 .attributes {
   padding: 0.625rem;
