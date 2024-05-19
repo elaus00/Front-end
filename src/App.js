@@ -1,6 +1,5 @@
-// import "./styles.css";
 import Pureplate from "./pages/Pureplate/Pureplate";
-import { NaverMapsProvider } from 'react-naver-maps';
+// import { NaverMapsProvider } from 'react-naver-maps';
 
 function App() {
   return (

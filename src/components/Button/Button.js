@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import trueStyles from "./AttributesButtonSelectedTrue/AttributesButtonSelectedTrue.module.css";
-import falseStyles from "./AttributesButtonSelectedFalse/AttributesButtonSelectedFalse.module.css";
 import styles from "../pages/Pureplate/Pureplate.module.css";
 
 function Button({ attribute, selected = false }) {
@@ -10,9 +8,9 @@ function Button({ attribute, selected = false }) {
   };
   const className = `${
     toggleOn
-      ? trueStyles.attributesButtonSelectedTrue
-      : falseStyles.attributesButtonSelectedFalse
-  } ${trueStyles.distance}`;
+      ? styles.attributesButtonSelectedTrue
+      : styles.attributesButtonSelectedFalse
+  } ${styles.distance}`;
 
   return (
     <button className={className} onClick={onClick}>

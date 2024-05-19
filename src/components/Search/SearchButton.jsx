@@ -1,16 +1,13 @@
-import styles from "../../pages/Pureplate/Pureplate.module.css";
-
-import searchStyles from "./Search.module.css";
+import React from 'react';
+import styles from "./Search.module.css";
 
 function SearchButton({ onSubmit }) {
-  const onClick = () => {
-    console.log("x");
-  };
   return (
     <button className={styles.button} onClick={onSubmit}>
       <img
-        className={searchStyles.search + " " + styles.searchInstance}
-        src="search.svg"
+        className={styles.searchIcon}
+        src="/assets/search.svg"
+        alt="Search"
       />
     </button>
   );

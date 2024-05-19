@@ -8,3 +8,21 @@
   position: relative;
   overflow: visible;
 }
+
+.button {
+  /* 버튼에 필요한 스타일 */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchIcon {
+  width: 24px; /* 아이콘의 너비를 적절히 설정 */
+  height: 24px; /* 아이콘의 높이를 적절히 설정 */
+  background-size: cover;
+  background-position: center;
+}
