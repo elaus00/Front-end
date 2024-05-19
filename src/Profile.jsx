@@ -22,17 +22,13 @@ function Profile() {
     setIsModalOpen(false);
   };
 
-  // const onClick = () => {
-  //   setLogedin(false);
-  // };
-
   const toggleDropdown = () => {
     if (logedin) {
       setDropdownOpen(!dropdownOpen);
     }
   };
   return (
-    <>
+    <div className={styles.profileContainer}>
       <div className={styles.dropdownContainer}>
         <button
           className={styles.profile}
@@ -56,14 +52,21 @@ function Profile() {
             <ul>
               <li>My Page</li>
               <li>Contact</li>
-              <li onClick={() => setLogedin(false)}>Logout</li>
+              <li
+                onClick={() => {
+                  setLogedin(false);
+                  setDropdownOpen(false);
+                }}
+              >
+                Logout
+              </li>
               {/* 로그아웃 처리 */}
             </ul>
           </div>
         )}
         <Signin isOpen={isModalOpen} close={closeModal} />
       </div>
-    </>
+    </div>
   );
 }
 
