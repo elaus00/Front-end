@@ -1,7 +1,7 @@
 import { ChevronDown } from "./ChevronDown/ChevronDown.jsx";
-import styles from "./Pureplate/Pureplate.module.css";
+import styles from "../pages/Pureplate/Pureplate.module.css";
 // import Search2 from "./Search2.jsx";
-import SearchButton from "./Search/SearchButton.jsx";
+import SearchButton from "../components/Search/SearchButton.jsx";
 import { useState } from "react";
 
 function SearchBar() {

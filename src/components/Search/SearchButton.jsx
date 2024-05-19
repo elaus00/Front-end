@@ -1,4 +1,4 @@
-import styles from "../Pureplate/Pureplate.module.css";
+import styles from "../../pages/Pureplate/Pureplate.module.css";
 
 import searchStyles from "./Search.module.css";
 

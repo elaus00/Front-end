@@ -11,6 +11,16 @@
   position: relative;
   overflow: hidden;
 }
+
+/* .mapContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1; 
+}  */
+
 .contents {
   background: #ffffff;
   border-style: solid;
@@ -19,7 +29,8 @@
   padding: 1.125rem;
   width: 90rem;
   height: 64rem;
-  position: absolute;
+  position: relative;
+  z-index: 1;
   left: calc(50% - 45rem);
   top: calc(50% - 31.96875rem);
 }
