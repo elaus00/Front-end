@@ -412,11 +412,14 @@
   gap: 0rem;
   align-items: center;
   justify-content: flex-start;
-  flex-shrink: 0;
-  flex-basis: 25rem;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 30rem;
+  min-width: 15rem;
   /* width: 37.8125rem; */
   height: 3.5rem;
   position: relative;
+  padding-right: 40px;
 }
 /* .options {
   background: rgba(255, 255, 255, 0.96);
@@ -532,7 +535,7 @@
   flex-shrink: 0;
   width: 29.9375rem;
   height: 4.125rem;
-  position: absolute;
+  /* position: absolute; */
   left: 47.3125rem;
   top: 1.375rem;
   overflow: hidden;
@@ -548,66 +551,4 @@
 }
 .attributeInstance {
   flex-shrink: 0 !important;
-}
-.profile {
-  border-radius: 1.0625rem;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-width: 0.0625rem;
-  flex-shrink: 0;
-  width: 8.9375rem;
-  height: 2.9375rem;
-  position: absolute;
-  right: 1.6875rem;
-  top: calc(50% - 1.4375rem);
-
-  /* 로그인 전 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.profileImage {
-  background: linear-gradient(to left, #d3d3d3, #d3d3d3);
-  border-radius: 5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  position: absolute;
-  left: 0.4375rem;
-  top: calc(50% - 1.21875rem);
-  object-fit: cover;
-}
-.jiwoo {
-  color: #3e4958;
-  text-align: center;
-  font-family: "AnekBangla-ExtraBold", sans-serif;
-  font-size: 1rem;
-  line-height: 149.8%;
-  font-weight: 800;
-  position: absolute;
-  left: calc(50% - 0.84375rem);
-  top: calc(50% - 0.71875rem);
-  width: 2.625rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.chevronDownInstance2 {
-  width: 1rem !important;
-  height: 1rem !important;
-  position: absolute !important;
-  right: 0.625rem !important;
-  top: calc(50% - 0.46875rem) !important;
-}
-
-.signin {
-  color: #3e4958;
-  text-align: center;
-  font-family: "AnekBangla-ExtraBold", sans-serif;
-  font-size: 1rem;
-  line-height: 149.8%;
-  font-weight: 800;
-  position: absolute;
-  /* left: calc(50% - 0.84375rem); */
-  /* top: calc(50% - 0.71875rem); */
-  /* width: 2.625rem; */
 }
