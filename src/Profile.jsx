@@ -2,6 +2,7 @@
 import styles from "./Profile.module.css";
 import { ChevronDown } from "./ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
+import SignC from "./Signin/SignC.jsx";
 import Sign from "./Signin/Sign.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
@@ -70,6 +71,7 @@ function Profile() {
             </ul>
           </div>
         )}
+        {/* <SignC isOpen={isModalOpen} close={closeModal} /> */}
         <Sign isOpen={isModalOpen} close={closeModal} />
       </div>
     </div>
