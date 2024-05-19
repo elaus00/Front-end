@@ -16,7 +16,7 @@ const MapNaverCur = () => {
     const mapOptions = {
       center: location,
       zoom: 17,
-      zoomControl: true,
+      zoomControl: false,
     };
     
     const map = new naver.maps.Map(mapElement.current, mapOptions);
@@ -29,7 +29,7 @@ const MapNaverCur = () => {
   return (
     <>
       {/* <h1>Naver Map - Current Position</h1> */}
-      <div ref={mapElement} style={{ minHeight: '400px' }} />
+      <div ref={mapElement} style={{ minHeight: '100vh' }} />
     </>
   );
 

@@ -1,8 +1,8 @@
-import styles from "../src/pages/Pureplate/Pureplate.module.css";
+import styles from "./Profile.module.css";
 
-import { ChevronDown } from "../src/components/ChevronDown/ChevronDown.jsx";
+import { ChevronDown } from "../ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
-import Signin from "../src/components/Signin/Signin.jsx";
+import Signin from ".//Signin/Signin.jsx";
 
 function Profile() {
   const [logedin, setLogedin] = useState(false);
