@@ -2,8 +2,10 @@ import styles from "./Signin.module.css";
 import SignInInputField from "./SignInInputField.jsx";
 import SignInButton from "./SignInButton.jsx";
 import { useState } from "react";
+import { useAuth } from "../AuthContext.jsx";
 
 function Signin({ isOpen, close }) {
+  const { login } = useAuth();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({}); // 에러 상태를 추가합니다.
@@ -30,6 +32,7 @@ function Signin({ isOpen, close }) {
     if (validate()) {
       console.log("Submitted:", { id, password });
       // 유효성 검사를 통과하면 폼 제출 로직을 진행합니다.
+      login();
     } else {
       console.error("Validation failed.");
       // 유효성 검사 실패 시, 적절한 사용자 피드백을 제공합니다.
