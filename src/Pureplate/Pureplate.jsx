@@ -5,7 +5,6 @@ import { Minus } from "../Minus/Minus.jsx";
 import Attributes from "../Attributes.js";
 import SearchBar from "../SearchBar.js";
 import Profile from "../Profile.jsx";
-import Signin from "../Signin/Signin.jsx";
 import Header from "../Header.js";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Link } from "react-router-dom";
