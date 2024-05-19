@@ -1,7 +1,9 @@
-import styles from "./Pureplate/Pureplate.module.css";
+// import styles from "./Pureplate/Pureplate.module.css";
 // import Search2 from "./Search2.jsx";
 import SearchButton from "./Search/SearchButton.jsx";
 import { useState } from "react";
+
+import styles from "./SearchBar.module.css";
 
 function SearchBar() {
   const [query, setQuery] = useState("");

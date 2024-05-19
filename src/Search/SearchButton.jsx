@@ -1,5 +1,4 @@
-import styles from "../Pureplate/Pureplate.module.css";
-
+import styles from "../SearchBar.module.css";
 import searchStyles from "./Search.module.css";
 
 function SearchButton({ onSubmit }) {
@@ -12,6 +11,7 @@ function SearchButton({ onSubmit }) {
         className={searchStyles.search + " " + styles.searchInstance}
         src="search.svg"
       />
+      {/* search.module.css랑 합치기 */}
     </button>
   );
 }
