@@ -4,16 +4,20 @@ import SignInButton from "./SignInButton.jsx";
 import { useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 
+import axios from "axios";
+
 function Signin({ isOpen, close }) {
   const { login } = useAuth();
-  const [id, setId] = useState("");
+  const [email, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({}); // 에러 상태를 추가합니다.
   const [isSignUp, setIsSignUp] = useState(false); // 현재 폼 상태를 관리합니다.
 
+  const loginAxios = (event) => {};
+
   const validate = () => {
     let tempErrors = {};
-    tempErrors.id = id ? "" : "ID를 입력해주세요.";
+    tempErrors.email = email ? "" : "ID를 입력해주세요.";
     tempErrors.password =
       password.length >= 6 ? "" : "비밀번호는 6자 이상이어야 합니다.";
     setErrors(tempErrors);
@@ -30,7 +34,7 @@ function Signin({ isOpen, close }) {
   const onSubmit = (event) => {
     event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
     if (validate()) {
-      console.log("Submitted:", { id, password });
+      console.log("Submitted:", { email, password });
       // 유효성 검사를 통과하면 폼 제출 로직을 진행합니다.
       login();
     } else {
@@ -60,8 +64,8 @@ function Signin({ isOpen, close }) {
             <div className={styles.SignInArea}>
               <form className={styles.frame33} onSubmit={onSubmit}>
                 <SignInInputField
-                  label="ID"
-                  value={id}
+                  label="e-mail"
+                  value={email}
                   onChange={handleIdChange}
                 />
                 <SignInInputField
