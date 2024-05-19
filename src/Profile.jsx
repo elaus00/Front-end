@@ -48,7 +48,13 @@ function Profile() {
           )}
         </button>
         {dropdownOpen && ( // 드롭다운 메뉴 표시 조건
-          <div className={styles.dropdownMenu}>
+          <div
+            className={`${styles.dropdownMenu} ${
+              dropdownOpen
+                ? styles["slide-fade-in-dropdown"]
+                : styles["slide-fade-out-dropdown"]
+            }`}
+          >
             <ul>
               <li>My Page</li>
               <li>Contact</li>
