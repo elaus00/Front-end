@@ -1,13 +1,15 @@
 import styles from "./Signin.module.css";
 import SignInInputField from "./SignInInputField.jsx";
-
 import SignInButton from "./SignInButton.jsx";
 import { useState } from "react";
+import { useAuth } from "../AuthContext.jsx";
 
 function Signin({ isOpen, close }) {
+  const { login } = useAuth();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({}); // 에러 상태를 추가합니다.
+  const [isSignUp, setIsSignUp] = useState(false); // 현재 폼 상태를 관리합니다.
 
   const validate = () => {
     let tempErrors = {};
@@ -30,16 +32,29 @@ function Signin({ isOpen, close }) {
     if (validate()) {
       console.log("Submitted:", { id, password });
       // 유효성 검사를 통과하면 폼 제출 로직을 진행합니다.
+      login();
     } else {
       console.error("Validation failed.");
       // 유효성 검사 실패 시, 적절한 사용자 피드백을 제공합니다.
     }
   };
+
+  // 회원가입 폼으로 전환하는 함수입니다.
+  const switchToSignUp = () => {
+    setIsSignUp(true);
+  };
+
+  // 로그인 폼으로 전환하는 함수입니다.
+  const switchToSignIn = () => {
+    setIsSignUp(false);
+  };
   return isOpen ? (
     <div className={styles.modal}>
       <div className={styles.signIn}>
         <div className={styles.frame37}>
-          <div className={styles.signInMain}>Sign-In</div>
+          <div className={styles.signInMain}>
+            {isSignUp ? "Sign-Up" : "Sign-In"}
+          </div>
           <div className={styles.frame36}>
             {/* SingIn Area */}
             <div className={styles.SignInArea}>
@@ -63,9 +78,16 @@ function Signin({ isOpen, close }) {
               <div className={styles.socialLoginText}>Social Login</div>
               <div className={styles.frame32}>
                 <div className={styles.signUpText}>
-                  Don’t you have any account?
+                  {isSignUp
+                    ? "Already have an account?"
+                    : "Don’t you have any account?"}
                 </div>
-                <div className={styles.signUp}>Sign-Up</div>
+                <div
+                  className={styles.signUp}
+                  onClick={isSignUp ? switchToSignIn : switchToSignUp}
+                >
+                  {isSignUp ? "Sign-In" : "Sign-Up"}
+                </div>
               </div>
             </div>
           </div>

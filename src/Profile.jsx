@@ -1,17 +1,17 @@
 // import styles from "./Pureplate/Pureplate.module.css";
 import styles from "./Profile.module.css";
-
 import { ChevronDown } from "./ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
 import Signin from "./Signin/Signin.jsx";
+import { useAuth } from "./AuthContext.jsx";
 
 function Profile() {
-  const [logedin, setLogedin] = useState(false);
+  const { isLoggedIn, login, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false); // 드롭다운 메뉴 상태 관리
 
   useEffect(() => {
-    setLogedin(true);
+    login();
   }, []);
 
   const openModal = () => {
@@ -23,7 +23,7 @@ function Profile() {
   };
 
   const toggleDropdown = () => {
-    if (logedin) {
+    if (isLoggedIn) {
       setDropdownOpen(!dropdownOpen);
     }
   };
@@ -32,9 +32,9 @@ function Profile() {
       <div className={styles.dropdownContainer}>
         <button
           className={styles.profile}
-          onClick={logedin ? toggleDropdown : openModal} // 로그인 상태에 따라 함수 변경
+          onClick={isLoggedIn ? toggleDropdown : openModal} // 로그인 상태에 따라 함수 변경
         >
-          {!logedin ? (
+          {!isLoggedIn ? (
             // <div className={styles.signin}>Sign-in</div>
             <span style={{ width: "100%" }}>Sign-in</span>
           ) : (
@@ -54,7 +54,7 @@ function Profile() {
               <li>Contact</li>
               <li
                 onClick={() => {
-                  setLogedin(false);
+                  logout();
                   setDropdownOpen(false);
                 }}
               >
