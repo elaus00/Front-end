@@ -6,6 +6,8 @@ import Attributes from "../Attributes.js";
 import SearchBar from "../SearchBar.js";
 import Profile from "../Profile.jsx";
 import Signin from "../Signin/Signin.jsx";
+import Header from "../Header.js";
+import AutoComplete from "../AutoComplete.jsx";
 
 const Pureplate = ({ className, ...props }) => {
   return (
@@ -71,6 +73,8 @@ const Pureplate = ({ className, ...props }) => {
         <Attributes />
         <Profile />
       </header>
+
+      {/* <Header /> */}
     </div>
   );
 };
