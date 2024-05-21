@@ -1,4 +1,4 @@
-import styles from "./SignInButton.module.css";
+import styles from "./Signin.module.css";
 
 function SignInButton({ onSubmit, label }) {
   const onClick = () => {
