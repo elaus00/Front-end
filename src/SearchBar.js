@@ -11,8 +11,8 @@ const wholeTextArray = [
   "coding",
   "javascript",
   "원티드",
-  "프리온보딩",
   "프론트엔드",
+  "찬행식당",
 ];
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -114,6 +114,7 @@ function SearchBar() {
           onChange={onChange}
           onKeyUp={handleDropDownKey}
           value={query}
+          autocomplete="off"
         />
         {/* {keyItems.length > 0 && query && (
           <div className={styles.AutoSearchContainer}>
