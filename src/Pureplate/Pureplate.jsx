@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Pureplate.module.css";
-import MapNaverCur from "../../components/Map/Map.js";
-import Header from "./Header/header.jsx";
-import { MapPin } from "../MapPin/MapPin.jsx";
-import { Plus } from "../Plus/Plus.jsx";
-import { Minus } from "../Minus/Minus.jsx";
+import MapNaverCur from "../Map/Map.js";
+// import Header from "./Header/header.jsx";
+// import { MapPin } from "../MapPin/MapPin.jsx";
+// import { Plus } from "../Plus/Plus.jsx";
+// import { Minus } from "../Minus/Minus.jsx";
 import Attributes from "../Attributes.js";
 import SearchBar from "../SearchBar.js";
 import Profile from "../Profile.jsx";

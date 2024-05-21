@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router Dom for navigation
 import styles from "./Map.module.css";
-import profile from "../Profile/Profile.jsx";
+import profile from "../Profile.jsx";
 import CustomMapMarker from "./Marker/CustomMapMarker.jsx";
 
 const MapNaverCur = () => {
@@ -86,8 +86,26 @@ const MapNaverCur = () => {
     /**** 여기서 백엔드 연결해서 데이터 받아와야함! ****/
     const totalDataArray = [
       // Add your data here
-      { dom_id: "1", title: "Marker 1", lat: 37.4979517, lng: 127.0276188, Vegan: true, Halal: true, GlutenFree: true, LoctoFree: true},
-      { dom_id: "2", title: "Marker 2", lat: 37.4979517, lng: 127.0276188, Vegan: true, Halal: true, GlutenFree: true, LoctoFree: true},
+      {
+        dom_id: "1",
+        title: "Marker 1",
+        lat: 37.4979517,
+        lng: 127.0276188,
+        Vegan: true,
+        Halal: true,
+        GlutenFree: true,
+        LoctoFree: true,
+      },
+      {
+        dom_id: "2",
+        title: "Marker 2",
+        lat: 37.4979517,
+        lng: 127.0276188,
+        Vegan: true,
+        Halal: true,
+        GlutenFree: true,
+        LoctoFree: true,
+      },
       // More data...
     ];
 
@@ -127,7 +145,6 @@ const MapNaverCur = () => {
     };
 
     addMarkers(); // 마커 추가 함수 호출
-
   }, [myLocation, naver]);
 
   return <div ref={mapElement} style={{ minHeight: "100vh" }} />;
