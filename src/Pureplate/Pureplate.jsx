@@ -19,7 +19,7 @@ const Pureplate = ({ className, ...props }) => {
         <div className={styles.mapContainer}>
           <MapNaverCur />
         </div>
-        <Header />
+        {/* <Header1 /> */}
       </div>
       <header
         className={styles.header}

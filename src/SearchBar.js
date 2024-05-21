@@ -114,7 +114,7 @@ function SearchBar() {
           onChange={onChange}
           onKeyUp={handleDropDownKey}
           value={query}
-          autocomplete="off"
+          autoComplete="off"
         />
         {/* {keyItems.length > 0 && query && (
           <div className={styles.AutoSearchContainer}>

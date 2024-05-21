@@ -5,7 +5,7 @@ function SearchButton({ onSubmit }) {
   return (
     <button className={styles.button} onClick={onSubmit}>
       <img
-        className={styles.searchIcon}
+        className={searchStyles.search + " " + styles.searchInstance}
         src="/assets/search.svg"
         alt="Search"
       />
