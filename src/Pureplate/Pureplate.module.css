@@ -169,7 +169,7 @@
   left: 38.688125rem !important;
   top: 30.929375rem !important;
 }
-*/ .propertyCard {
+.propertyCard {
   flex-shrink: 0;
   width: 8.375rem;
   height: 14.841875rem;
