@@ -1,46 +1,21 @@
-.homeLogedIn,
-.homeLogedIn * {
-  box-sizing: border-box;
-}
 .homeLogedIn {
   background: #ffffff;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 0.0625rem;
-  height: 63.4375rem;
+  height: 100%;
   position: relative;
   overflow: hidden;
 }
-.contents {
-  background: #ffffff;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 0.0625rem;
-  padding: 1.125rem;
-  width: 90rem;
-  height: 64rem;
-  position: absolute;
-  left: calc(50% - 45rem);
-  top: calc(50% - 31.96875rem);
+
+.mapContainer {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
 }
-.mapView {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    linear-gradient(to left, #ffffff, #ffffff);
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 90rem;
-  height: 64rem;
-  position: absolute;
-  left: calc(50% - 43.375rem);
-  top: calc(50% - 32rem);
-}
+
 .rectangle8 {
   border-radius: 1rem;
   border-style: solid;
-  border-color: #5e81f4;
+  border-color: #c73697;
   border-width: 0.0625rem;
   align-self: stretch;
   flex: 1;
@@ -64,10 +39,10 @@
   height: 20.769375rem;
   position: static;
 }
-/* .mapPinInstance {
-  border-style: solid !important;
+.mapPinInstance {
+  /* border-style: solid !important;
   border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
+  border-width: 0.0625rem !important;  */
   width: 6.471875rem !important;
   height: 2.371875rem !important;
   position: absolute !important;
@@ -193,7 +168,7 @@
   position: absolute !important;
   left: 38.688125rem !important;
   top: 30.929375rem !important;
-} */
+}
 .propertyCard {
   flex-shrink: 0;
   width: 8.375rem;
