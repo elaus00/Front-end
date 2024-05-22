@@ -4,6 +4,7 @@ import SearchButton from "./Search/SearchButton.jsx";
 import { useEffect, useState } from "react";
 
 import styles from "./SearchBar.module.css";
+import axios from "axios";
 
 const wholeTextArray = [
   "apple",
@@ -19,6 +20,50 @@ function SearchBar() {
   const [isHaveQuery, setIsHaveQuery] = useState(false);
   const [dropDownList, setDropDownList] = useState(wholeTextArray);
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
+
+  // GET test
+  const [restaurants, setRestaurants] = useState([]);
+
+  const on = async () => {
+    try {
+      const response = await axios.get("/register.json");
+      // 받아온 JSON 데이터를 처리
+
+      // JSON 데이터를 처리하는 추가 로직
+      // 예를 들어, 데이터를 화면에 표시하거나 다른 작업을 수행할 수 있습니다.
+
+      // 데이터 안의 각 카테고리 리스트를 순회합니다.
+      const data = response.data.data[0]; // 'data' 배열의 첫 번째 객체를 가져옵니다.
+
+      // // 'Category1List'의 레스토랑 이름을 출력합니다.
+      // data.Category1List.forEach((restaurant) => {
+      //   let newRestaurantName = restaurant.restaurantName;
+      //   setRestaurants([...restaurants, newRestaurantName]);
+      // });
+
+      // // 'Category2List'의 레스토랑 이름을 출력합니다.
+      // data.Category2List.forEach((restaurant) => {
+      //   let newRestaurantName = restaurant.restaurantName;
+      //   setRestaurants([...restaurants, newRestaurantName]);
+
+      //   wholeTextArray = restaurant;
+      // });
+
+      // 'Category1List'와 'Category2List'의 레스토랑 이름을 한 번에 추가합니다.
+      const newRestaurants = [
+        ...data.Category1List.map((restaurant) => restaurant.restaurantName),
+        ...data.Category2List.map((restaurant) => restaurant.restaurantName),
+      ];
+      setRestaurants((prev) => [...prev, ...newRestaurants]);
+    } catch (error) {
+      console.error("파일을 받아오는 중 오류가 발생했습니다:", error);
+    }
+  };
+
+  useEffect(() => {
+    on();
+  }, []);
+  //
 
   const onSubmit = (event) => {
     event.preventDefault();
