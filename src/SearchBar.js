@@ -60,9 +60,9 @@ function SearchBar() {
     }
   };
 
-  useEffect(() => {
-    on();
-  }, []);
+  // useEffect(() => {
+  //   on();
+  // }, []);
   //
 
   const onSubmit = (event) => {
