@@ -55,7 +55,6 @@ const CustomMapMarker = ({
     '<span style="position: absolute; border-style: solid; border-width: 1.08rem 0.9rem 0 0.9rem; border-color: #D9F2EF transparent; display: block; width: 0; z-index: 0; top: 3.35rem; left: 1.8rem; box-shadow:0px 24px 48px 0 rgba(0,0,0,0.16);"></span>',
     "</div>",
   ];
-  그;
 
   if (windowWidth < 768) return mobileContentArray.join("");
 
