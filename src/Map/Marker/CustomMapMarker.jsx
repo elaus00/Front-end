@@ -1,3 +1,7 @@
+/*
+  CustomMapMaker은 htmlElement의 요소로, html리터럴로 작성되어야 한다. 이를 수정하려고 할 경우, 에러가 날 수 있다.
+*/
+
 const CustomMapMarker = ({
   title,
   windowWidth,
@@ -26,13 +30,13 @@ const CustomMapMarker = ({
 
     // 텍스트 컨테이너
     `<div style="flex-grow: 1; max-width: calc(100% - 2.5rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1.05rem; letter-spacing: -0.028rem; font-weight: 600; line-height: 2.5rem;">${title}</div>`,
-
+    
     // 이미지 컨테이너 조건부 렌더링
     renderImageContainer(VEGAN, "./assets/flag_vegan.svg"),
     renderImageContainer(HALAL, "./assets/flag_halal.svg"),
     renderImageContainer(GLUTEN_FREE, "./assets/flag_glutenfree.svg"),
     renderImageContainer(LOCTO_FREE, "./assets/flag_loctosfree.svg"),
-    "</div>",
+    '</div>',
     "</div>",
   ];
 

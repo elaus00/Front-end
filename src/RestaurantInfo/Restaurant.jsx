@@ -5,7 +5,7 @@ import Review from "./Review";
 
 function Restaurant() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ display: "none" }}>
       <div className={styles.div}>
         <div className={styles.div2}>
           <RestaurantInfo />
