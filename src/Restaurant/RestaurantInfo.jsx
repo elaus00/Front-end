@@ -14,26 +14,28 @@ function RestaurantInfo() {
         />
       </div>
       <div className={styles.restDescription}>
-        <div className={styles.div3}>잘 빠진 메밀</div>
-        <div className={styles.rate}>
+        <div className={styles.restName}>잘 빠진 메밀</div>
+        <div className={styles.rateContainer}>
           <div className={styles.rateStar}>
             <img className={styles.star} src={star0} alt="Star" />
-            <div className={styles._4_5}>4.5</div>
+            <div className={styles.rate}>4.5</div>
           </div>
           <div className={styles.bar}></div>
           <div className={styles.rateReview}>
-            <div className={styles._48}>48</div>
+            <div className={styles.reviewNum}>48</div>
             <div className={styles.reviews}>Reviews</div>
           </div>
         </div>
-        <div className={styles._11_4}>서울특별시 종로구 자하문로11길 4</div>
+        <div className={styles.restAddress}>
+          서울특별시 종로구 자하문로11길 4
+        </div>
         <div className={styles.call}>
           <img
             className={styles.iconPhoneTelephone}
             src={iconPhoneTelephone0}
             alt="Phone"
           />
-          <div className={styles._070_4142_1214}>070-4142-1214</div>
+          <div className={styles.restPhoneNum}>070-4142-1214</div>
         </div>
       </div>
     </div>

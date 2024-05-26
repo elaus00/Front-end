@@ -7,7 +7,7 @@ import Profile from "../Profile.jsx";
 import Header from "../Header.js";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Restaurant from "../RestaurantInfo/Restaurant.jsx";
+import Restaurant from "../Restaurant/Restaurant.jsx";
 
 function Pureplate() {
   return (

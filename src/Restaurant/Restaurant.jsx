@@ -5,18 +5,19 @@ import Review from "./Review";
 
 function Restaurant() {
   return (
-    <div className={styles.container} style={{ display: "none" }}>
-      <div className={styles.div}>
-        <div className={styles.div2}>
+    <div className={styles.RestaurantContainer}>
+      {/* <div className={styles.container} style={{}}> */}
+      <div className={styles.container}>
+        <div className={styles.header}>
           <RestaurantInfo />
         </div>
-        <div className={styles.div4}>
+        <div className={styles.body}>
           <div className={styles.review}>
             <div className={styles.review2}>Review</div>
             <div className={styles.line1}></div>
           </div>
           <Review
-            userName="User_name"
+            userName="Saeyeon"
             date="23.05.24"
             content="리뷰는 여기에 들어갑니다 하하"
           />
@@ -27,6 +28,7 @@ function Restaurant() {
           />
         </div>
       </div>
+      {/* </div> */}
     </div>
   );
 }
