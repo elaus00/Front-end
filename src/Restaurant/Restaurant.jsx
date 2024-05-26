@@ -3,9 +3,10 @@ import styles from "./Restaurant.module.css"; // CSS 모듈 불러오기
 import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 
-function Restaurant() {
+function Restaurant({ id, closeModal }) {
   return (
-    <div className={styles.RestaurantContainer}>
+    // <div className={styles.RestaurantContainer}>
+    <>
       {/* <div className={styles.container} style={{}}> */}
       <div className={styles.container}>
         <div className={styles.header}>
@@ -27,9 +28,13 @@ function Restaurant() {
             content="리뷰는 여기에 들어갑니다 하하"
           />
         </div>
+        <button onClick={closeModal} className={styles.closeButton}>
+          Close
+        </button>
       </div>
       {/* </div> */}
-    </div>
+    </>
+    // </div>
   );
 }
 

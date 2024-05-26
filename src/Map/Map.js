@@ -49,7 +49,8 @@ const MapNaverCur = () => {
       !naver ||
       !myLocation.latitude ||
       !myLocation.longitude
-    ) return;
+    )
+      return;
 
     const location = new naver.maps.LatLng(
       myLocation.latitude,
@@ -77,15 +78,17 @@ const MapNaverCur = () => {
     /* 마커 구현 
        이 데이터를 백에서 받아와야 함 */
     const totalDataArray = [
-      { dom_id: "1", title: "Marker 1", lat: 37.6543, lng: 127.0560 },
-      { dom_id: "2", title: "Marker 2", lat: 37.6550, lng: 127.0570 },
+      { dom_id: "1", title: "Marker 1", lat: 37.6543, lng: 127.056 },
+      { dom_id: "2", title: "Marker 2", lat: 37.655, lng: 127.057 },
       { dom_id: "3", title: "Marker 3", lat: 37.6615, lng: 127.0604 },
       { dom_id: "4", title: "Marker 4", lat: 37.6468, lng: 127.0473 },
       { dom_id: "5", title: "Marker 5", lat: 37.6501, lng: 127.0647 },
       { dom_id: "5", title: "Marker 5", lat: 37.6501, lng: 127.0647 },
-      { dom_id: "6", title: "잘빠진 메밀", lat: 37.625876, lng: 127.0787062 }
+      // { dom_id: "6", title: "잘빠진 메밀", lat: 37.625876, lng: 127.0787062 },
+
+      { dom_id: "6", title: "잘빠진 메밀", lat: 37.2742432, lng: 127.1580836 },
     ];
-    
+
     const zoom = mapOptions.zoom;
     const windowWidth = window.innerWidth;
 

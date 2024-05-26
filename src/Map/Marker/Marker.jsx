@@ -35,7 +35,15 @@ function hideMarker(map, marker) {
 }
 
 // add a single marker
-export const addMarker = (naver, map, id, name, position, windowWidth, zoom) => {
+export const addMarker = (
+  naver,
+  map,
+  id,
+  name,
+  position,
+  windowWidth,
+  zoom
+) => {
   try {
     const markerContent = CustomMapMarker({
       title: name,
@@ -57,22 +65,21 @@ export const addMarker = (naver, map, id, name, position, windowWidth, zoom) => 
     });
 
     newMarker.setTitle(name);
-    
+
     // Add marker to the marker list
     markers.push(newMarker);
 
     // marker update considering current map bounds
-    naver.maps.Event.addListener(map, 'zoom_changed', function() {
+    naver.maps.Event.addListener(map, "zoom_changed", function () {
       updateMarkers(map, markers);
     });
 
-    naver.maps.Event.addListener(map, 'dragend', function() {
+    naver.maps.Event.addListener(map, "dragend", function () {
       updateMarkers(map, markers);
     });
 
     // InfoWindow Add
     createInfoWindow(naver, map, newMarker, name);
-    
   } catch (e) {
     console.error(e);
   }
