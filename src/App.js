@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Pureplate />}>
-            <Route path=":id" element={<Restaurant />} />
+            <Route path=":id" element={<Restaurant none="none" />} />
             <Route path="feedback" element={<FeedbackPage />} />
           </Route>
         </Routes>

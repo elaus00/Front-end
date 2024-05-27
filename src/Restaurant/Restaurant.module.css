@@ -354,8 +354,8 @@
   border-width: 0.0625rem 0rem 0.0625rem 0rem;
   padding: 0.4375rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
+  flex-direction: row;
+  /* gap: 0.625rem; */
   align-items: center;
   justify-content: center;
   align-self: stretch;
