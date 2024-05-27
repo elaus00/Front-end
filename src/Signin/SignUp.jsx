@@ -72,7 +72,7 @@ function SignUp({ switchToSignIn, close }) {
       };
       console.log(data);
 
-      const SIGNUP_URL = "api/account/register";
+      const SIGNUP_URL = "http://43.200.180.161/api/account/register";
       try {
         const response = await axios.post(SIGNUP_URL, data);
         console.log(response.data);

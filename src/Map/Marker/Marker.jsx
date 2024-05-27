@@ -42,16 +42,21 @@ export const addMarker = (
   name,
   position,
   windowWidth,
-  zoom
+  zoom,
+  VEGAN,
+  HALAL,
+  GLUTEN_FREE,
+  LOCTO_FREE
 ) => {
   try {
     const markerContent = CustomMapMarker({
       title: name,
       windowWidth: windowWidth,
-      VEGAN: true, // Currently set all flags to true
-      HALAL: true,
-      GLUTEN_FREE: false,
-      LOCTO_FREE: true,
+      restID: id,
+      VEGAN,
+      HALAL,
+      GLUTEN_FREE,
+      LOCTO_FREE,
     });
 
     let newMarker = new naver.maps.Marker({
@@ -88,9 +93,22 @@ export const addMarker = (
 export const addMarkers = (naver, map, totalDataArray, windowWidth, zoom) => {
   for (let i = 0; i < totalDataArray.length; i++) {
     let markerObj = totalDataArray[i];
-    const { dom_id, title, lat, lng } = markerObj;
+    const { dom_id, title, lat, lng, VEGAN, HALAL, GLUTEN_FREE, LOCTO_FREE } =
+      markerObj;
 
     const position = new naver.maps.LatLng(lat, lng);
-    addMarker(naver, map, dom_id, title, position, windowWidth, zoom);
+    addMarker(
+      naver,
+      map,
+      dom_id,
+      title,
+      position,
+      windowWidth,
+      zoom,
+      VEGAN,
+      HALAL,
+      GLUTEN_FREE,
+      LOCTO_FREE
+    );
   }
 };

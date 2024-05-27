@@ -4,43 +4,45 @@ import MapNaverCur from "../Map/Map.js";
 import Attributes from "../Attributes.js";
 import SearchBar from "../SearchBar.js";
 import Profile from "../Profile.jsx";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";
 
 function Pureplate() {
   const { id } = useParams(); // URL에서 레스토랑 ID를 추출
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRestModalOpen, setIsRestModalOpen] = useState(false);
   const navigate = useNavigate();
-  const modalRef = useRef(); // 모달 참조를 위한 ref
+  const restModalRef = useRef();
 
   // URL에 ID가 있을 경우 모달을 엽니다.
   useEffect(() => {
     if (id) {
-      setIsModalOpen(true);
+      setIsRestModalOpen(true);
     }
   }, [id]);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeRestModal = () => {
+    setIsRestModalOpen(false);
     navigate("/");
   };
 
   // 모달 외부 클릭 감지
   useEffect(() => {
     function handleClickOutside(event) {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        closeModal();
+      if (
+        restModalRef.current &&
+        !restModalRef.current.contains(event.target)
+      ) {
+        closeRestModal();
       }
     }
-
     // 이벤트 리스너 등록
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       // 컴포넌트 언마운트 시 이벤트 리스너 제거
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [modalRef]);
+  }, [restModalRef]);
 
   return (
     <div className={styles.wrapper}>
@@ -49,14 +51,15 @@ function Pureplate() {
           <MapNaverCur />
         </div>
       </div>
-      {/* {isModalOpen && <Restaurant id={id} />} */}
-      {isModalOpen && (
+      <Outlet />
+      {/* {isRestModalOpen && <Restaurant id={id} />} */}
+      {isRestModalOpen && (
         <div
-          ref={modalRef}
+          ref={restModalRef}
           className={styles.modalWrapper}
           onClick={(e) => {
             // 모달 백그라운드 클릭 시 모달 닫기
-            closeModal();
+            closeRestModal();
           }}
         >
           {/* 모달 콘텐츠를 감싸는 컨테이너 추가. 여기에는 onClick 이벤트를 추가하지 않습니다. */}
@@ -67,7 +70,7 @@ function Pureplate() {
               e.stopPropagation();
             }}
           >
-            <Restaurant id={id} closeModal={closeModal} />
+            <Restaurant id={id} closeModal={closeRestModal} />
           </div>
         </div>
       )}
