@@ -73,7 +73,7 @@ function SearchBar() {
   const on = async () => {
     try {
       const response = await axios.get(
-        "https://43.200.180.161/api/restaurant/list"
+        "http://127.0.0.1:8000/api/restaurant/list"
       );
       console.log(response.data);
     } catch (error) {

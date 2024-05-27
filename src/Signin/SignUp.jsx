@@ -4,6 +4,7 @@ import SignInButton from "./SignInButton.jsx";
 import { useAuth } from "../AuthContext.jsx";
 import styles from "./Signin.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp({ switchToSignIn, close }) {
   // const { signUp } = useAuth();
@@ -12,6 +13,7 @@ function SignUp({ switchToSignIn, close }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateField = (key, value) => {
     let tempErrors = { ...errors };
@@ -65,19 +67,24 @@ function SignUp({ switchToSignIn, close }) {
     event.preventDefault();
     if (validate()) {
       const data = {
-        name: name,
-        email: email,
+        nickname: name,
+        username: email,
         password: password,
         // confirmPassword는 서버에서 처리하지 않을 수도 있습니다.
       };
-      console.log(data);
+      // console.log(data);
 
-      const SIGNUP_URL = "http://43.200.180.161/api/account/register";
+      const SIGNUP_URL = "http://127.0.0.1:8000/api/account/register/";
       try {
         const response = await axios.post(SIGNUP_URL, data);
         console.log(response.data);
         // 회원가입 성공 후의 로직을 여기에 작성하세요.
         // 예: 로그인 페이지로 리다이렉트하기, 성공 메시지 표시하기 등
+        close();
+        navigate("/");
+        alert(
+          `Welcome to Pureplate, ${response.data.nickname}!\nPlease, sign in!`
+        );
       } catch (error) {
         console.error(
           "Error during sign up:",

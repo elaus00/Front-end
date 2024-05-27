@@ -5,15 +5,19 @@ import { useEffect, useState } from "react";
 // import SignC from "./Signin/SignC.jsx";
 import Sign from "./Signin/Sign.jsx";
 import { useAuth } from "./AuthContext.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
 function Profile() {
-  const { isLoggedIn, login, logout } = useAuth();
+  const { isLoggedIn, login, logout, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false); // 드롭다운 메뉴 상태 관리
+  const navigate = useNavigate();
 
   useEffect(() => {
-    login();
-  }, []);
+    if (isLoggedIn) {
+      closeModal();
+    }
+  }, [isLoggedIn]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -58,11 +62,20 @@ function Profile() {
           >
             <ul>
               <li>My Page</li>
-              <li>Contact</li>
+              <Link to="/Feedback">
+                <li
+                  onClick={() => {
+                    console.log(user);
+                  }}
+                >
+                  Feedback
+                </li>
+              </Link>
               <li
                 onClick={() => {
                   logout();
                   setDropdownOpen(false);
+                  navigate("/");
                 }}
               >
                 Logout

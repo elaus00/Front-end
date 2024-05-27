@@ -38,6 +38,8 @@ function SignIn({ switchToSignUp, close }) {
     if (validate()) {
       try {
         await login(email, password);
+        console.log("Submitted:", { email, password });
+
         // 성공적으로 로그인이 되면, 필요하다면 여기서 추가적인 작업을 수행합니다.
       } catch (error) {
         // 로그인 실패 시, 오류 메시지를 처리합니다.

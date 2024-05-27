@@ -8,6 +8,11 @@ function Sign({ isOpen, close }) {
   const switchToSignUp = () => setIsSignUp(true);
   const switchToSignIn = () => setIsSignUp(false);
 
+  const handleClose = () => {
+    setIsSignUp(false); // 모달을 닫을 때 isSignUp 상태를 초기화합니다.
+    close();
+  };
+
   return isOpen ? (
     <div className={styles.modal}>
       <div className={styles.signIn}>
@@ -17,9 +22,9 @@ function Sign({ isOpen, close }) {
         {/* <div className={styles.frame37}> */}
         <div className={styles.frame36}>
           {isSignUp ? (
-            <SignUp switchToSignIn={switchToSignIn} close={close} />
+            <SignUp switchToSignIn={switchToSignIn} close={handleClose} />
           ) : (
-            <SignIn switchToSignUp={switchToSignUp} close={close} />
+            <SignIn switchToSignUp={switchToSignUp} close={handleClose} />
           )}
           <div className={styles.frame34}>
             <div className={styles.socialLoginText}>Social Login</div>
@@ -39,7 +44,12 @@ function Sign({ isOpen, close }) {
           </div>
         </div>
         {/* </div> */}
-        <img className={styles.x} src="x0.svg" alt="Close" onClick={close} />
+        <img
+          className={styles.x}
+          src="x0.svg"
+          alt="Close"
+          onClick={handleClose}
+        />
       </div>
     </div>
   ) : null;

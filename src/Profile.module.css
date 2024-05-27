@@ -1,3 +1,13 @@
+li {
+  font-family: "AnekBangla-ExtraBold", sans-serif;
+  font-size: 1rem;
+  line-height: 149.8%;
+  font-weight: 400;
+}
+a:visited {
+  color: black;
+}
+
 .profileContainer {
   position: absolute; /* 이전에는 relative였지만 이제는 absolute를 사용합니다 */
   top: calc(50% - 1.4375rem); /* profile 버튼의 원래 top 위치 */
