@@ -4,8 +4,20 @@ import styles from "./Restaurant.module.css"; // CSS 모듈 불러오기
 import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
+import { useAuth } from "../AuthContext";
+import bookmark from "../assets/bookmark.svg";
 
 function Restaurant({ id, closeModal }) {
+  const { isLoggedIn, login, logout, user } = useAuth();
+
+  useEffect(() => {
+    console.log(user);
+  });
+
+  useEffect(() => {
+    console.log("a" + user);
+  }, []);
+
   let restId = null;
   if (id != 0) {
     restId = id;

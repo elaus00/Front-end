@@ -57,8 +57,8 @@ a:visited {
   line-height: 149.8%;
   font-weight: 800;
   position: absolute;
-  left: calc(50% - 0.84375rem);
-  top: calc(50% - 0.71875rem);
+  /* left: calc(50% - 0.84375rem); */
+  /* top: calc(50% - 0.71875rem); */
   width: 2.625rem;
   display: flex;
   align-items: center;

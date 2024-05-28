@@ -10,6 +10,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userToken, SetUserToken] = useState(null);
 
   const login = async (username, password) => {
     try {
@@ -21,10 +22,11 @@ export function AuthProvider({ children }) {
         }
       );
       // 요청 성공 후 응답에서 사용자 정보를 가져와 상태를 업데이트합니다.
-      setUser(response.data.user);
+      setUser(response.data.nickname);
       setIsLoggedIn(true);
+      SetUserToken(response.data.token);
+
       alert("logged in!");
-      console.log(response.data);
     } catch (error) {
       // 에러 처리를 개선합니다.
       if (error.response) {
@@ -44,7 +46,17 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        user,
+        setUser,
+        login,
+        logout,
+        userToken,
+        SetUserToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

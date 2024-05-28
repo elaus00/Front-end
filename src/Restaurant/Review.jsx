@@ -13,6 +13,7 @@ function Review({ userName, date, content, timeAgo, rating }) {
     }
     return stars;
   };
+
   return (
     <div className={styles.reviewItem}>
       <div className={styles.profile}>

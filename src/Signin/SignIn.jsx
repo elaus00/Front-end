@@ -5,7 +5,7 @@ import { useAuth } from "../AuthContext.jsx";
 import styles from "./Signin.module.css";
 
 function SignIn({ switchToSignUp, close }) {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -38,7 +38,7 @@ function SignIn({ switchToSignUp, close }) {
     if (validate()) {
       try {
         await login(email, password);
-        console.log("Submitted:", { email, password });
+        // console.log("Submitted:", { email, password });
 
         // 성공적으로 로그인이 되면, 필요하다면 여기서 추가적인 작업을 수행합니다.
       } catch (error) {

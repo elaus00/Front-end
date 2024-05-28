@@ -7,6 +7,7 @@ import Profile from "../Profile.jsx";
 import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";
+import axios from "axios";
 
 function Pureplate() {
   const { id } = useParams(); // URL에서 레스토랑 ID를 추출
