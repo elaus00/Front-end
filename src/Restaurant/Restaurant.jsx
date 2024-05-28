@@ -51,7 +51,6 @@ function Restaurant({ id, closeModal }) {
       const diffHours = Math.floor(
         (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-
       setTimeAgo(`${diffDays}일 ${diffHours}시간 전`);
     };
 
