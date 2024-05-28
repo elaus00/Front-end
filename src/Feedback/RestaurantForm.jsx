@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 import styles from "./RestaurantForm.module.css"; // CSS 모듈 import
 
+import axios from "axios";
 function RestaurantForm() {
   const [restaurantName, setRestaurantName] = useState("");
   const [menuOptions, setMenuOptions] = useState({
-    korean: false,
-    chinese: false,
-    western: false,
     vegan: false,
+    halal: false,
+    gluten_free: false,
+    lacto_free: false,
   });
   const [additionalComments, setAdditionalComments] = useState("");
 
@@ -28,14 +29,41 @@ function RestaurantForm() {
     setAdditionalComments(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     // 폼 제출 로직
-    console.log("Form submitted with:", {
-      restaurantName,
-      menuOptions,
-      additionalComments,
-    });
+    const data = {
+      restaurant_name: restaurantName,
+      vegan: menuOptions.vegan,
+      halal: menuOptions.halal,
+      gluten_free: menuOptions.gluten_free,
+      lacto_free: menuOptions.lacto_free,
+      comments: additionalComments,
+    };
+
+    console.log(data);
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/feedback/submit/",
+        data
+      );
+      console.log(response.data);
+      alert("submitted!");
+      setRestaurantName("");
+      setAdditionalComments("");
+      setMenuOptions((currentOptions) => {
+        const resetOptions = {};
+        for (const option in currentOptions) {
+          resetOptions[option] = false;
+        }
+        return resetOptions;
+      });
+    } catch (error) {
+      console.error(error.response ? error.response.data : error);
+      // 오류 처리 로직을 여기에 작성하세요.
+      // 예: 사용자에게 오류 메시지 표시하기 등
+      alert("Wrong Restaurant Name");
+    }
   };
 
   return (
@@ -59,8 +87,8 @@ function RestaurantForm() {
           <input
             type="checkbox"
             className={styles.checkbox}
-            name="korean"
-            checked={menuOptions.korean}
+            name="vegan"
+            checked={menuOptions.vegan}
             onChange={handleMenuChange}
           />
           Vegan
@@ -69,8 +97,8 @@ function RestaurantForm() {
           <input
             type="checkbox"
             className={styles.checkbox}
-            name="chinese"
-            checked={menuOptions.chinese}
+            name="halal"
+            checked={menuOptions.halal}
             onChange={handleMenuChange}
           />
           Halal
@@ -79,8 +107,8 @@ function RestaurantForm() {
           <input
             type="checkbox"
             className={styles.checkbox}
-            name="western"
-            checked={menuOptions.western}
+            name="gluten_free"
+            checked={menuOptions.gluten_free}
             onChange={handleMenuChange}
           />
           Gluten-Free
@@ -89,8 +117,8 @@ function RestaurantForm() {
           <input
             type="checkbox"
             className={styles.checkbox}
-            name="vegan"
-            checked={menuOptions.vegan}
+            name="lacto_free"
+            checked={menuOptions.lacto_free}
             onChange={handleMenuChange}
           />
           Lacto-Free
