@@ -21,18 +21,6 @@ function SignIn({ switchToSignUp, close }) {
 
   const handleIdChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
-
-  // const onSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (validate()) {
-  //     console.log("Submitted:", { email, password });
-  //     // login 함수를 비동기로 호출하고, 사용자 ID와 비밀번호를 인자로 전달합니다.
-  //     await login(email, password);
-  //   } else {
-  //     console.error("Validation failed.");
-  //   }
-  // };
-
   const onSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
