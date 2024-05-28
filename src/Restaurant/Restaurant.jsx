@@ -5,7 +5,12 @@ import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
 
-function Restaurant({ id, closeModal, none }) {
+function Restaurant({ id, closeModal }) {
+  let restId = null;
+  if (id != 0) {
+    restId = id;
+  }
+
   const [RestInfo, SetRestInfo] = useState({
     id: "",
     name: "",
@@ -42,18 +47,15 @@ function Restaurant({ id, closeModal, none }) {
 
     calculateTimeAgo();
   }, [ReviewInfo.visit_date]);
-  //
 
-  const RestOn = async () => {
+  const RestOn = async (restId) => {
     try {
       const response = await axios.get(
         "http://127.0.0.1:8000/api/restaurant/list"
       );
-
-      // console.log(response.data);
-
+      console.log(restId);
       response.data.data.forEach((element) => {
-        if (element.Id === 5) {
+        if (element.Id == restId) {
           SetRestInfo((prevState) => ({
             ...prevState,
             id: element.Id,
@@ -64,11 +66,8 @@ function Restaurant({ id, closeModal, none }) {
             phone: element.Phone,
             photo: element.Photo,
           }));
-          // console.log(element);
         }
       });
-
-      // console.log(response.data.data[0]);
     } catch (error) {
       if (error.response) {
         // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
@@ -90,111 +89,94 @@ function Restaurant({ id, closeModal, none }) {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(RestInfo);
-  // }, [RestInfo]);
+  const ReviewOn = async (name) => {
+    try {
+      console.log(name);
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/review/view?name=${name}`
+      );
+
+      const reviewData = response.data.reviews[0];
+
+      SetReviewInfo((prevState) => ({
+        ...prevState,
+        review_id: reviewData.review_id,
+        user_id: reviewData.user_id,
+        user_name: reviewData.user_name,
+        rating: reviewData.rating,
+        review_text: reviewData.review_text,
+        visit_date: reviewData.visit_date,
+      }));
+    } catch (error) {
+      if (error.response) {
+        // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
+        console.error(
+          "서버 응답 오류:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        // 요청이 만들어졌으나 응답을 받지 못했을 때
+        console.error(
+          "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
+          error.request
+        );
+      } else {
+        // 요청 설정 중에 오류가 발생했을 때
+        console.error("요청 설정 중 오류가 발생했습니다:", error.message);
+      }
+    }
+  };
 
   useEffect(() => {
-    RestOn();
-    SetReviewInfo((prevState) => ({
-      review_id: 1,
-      user_id: 1,
-      user_name: "sayeon",
-      rating: 3,
-      review_text: "I love you",
-      visit_date: "2024-05-26T00:00:00Z",
-    }));
+    if (id != 0) {
+      RestOn(restId);
+    }
   }, []);
+  useEffect(() => {
+    if (RestInfo.name !== "") {
+      ReviewOn(RestInfo.name);
+    }
+  }, [RestInfo.name]); // RestInfo.name이 변경될 때마다 ReviewOn 함수를 호출
 
-  // const ReviewOn = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "http://127.0.0.1:8000/api/review/view?name=example"
-  //     );
-
-  //     console.log(response.data);
-
-  //     SetRestInfo((prevState) => ({
-  //       ...prevState,
-  //       review_id: response.data.review_id,
-  //       user_id: response.data.user_id,
-  //       user_name: response.data.user_name,
-  //       rating: response.data.rating,
-  //       review_text: response.data.review_text,
-  //       visit_date: response.data.visit_date,
-  //     }));
-  //     // console.log(element);
-
-  //     // console.log(response.data.data[0]);
-  //   } catch (error) {
-  //     if (error.response) {
-  //       // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
-  //       console.error(
-  //         "서버 응답 오류:",
-  //         error.response.status,
-  //         error.response.data
-  //       );
-  //     } else if (error.request) {
-  //       // 요청이 만들어졌으나 응답을 받지 못했을 때
-  //       console.error(
-  //         "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
-  //         error.request
-  //       );
-  //     } else {
-  //       // 요청 설정 중에 오류가 발생했을 때
-  //       console.error("요청 설정 중 오류가 발생했습니다:", error.message);
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   ReviewOn();
-  // }, []);
-
-  return (
-    // <div className={styles.RestaurantContainer}>
-    <>
-      {/* <div className={styles.container} style={{}}> */}
-      <div className={styles.container} style={{ display: `${none}` }}>
-        <div className={styles.header}>
-          <RestaurantInfo RestInfo={RestInfo} />
-        </div>
-        <div className={styles.body}>
-          <div className={styles.review}>
-            <div className={styles.review2}>Review</div>
-            <div className={styles.line1}></div>
+  if (id != 0) {
+    return (
+      // <div className={styles.RestaurantContainer}>
+      <>
+        {/* <div className={styles.container} style={{}}> */}
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <RestaurantInfo RestInfo={RestInfo} />
           </div>
-          <Review
-            userName={ReviewInfo.user_name}
-            date={ReviewInfo.visit_date}
-            content={ReviewInfo.review_text}
-            rating={ReviewInfo.rating}
-            timeAgo={timeAgo}
-          />
-          <Review
-            userName={ReviewInfo.user_name}
-            date={ReviewInfo.visit_date}
-            content={ReviewInfo.review_text}
-            rating={ReviewInfo.rating}
-            timeAgo={timeAgo}
-          />
+          <div className={styles.body}>
+            <div className={styles.review}>
+              <div className={styles.review2}>Review</div>
+              <div className={styles.line1}></div>
+            </div>
+            <Review
+              userName={ReviewInfo.user_name}
+              date={ReviewInfo.visit_date}
+              content={ReviewInfo.review_text}
+              rating={ReviewInfo.rating}
+              timeAgo={timeAgo}
+            />
+            <Review
+              userName={ReviewInfo.user_name}
+              date={ReviewInfo.visit_date}
+              content={ReviewInfo.review_text}
+              rating={ReviewInfo.rating}
+              timeAgo={timeAgo}
+            />
+          </div>
+          <button onClick={closeModal} className={styles.closeButton}>
+            Close
+          </button>
         </div>
-        <button onClick={closeModal} className={styles.closeButton}>
-          Close
-        </button>
-      </div>
-      {/* </div> */}
-    </>
-    // </div>
-  );
+        {/* </div> */}
+      </>
+      // </div>
+    );
+  }
 }
 
 export default Restaurant;
-
-// id={RestInfo.id}
-// name={RestInfo.name}
-// rating={RestInfo.rating}
-// reviewCount={RestInfo.reviewcount}
-// address={RestInfo.address}
-// phone={RestInfo.phone}
-// photo={RestInfo.photo}
