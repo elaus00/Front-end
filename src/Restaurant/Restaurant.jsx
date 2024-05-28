@@ -17,10 +17,6 @@ function Restaurant({ id, closeModal }) {
 
   const [reviews, setReviews] = useState([]);
 
-  // const addReview = (newReview) => {
-  //   setReviews([...reviews, newReview]);
-  // };
-
   const [RestInfo, SetRestInfo] = useState({
     id: "",
     name: "",
@@ -39,23 +35,34 @@ function Restaurant({ id, closeModal }) {
     visit_date: "2024-05-26T00:00:00Z",
   });
 
-  // 며칠전 계산
-  const [timeAgo, setTimeAgo] = useState("");
+  const calculateTimeAgo = (visit_date) => {
+    const reviewDate = new Date(visit_date);
 
-  useEffect(() => {
-    const calculateTimeAgo = () => {
-      const reviewDate = new Date(ReviewInfo.visit_date);
-      const now = new Date();
-      const diffTime = Math.abs(now - reviewDate);
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      const diffHours = Math.floor(
-        (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      setTimeAgo(`${diffDays}일 ${diffHours}시간 전`);
-    };
+    const now = new Date();
+    // 두 날짜의 UTC 시간 차이를 구합니다.
+    const diffTime = Math.abs(now.getTime() - reviewDate.getTime());
+    // 차이 값을 일 단위로 계산합니다.
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    // 남은 시간 값을 시간 단위로 계산합니다.
+    const diffHours = Math.floor(
+      (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    console.log(`${visit_date} ${diffDays}일 ${diffHours}시간 전`);
+    if (diffDays == 1) return `${diffDays} day ago`;
+    else return `${diffDays} days ago`;
+  };
 
-    calculateTimeAgo();
-  }, [ReviewInfo.visit_date]);
+  // const calculateTimeAgo = (visit_date) => {
+  //   const reviewDate = new Date(visit_date);
+  //   const now = new Date();
+  //   const diffTime = Math.abs(now - reviewDate);
+  //   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  //   const diffHours = Math.floor(
+  //     (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //   );
+  //   console.log(`${visit_date} ${diffDays}일 ${diffHours}시간 전`);
+  //   return `${diffDays}일 ${diffHours}시간 전`;
+  // };
 
   const RestOn = async (restId) => {
     try {
@@ -105,18 +112,7 @@ function Restaurant({ id, closeModal }) {
       );
 
       setReviews(response.data.reviews);
-      // console.log(reviews);
       const reviewData = response.data.reviews[0];
-
-      // SetReviewInfo((prevState) => ({
-      //   ...prevState,
-      //   review_id: reviewData.review_id,
-      //   user_id: reviewData.user_id,
-      //   user_name: reviewData.user_name,
-      //   rating: reviewData.rating,
-      //   review_text: reviewData.review_text,
-      //   visit_date: reviewData.visit_date,
-      // }));
     } catch (error) {
       if (error.response) {
         // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
@@ -142,7 +138,7 @@ function Restaurant({ id, closeModal }) {
     if (id != 0) {
       RestOn(restId);
     }
-  }, []);
+  }, [restId]);
   useEffect(() => {
     if (RestInfo.name !== "") {
       ReviewOn(RestInfo.name);
@@ -157,7 +153,9 @@ function Restaurant({ id, closeModal }) {
         <div className={styles.container}>
           <div className={styles.header}>
             <RestaurantInfo RestInfo={RestInfo} />
-            <button style={{ border: "solid 2px " }}>hello</button>
+            <button style={{ border: "solid 2px ", cursor: "pointer" }}>
+              hello
+            </button>
           </div>
           <div className={styles.body}>
             <div className={styles.review}>
@@ -172,7 +170,7 @@ function Restaurant({ id, closeModal }) {
                   date={ReviewInfo.visit_date}
                   content={ReviewInfo.review_text}
                   rating={ReviewInfo.rating}
-                  timeAgo={timeAgo}
+                  timeAgo={calculateTimeAgo(ReviewInfo.visit_date)}
                 />
               ))}
             </div>
