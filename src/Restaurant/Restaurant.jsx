@@ -10,18 +10,16 @@ import bookmark from "../assets/bookmark.svg";
 function Restaurant({ id, closeModal }) {
   const { isLoggedIn, login, logout, user } = useAuth();
 
-  useEffect(() => {
-    console.log(user);
-  });
-
-  useEffect(() => {
-    console.log("a" + user);
-  }, []);
-
   let restId = null;
   if (id != 0) {
     restId = id;
   }
+
+  const [reviews, setReviews] = useState([]);
+
+  // const addReview = (newReview) => {
+  //   setReviews([...reviews, newReview]);
+  // };
 
   const [RestInfo, SetRestInfo] = useState({
     id: "",
@@ -65,7 +63,6 @@ function Restaurant({ id, closeModal }) {
       const response = await axios.get(
         "http://127.0.0.1:8000/api/restaurant/list"
       );
-      console.log(restId);
       response.data.data.forEach((element) => {
         if (element.Id == restId) {
           SetRestInfo((prevState) => ({
@@ -108,17 +105,19 @@ function Restaurant({ id, closeModal }) {
         `http://127.0.0.1:8000/api/review/view?name=${name}`
       );
 
+      setReviews(response.data.reviews);
+      // console.log(reviews);
       const reviewData = response.data.reviews[0];
 
-      SetReviewInfo((prevState) => ({
-        ...prevState,
-        review_id: reviewData.review_id,
-        user_id: reviewData.user_id,
-        user_name: reviewData.user_name,
-        rating: reviewData.rating,
-        review_text: reviewData.review_text,
-        visit_date: reviewData.visit_date,
-      }));
+      // SetReviewInfo((prevState) => ({
+      //   ...prevState,
+      //   review_id: reviewData.review_id,
+      //   user_id: reviewData.user_id,
+      //   user_name: reviewData.user_name,
+      //   rating: reviewData.rating,
+      //   review_text: reviewData.review_text,
+      //   visit_date: reviewData.visit_date,
+      // }));
     } catch (error) {
       if (error.response) {
         // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
@@ -159,26 +158,25 @@ function Restaurant({ id, closeModal }) {
         <div className={styles.container}>
           <div className={styles.header}>
             <RestaurantInfo RestInfo={RestInfo} />
+            <button style={{ border: "solid 2px " }}>hello</button>
           </div>
           <div className={styles.body}>
             <div className={styles.review}>
               <div className={styles.review2}>Review</div>
               <div className={styles.line1}></div>
+            </div>{" "}
+            <div className={styles.reviewContainer}>
+              {reviews.map((ReviewInfo) => (
+                <Review
+                  key={ReviewInfo.review_id} // 고유한 key 프로퍼티 추가
+                  userName={ReviewInfo.user_name}
+                  date={ReviewInfo.visit_date}
+                  content={ReviewInfo.review_text}
+                  rating={ReviewInfo.rating}
+                  timeAgo={timeAgo}
+                />
+              ))}
             </div>
-            <Review
-              userName={ReviewInfo.user_name}
-              date={ReviewInfo.visit_date}
-              content={ReviewInfo.review_text}
-              rating={ReviewInfo.rating}
-              timeAgo={timeAgo}
-            />
-            <Review
-              userName={ReviewInfo.user_name}
-              date={ReviewInfo.visit_date}
-              content={ReviewInfo.review_text}
-              rating={ReviewInfo.rating}
-              timeAgo={timeAgo}
-            />
           </div>
           <button onClick={closeModal} className={styles.closeButton}>
             Close
