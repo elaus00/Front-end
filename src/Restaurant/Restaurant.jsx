@@ -5,7 +5,8 @@ import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
-import bookmarkIcon from "../assets/bookmark.svg";
+import bookmarkIconGray from "../assets/bookmarkGray.svg";
+import bookmarkIconYellow from "../assets/bookmarkYellow.svg";
 
 function Restaurant({ id, closeModal }) {
   const { isLoggedIn, login, logout, user, userToken, bookmarks, bookmarkGet } =
@@ -134,12 +135,8 @@ function Restaurant({ id, closeModal }) {
   //
 
   //북마크
-  //
-  //
-  //
 
   // 북마크 상태를 관리하기 위한 useState 추가
-
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
@@ -188,25 +185,6 @@ function Restaurant({ id, closeModal }) {
     }
   };
 
-  // const bookmarkSubmit = async () => {
-  //   // event.preventDefault();
-  //   const SIGNUP_URL = `http://127.0.0.1:8000/api/favorite/add/${RestInfo.name}/`;
-
-  //   const config = {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Token ${userToken}`,
-  //     },
-  //   };
-  //   try {
-  //     const response = await axios.post(SIGNUP_URL, null, config);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error.response ? error.response.data : error);
-  //   }
-  // };
-  // //
-
   if (id != 0) {
     return (
       // <div className={styles.RestaurantContainer}>
@@ -216,11 +194,12 @@ function Restaurant({ id, closeModal }) {
           <div className={styles.header}>
             <RestaurantInfo RestInfo={RestInfo} />
             <img
+              className={styles.bookmarkIcon}
               onClick={toggleBookmark}
               style={{ cursor: "pointer" }}
-              src={isBookmarked ? bookmarkIcon : null}
+              src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}
               alt="Bookmark"
-            />{" "}
+            />
           </div>
           <div className={styles.body}>
             <div className={styles.review}>
@@ -228,7 +207,7 @@ function Restaurant({ id, closeModal }) {
               <div className={styles.line1}></div>
             </div>{" "}
             <div className={styles.reviewContainer}>
-              {reviews.map((ReviewInfo) => (
+              {/* {reviews.map((ReviewInfo) => (
                 <Review
                   key={ReviewInfo.review_id} // 고유한 key 프로퍼티 추가
                   userName={ReviewInfo.user_name}
@@ -237,7 +216,7 @@ function Restaurant({ id, closeModal }) {
                   rating={ReviewInfo.rating}
                   timeAgo={calculateTimeAgo(ReviewInfo.visit_date)}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
           <button onClick={closeModal} className={styles.closeButton}>
