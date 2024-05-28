@@ -5,10 +5,11 @@ import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
-import bookmark from "../assets/bookmark.svg";
+import bookmarkIcon from "../assets/bookmark.svg";
 
 function Restaurant({ id, closeModal }) {
-  const { isLoggedIn, login, logout, user } = useAuth();
+  const { isLoggedIn, login, logout, user, userToken, bookmarks, bookmarkGet } =
+    useAuth();
 
   let restId = null;
   if (id != 0) {
@@ -47,22 +48,9 @@ function Restaurant({ id, closeModal }) {
     const diffHours = Math.floor(
       (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    console.log(`${visit_date} ${diffDays}일 ${diffHours}시간 전`);
     if (diffDays == 1) return `${diffDays} day ago`;
     else return `${diffDays} days ago`;
   };
-
-  // const calculateTimeAgo = (visit_date) => {
-  //   const reviewDate = new Date(visit_date);
-  //   const now = new Date();
-  //   const diffTime = Math.abs(now - reviewDate);
-  //   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  //   const diffHours = Math.floor(
-  //     (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  //   );
-  //   console.log(`${visit_date} ${diffDays}일 ${diffHours}시간 전`);
-  //   return `${diffDays}일 ${diffHours}시간 전`;
-  // };
 
   const RestOn = async (restId) => {
     try {
@@ -103,10 +91,9 @@ function Restaurant({ id, closeModal }) {
       }
     }
   };
-
   const ReviewOn = async (name) => {
     try {
-      console.log(name);
+      // console.log(name);
       const response = await axios.get(
         `http://127.0.0.1:8000/api/review/view?name=${name}`
       );
@@ -144,6 +131,81 @@ function Restaurant({ id, closeModal }) {
       ReviewOn(RestInfo.name);
     }
   }, [RestInfo.name]); // RestInfo.name이 변경될 때마다 ReviewOn 함수를 호출
+  //
+
+  //북마크
+  //
+  //
+  //
+
+  // 북마크 상태를 관리하기 위한 useState 추가
+
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    bookmarks[RestInfo.id] ? setIsBookmarked(true) : setIsBookmarked(false);
+  });
+
+  // 북마크 상태를 토글하는 함수
+  const toggleBookmark = async () => {
+    // 북마크가 이미 설정되어 있는 경우, 북마크를 삭제합니다.
+    if (isBookmarked) {
+      try {
+        const response = await axios.delete(
+          `http://127.0.0.1:8000/api/favorite/delete/${RestInfo.name}/`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${userToken}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setIsBookmarked(false); // 북마크 상태를 업데이트합니다.
+        bookmarkGet(userToken);
+      } catch (error) {
+        console.error(error.response ? error.response.data : error);
+      }
+    } else {
+      // 북마크가 설정되어 있지 않은 경우, 북마크를 추가합니다.
+      try {
+        const response = await axios.post(
+          `http://127.0.0.1:8000/api/favorite/add/${RestInfo.name}/`,
+          null,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${userToken}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setIsBookmarked(true); // 북마크 상태를 업데이트합니다.
+        bookmarkGet(userToken);
+      } catch (error) {
+        console.error(error.response ? error.response.data : error);
+      }
+    }
+  };
+
+  // const bookmarkSubmit = async () => {
+  //   // event.preventDefault();
+  //   const SIGNUP_URL = `http://127.0.0.1:8000/api/favorite/add/${RestInfo.name}/`;
+
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Token ${userToken}`,
+  //     },
+  //   };
+  //   try {
+  //     const response = await axios.post(SIGNUP_URL, null, config);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error.response ? error.response.data : error);
+  //   }
+  // };
+  // //
 
   if (id != 0) {
     return (
@@ -153,9 +215,12 @@ function Restaurant({ id, closeModal }) {
         <div className={styles.container}>
           <div className={styles.header}>
             <RestaurantInfo RestInfo={RestInfo} />
-            <button style={{ border: "solid 2px ", cursor: "pointer" }}>
-              hello
-            </button>
+            <img
+              onClick={toggleBookmark}
+              style={{ cursor: "pointer" }}
+              src={isBookmarked ? bookmarkIcon : null}
+              alt="Bookmark"
+            />{" "}
           </div>
           <div className={styles.body}>
             <div className={styles.review}>
