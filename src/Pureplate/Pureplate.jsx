@@ -54,9 +54,7 @@ function Pureplate() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.homeLogedIn}>
-        <div className={styles.mapContainer}>
-          <MapNaverCur />
-        </div>
+        <div className={styles.mapContainer}>{/* <MapNaverCur /> */}</div>
       </div>
       <Outlet />
       {/* {isRestModalOpen && <Restaurant id={id} />} */}
