@@ -5,6 +5,7 @@ export const ChevronDown = ({ className, ...props }) => {
     <img
       className={styles.chevronDown + " " + className}
       src="chevron-down.svg"
+      alt="down"
     />
   );
 };

@@ -1,6 +1,6 @@
 import styles from "./Feedback.module.css"; // CSS 모듈 불러오기
 // import rectangle1850 from "./review/rectangle-1850.png";
-import star0 from "./review/star0.svg";
+
 // import iconPhoneTelephone0 from "./review/icon-phone-telephone0.svg";
 import RestaurantForm from "./RestaurantForm";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Pureplate/Pureplate.module.css";
 import Feedback from "./Feedback/Feedback";
