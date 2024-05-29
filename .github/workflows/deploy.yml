@@ -47,7 +47,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/pureplate-front:latest
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/pureplate-frontend:latest
             docker stop pureplate-frontend || true
             docker rm pureplate-frontend || true
             docker run -d -p 80:80 --name pureplate-frontend ${{ secrets.DOCKER_HUB_USERNAME }}/pureplate-frontend:latest
