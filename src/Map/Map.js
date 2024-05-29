@@ -16,7 +16,7 @@ const MapNaverCur = () => {
   const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 });
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [RestaurantData, setRestaurantData] = useState([]);
-  const { URL } = useAuth();
+  const { URL, bookmarks, bookmarksToggle, SetBookmarksToggle } = useAuth();
   const navigate = useNavigate();
 
   // Update viewport size
@@ -45,7 +45,6 @@ const MapNaverCur = () => {
       .get(`${URL}/api/restaurant/list`)
       .then((response) => {
         setRestaurantData(response.data);
-        // console.log('Response data:', response.data);
       })
       .catch((error) => {
         console.error("Error fetching restraunt data:", error);
@@ -80,7 +79,7 @@ const MapNaverCur = () => {
 
     const mapOptions = {
       center: location,
-      zoom: 17,
+      zoom: 12,
       zoomControl: true,
       zoomControlOptions: {
         style: naver.maps.ZoomControlStyle.SMALL,
@@ -101,8 +100,17 @@ const MapNaverCur = () => {
     const MarkerData = RestaurantData.data;
 
     // 서버에서 받아온 데이터로 마커 추가
-    addMarkers(naver, map, MarkerData, windowWidth, zoom, navigate);
-  }, [myLocation, naver, RestaurantData]);
+    addMarkers(
+      naver,
+      map,
+      MarkerData,
+      windowWidth,
+      zoom,
+      navigate,
+      bookmarksToggle,
+      bookmarks
+    );
+  }, [myLocation, naver, RestaurantData, bookmarksToggle]);
 
   // 마커 추가
   //   addMarkers(naver, map, totalDataArray, windowWidth, zoom);

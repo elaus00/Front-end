@@ -64,6 +64,7 @@ export function AuthProvider({ children }) {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("bookmarks");
+    SetBookmarksToggle(false);
   };
 
   const bookmarkGet = async (token) => {

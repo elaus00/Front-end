@@ -15,17 +15,14 @@ function Pureplate() {
   const [isRestModalOpen, setIsRestModalOpen] = useState(false);
   const navigate = useNavigate();
   const restModalRef = useRef();
-  const { bookmarks, user, bookmarksToggle, SetBookmarksToggle } = useAuth();
-
-  // 전역으로 모달 오픈 상태 받음
+  const { isLoggedIn, bookmarks, user, bookmarksToggle, SetBookmarksToggle } =
+    useAuth();
 
   const bookmarkToggle = () => {
     SetBookmarksToggle(!bookmarksToggle);
   };
 
-  useEffect(() => {
-    console.log(bookmarksToggle);
-  }, [bookmarksToggle]);
+  //
   // URL에 ID가 있을 경우 모달을 엽니다.
   useEffect(() => {
     if (id) {
@@ -99,8 +96,19 @@ function Pureplate() {
           <img className={styles.purePlateIcon} src={logo_icon} />{" "}
         </Link>
         <SearchBar />
-        <button onClick={bookmarkToggle} style={{ border: "solid 1px" }}>
-          hihihi
+        <button
+          onClick={bookmarkToggle}
+          style={{
+            border: "solid 1px",
+            width: "50px",
+            height: "50px",
+            position: "absolute",
+            right: "50px",
+            top: "100px",
+            display: isLoggedIn ? "block" : "none",
+          }}
+        >
+          {bookmarksToggle ? "개짜증나" : "즐겨찾기 진짜"}{" "}
         </button>
         <Attributes />
         <Profile />
