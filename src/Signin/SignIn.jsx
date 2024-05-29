@@ -4,8 +4,8 @@ import SignInButton from "./SignInButton.jsx";
 import { useAuth } from "../AuthContext.jsx";
 import styles from "./Signin.module.css";
 
-function SignIn({}) {
-  const { login, user } = useAuth();
+function SignIn() {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
