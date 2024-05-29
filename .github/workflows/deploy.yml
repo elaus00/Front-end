@@ -3,7 +3,7 @@ name: Deploy Frontend to EC2
 on:
   push:
     branches:
-      - MarkerBookmark
+      - DeployTest3
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "21"
+          node-version: '21'
 
       - name: Check Node.js version
         run: node -v
