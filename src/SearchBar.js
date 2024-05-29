@@ -129,7 +129,11 @@ function SearchBar() {
                   dropDownItemIndex === dropDownIndex ? styles.selected : ""
                 }`}
               >
-                <img className={styles.union} src="searchIcon.svg" />
+                <img
+                  className={styles.union}
+                  src="searchIcon.svg"
+                  alt="search"
+                />
                 <div className={styles.searchHistory}>
                   <span className={styles.recentSearch12}>{dropDownItem}</span>
                 </div>

@@ -9,16 +9,7 @@ import bookmarkIconGray from "../assets/bookmarkGray.svg";
 import bookmarkIconYellow from "../assets/bookmarkYellow.svg";
 
 function Restaurant({ id, closeModal }) {
-  const {
-    isLoggedIn,
-    login,
-    logout,
-    user,
-    userToken,
-    bookmarks,
-    bookmarkGet,
-    URL,
-  } = useAuth();
+  const { isLoggedIn, userToken, bookmarks, bookmarkGet, URL } = useAuth();
 
   let restId = null;
   if (id != 0) {
