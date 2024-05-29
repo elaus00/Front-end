@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
 
   // const URL = "http://ec2-3-39-217-221.ap-northeast-2.compute.amazonaws.com";
 
-  const URL = "http://127.0.0.1:8000";
+  const URL = "http://pureplate.site:443";
 
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
