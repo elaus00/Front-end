@@ -9,8 +9,16 @@ import bookmarkIconGray from "../assets/bookmarkGray.svg";
 import bookmarkIconYellow from "../assets/bookmarkYellow.svg";
 
 function Restaurant({ id, closeModal }) {
-  const { isLoggedIn, login, logout, user, userToken, bookmarks, bookmarkGet } =
-    useAuth();
+  const {
+    isLoggedIn,
+    login,
+    logout,
+    user,
+    userToken,
+    bookmarks,
+    bookmarkGet,
+    URL,
+  } = useAuth();
 
   let restId = null;
   if (id != 0) {
@@ -55,9 +63,7 @@ function Restaurant({ id, closeModal }) {
 
   const RestOn = async (restId) => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/restaurant/list"
-      );
+      const response = await axios.get(`${URL}/api/restaurant/list`);
       response.data.data.forEach((element) => {
         if (element.Id == restId) {
           SetRestInfo((prevState) => ({
@@ -95,9 +101,7 @@ function Restaurant({ id, closeModal }) {
   const ReviewOn = async (name) => {
     try {
       // console.log(name);
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/review/view?name=${name}`
-      );
+      const response = await axios.get(`${URL}/api/review/view?name=${name}`);
 
       setReviews(response.data.reviews);
       const reviewData = response.data.reviews[0];
@@ -149,7 +153,7 @@ function Restaurant({ id, closeModal }) {
     if (isBookmarked) {
       try {
         const response = await axios.delete(
-          `http://127.0.0.1:8000/api/favorite/delete/${RestInfo.name}/`,
+          `${URL}/api/favorite/delete/${RestInfo.name}/`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -167,7 +171,7 @@ function Restaurant({ id, closeModal }) {
       // 북마크가 설정되어 있지 않은 경우, 북마크를 추가합니다.
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/api/favorite/add/${RestInfo.name}/`,
+          `${URL}/api/favorite/add/${RestInfo.name}/`,
           null,
           {
             headers: {
@@ -196,7 +200,10 @@ function Restaurant({ id, closeModal }) {
             <img
               className={styles.bookmarkIcon}
               onClick={toggleBookmark}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                display: isLoggedIn ? "block" : "none",
+              }}
               src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}
               alt="Bookmark"
             />
@@ -207,7 +214,7 @@ function Restaurant({ id, closeModal }) {
               <div className={styles.line1}></div>
             </div>{" "}
             <div className={styles.reviewContainer}>
-              {/* {reviews.map((ReviewInfo) => (
+              {reviews.map((ReviewInfo) => (
                 <Review
                   key={ReviewInfo.review_id} // 고유한 key 프로퍼티 추가
                   userName={ReviewInfo.user_name}
@@ -216,7 +223,7 @@ function Restaurant({ id, closeModal }) {
                   rating={ReviewInfo.rating}
                   timeAgo={calculateTimeAgo(ReviewInfo.visit_date)}
                 />
-              ))} */}
+              ))}
             </div>
           </div>
           <button onClick={closeModal} className={styles.closeButton}>

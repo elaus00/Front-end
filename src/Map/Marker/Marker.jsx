@@ -35,29 +35,44 @@ function hideMarker(map, marker) {
 }
 
 // add a single marker
+// 마커 추가.
 export const addMarker = (
   naver,
   map,
-  id,
-  name,
-  position,
+  markerObj,
   windowWidth,
   zoom,
-  VEGAN,
-  HALAL,
-  GLUTEN_FREE,
-  LOCTO_FREE
+  navigate
 ) => {
   try {
+    const {
+      Id,
+      Name,
+      Address,
+      Latitude,
+      Longitude,
+      Time,
+      Photo,
+      Phone,
+      ReviewCount,
+      Rating,
+      Vegan,
+      Halal,
+      GlutenFree,
+      LactoFree,
+    } = markerObj;
+
     const markerContent = CustomMapMarker({
-      title: name,
+      title: Name,
       windowWidth: windowWidth,
-      restID: id,
-      VEGAN,
-      HALAL,
-      GLUTEN_FREE,
-      LOCTO_FREE,
+      restID: Id,
+      VEGAN: Vegan,
+      HALAL: Halal,
+      GLUTEN_FREE: GlutenFree,
+      LOCTO_FREE: LactoFree,
     });
+
+    const position = new naver.maps.LatLng(Latitude, Longitude);
 
     let newMarker = new naver.maps.Marker({
       position,
@@ -65,11 +80,11 @@ export const addMarker = (
       icon: {
         content: markerContent,
       },
-      title: name,
+      title: Name,
       clickable: true,
     });
 
-    newMarker.setTitle(name);
+    newMarker.setTitle(Name);
 
     // Add marker to the marker list
     markers.push(newMarker);
@@ -84,31 +99,42 @@ export const addMarker = (
     });
 
     // InfoWindow Add
-    createInfoWindow(naver, map, newMarker, name);
+    createInfoWindow(
+      naver,
+      map,
+      newMarker,
+      Name,
+      Id,
+      navigate,
+      Address,
+      Time,
+      Photo,
+      Phone,
+      ReviewCount,
+      Rating,
+      Id
+    );
   } catch (e) {
     console.error(e);
   }
 };
 
-export const addMarkers = (naver, map, totalDataArray, windowWidth, zoom) => {
-  for (let i = 0; i < totalDataArray.length; i++) {
-    let markerObj = totalDataArray[i];
-    const { dom_id, title, lat, lng, VEGAN, HALAL, GLUTEN_FREE, LOCTO_FREE } =
-      markerObj;
+export const addMarkers = (
+  naver,
+  map,
+  MarkerData,
+  windowWidth,
+  zoom,
+  navigate
+) => {
+  if (!Array.isArray(MarkerData)) {
+    console.error("MarkerData is not an array:", MarkerData);
+    return;
+  }
 
-    const position = new naver.maps.LatLng(lat, lng);
-    addMarker(
-      naver,
-      map,
-      dom_id,
-      title,
-      position,
-      windowWidth,
-      zoom,
-      VEGAN,
-      HALAL,
-      GLUTEN_FREE,
-      LOCTO_FREE
-    );
+  for (let i = 0; i < MarkerData.length; i++) {
+    let markerObj = MarkerData[i];
+
+    addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
   }
 };

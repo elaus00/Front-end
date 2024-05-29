@@ -13,6 +13,7 @@ function SignUp({ switchToSignIn, close }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const { URL } = useAuth();
 
   const validateField = (key, value) => {
     let tempErrors = { ...errors };
@@ -73,7 +74,7 @@ function SignUp({ switchToSignIn, close }) {
       };
       // console.log(data);
 
-      const SIGNUP_URL = "http://127.0.0.1:8000/api/account/register/";
+      const SIGNUP_URL = `${URL}/api/account/register/`;
       try {
         const response = await axios.post(SIGNUP_URL, data);
         console.log(response.data);

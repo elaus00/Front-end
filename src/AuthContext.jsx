@@ -12,6 +12,12 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [bookmarks, SetBookmarks] = useState({});
+  const [bookmarksToggle, SetBookmarksToggle] = useState(false);
+  const [restaurantModalOpen, setRestaurantModalOpen] = useState();
+
+  // const URL = "http://ec2-3-39-217-221.ap-northeast-2.compute.amazonaws.com";
+
+  const URL = "http://127.0.0.1:8000";
 
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
@@ -28,13 +34,10 @@ export function AuthProvider({ children }) {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/account/login/",
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post(`${URL}/api/account/login/`, {
+        username,
+        password,
+      });
       setUser(response.data.nickname);
       setIsLoggedIn(true);
       setUserToken(response.data.token);
@@ -71,10 +74,7 @@ export function AuthProvider({ children }) {
       },
     };
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/favorite/user",
-        config
-      );
+      const response = await axios.get(`${URL}/api/favorite/user`, config);
       // 받아온 배열을 객체로 변환
       const bookmarksObj = response.data.favorites.reduce((acc, cur) => {
         acc[cur.restaurant_id] = cur.restaurant_name;
@@ -116,6 +116,11 @@ export function AuthProvider({ children }) {
         setUserToken,
         bookmarks,
         bookmarkGet,
+        bookmarksToggle,
+        SetBookmarksToggle,
+        setRestaurantModalOpen,
+        restaurantModalOpen,
+        URL,
       }}
     >
       {children}

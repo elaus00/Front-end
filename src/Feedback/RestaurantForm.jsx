@@ -1,8 +1,9 @@
 // import styles from "./Feedback.module.css"; // CSS 모듈 불러오기
 import React, { useState } from "react";
 import styles from "./RestaurantForm.module.css"; // CSS 모듈 import
-
 import axios from "axios";
+import { useAuth } from "../AuthContext";
+
 function RestaurantForm() {
   const [restaurantName, setRestaurantName] = useState("");
   const [menuOptions, setMenuOptions] = useState({
@@ -12,6 +13,7 @@ function RestaurantForm() {
     lacto_free: false,
   });
   const [additionalComments, setAdditionalComments] = useState("");
+  const { URL } = useAuth();
 
   const handleNameChange = (e) => {
     setRestaurantName(e.target.value);
@@ -43,10 +45,7 @@ function RestaurantForm() {
 
     console.log(data);
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/feedback/submit/",
-        data
-      );
+      const response = await axios.post(`${URL}/api/feedback/submit/`, data);
       console.log(response.data);
       alert("submitted!");
       setRestaurantName("");

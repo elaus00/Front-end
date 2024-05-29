@@ -8,13 +8,24 @@ import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";
 import axios from "axios";
+import { useAuth } from "../AuthContext.jsx";
 
 function Pureplate() {
   const { id } = useParams(); // URL에서 레스토랑 ID를 추출
   const [isRestModalOpen, setIsRestModalOpen] = useState(false);
   const navigate = useNavigate();
   const restModalRef = useRef();
+  const { bookmarks, user, bookmarksToggle, SetBookmarksToggle } = useAuth();
 
+  // 전역으로 모달 오픈 상태 받음
+
+  const bookmarkToggle = () => {
+    SetBookmarksToggle(!bookmarksToggle);
+  };
+
+  useEffect(() => {
+    console.log(bookmarksToggle);
+  }, [bookmarksToggle]);
   // URL에 ID가 있을 경우 모달을 엽니다.
   useEffect(() => {
     if (id) {
@@ -88,6 +99,9 @@ function Pureplate() {
           <img className={styles.purePlateIcon} src={logo_icon} />{" "}
         </Link>
         <SearchBar />
+        <button onClick={bookmarkToggle} style={{ border: "solid 1px" }}>
+          hihihi
+        </button>
         <Attributes />
         <Profile />
       </header>

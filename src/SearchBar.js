@@ -5,21 +5,20 @@ import { useEffect, useState } from "react";
 
 import styles from "./SearchBar.module.css";
 import axios from "axios";
+import { useAuth } from "./AuthContext.jsx";
 
 function SearchBar() {
   // GET test
   const [restaurants, setRestaurants] = useState([]);
-
   const [query, setQuery] = useState("");
   const [isHaveQuery, setIsHaveQuery] = useState(false);
   const [dropDownList, setDropDownList] = useState(restaurants);
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
+  const { URL } = useAuth();
 
   const fetchRestaurant = async () => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/restaurant/list"
-      );
+      const response = await axios.get(`${URL}/api/restaurant/list`);
 
       const restaurantNames = response.data.data.map((element) => element.Name);
       setRestaurants(restaurantNames);
