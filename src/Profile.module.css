@@ -33,6 +33,20 @@ a:visited {
   font-size: 1rem;
   line-height: 149.8%;
   font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 1050px) {
+  .profile {
+    font-size: 0.9rem; /* 폰트 사이즈 줄임 */
+    width: 7rem;
+    height: 2.8rem;
+  }
+}
+@media (max-width: 678px) {
+  .profile {
+    display: none;
+  }
 }
 
 .dropdownContainer {
@@ -78,13 +92,21 @@ a:visited {
   top: 100%; /* 버튼 바로 아래에 위치하도록 설정 */
   left: 0;
   z-index: 1; /* 다른 요소들 위에 표시 */
-  width: 200px; /* 드롭다운 메뉴의 너비 */
+  width: 100%; /* 드롭다운 메뉴의 너비 */
   background-color: #f9f9f9; /* 배경색 */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
   border-radius: 4px; /* 모서리 둥글게 */
   padding: 12px 0; /* 상하 패딩 */
 
   animation: dropdown 0.4s ease forwards;
+}
+
+@media (max-width: 678px) {
+  .dropdownMenu {
+    right: -10px;
+    width: 100px;
+    left: auto;
+  }
 }
 
 .dropdownMenu ul {
@@ -103,6 +125,31 @@ a:visited {
   background-color: #f2f2f2;
   /* background-color: #f1f1f1; 항목에 마우스 오버 시 배경색 변경 */
 }
+.dropProfile {
+  color: #3e4958;
+  text-align: center;
+  font-family: "AnekBangla-ExtraBold", sans-serif;
+  font-size: 1rem;
+  line-height: 149.8%;
+  font-weight: 800;
+  display: none;
+}
+@media (max-width: 678px) {
+  .dropProfile {
+    display: block;
+  }
+}
+.dropProfile:hover {
+  background-color: transparent !important;
+}
+
+@media (min-width: 678px) {
+  .profileIcon {
+    display: none;
+    width: 35px;
+  }
+}
+
 @keyframes dropdown {
   0% {
     transform: translateY(-20px);

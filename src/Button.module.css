@@ -37,7 +37,24 @@ rgba(254, 246, 176, 1) */
 /* 1050px 이하의 화면 크기에서 스타일 적용 */
 @media (max-width: 1050px) {
   .distance {
-    font-size: 0.875rem; /* 폰트 사이즈 줄임 */
+    font-size: 0.9rem; /* 폰트 사이즈 줄임 */
     padding: 0.5rem 0.875rem; /* 상하, 좌우 패딩 줄임 */
+    height: 2.8rem;
+  }
+}
+
+.toggleIcon {
+  width: 35px;
+  cursor: pointer;
+}
+/* 화면 너비가 768px 이상 900px 이하일 때 적용되는 스타일 */
+@media (min-width: 768px) and (max-width: 900px) {
+  .toggleIcon {
+    width: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .toggleIcon {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
   }
 }

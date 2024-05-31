@@ -1,12 +1,36 @@
 /* styles.module.css */
 
 .bookmarkIcon {
-  position: absolute;
-  top: 10px; /* 상단에서의 거리 조절 */
-  right: 10px; /* 오른쪽에서의 거리 조절 */
-  width: 3rem;
-  /* height: 24px;  */
-  fill: gray;
+  /* position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 3rem; */
+
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  right: 50px;
+  top: 100px;
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 3px rgba(242, 242, 242, 0.4));
+}
+@media (max-width: 678px) {
+  .bookmarkIcon {
+    position: fixed;
+    top: 100px; /* 상단에서의 거리 조절 */
+    right: 20px; /* 오른쪽에서의 거리 조절 */
+  }
+}
+@media (max-width: 900px) {
+  .bookmarkIcon {
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    right: 30px;
+    top: 90px;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 3px rgba(242, 242, 242, 0.4));
+  }
 }
 .reviewContainer {
   max-height: 324px; /* 원하는 높이로 설정 */
@@ -28,6 +52,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .container {
   box-sizing: border-box;
   border-radius: 0.5625rem;
@@ -43,6 +68,22 @@
   background-color: #ffffff;
 }
 
+@media (max-width: 678px) {
+  .container {
+    box-sizing: border-box;
+    border-radius: 0;
+    border-style: none;
+    border-color: initial;
+    border-width: medium;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    background-color: #ffffff;
+  }
+}
 .container *,
 .container {
   box-sizing: border-box;
@@ -51,7 +92,6 @@
 .header {
   padding: 0.0625rem 0rem 0rem 0.0625rem;
   display: flex;
-  flex-direction: column;
   gap: 0rem;
   align-items: flex-start;
   justify-content: flex-start;
@@ -59,7 +99,7 @@
   flex-shrink: 0;
   position: relative;
 }
-
+/* 
 .restInfo {
   border-style: solid;
   border-color: #3e4958;
@@ -75,7 +115,11 @@
   height: 13.8125rem;
   position: relative;
 }
-
+@media (max-width: 600px) {
+  .restInfo {
+    flex-wrap: wrap;
+  }
+} */
 .restPicture {
   display: flex;
   flex-direction: row;
@@ -110,7 +154,8 @@
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
   position: relative;
 }
 
@@ -126,7 +171,11 @@
   align-items: center;
   justify-content: center;
 }
-
+@media (max-width: 678px) {
+  .restName {
+    font-size: 1.5rem;
+  }
+}
 .rateContainer {
   display: flex;
   flex-direction: row;
@@ -231,6 +280,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 678px) {
+  .restAddress {
+    font-size: 0.97rem;
+  }
 }
 
 .call {

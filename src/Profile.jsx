@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Sign from "./Signin/Sign.jsx";
 import { useAuth } from "./AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import profileIcon from "./assets/Icons/profile.svg";
 
 function Profile() {
   const { isLoggedIn, login, logout, user } = useAuth();
@@ -35,6 +36,12 @@ function Profile() {
   return (
     <div className={styles.profileContainer}>
       <div className={styles.dropdownContainer}>
+        <img
+          className={styles.profileIcon}
+          src={profileIcon}
+          alt="profile"
+          onClick={isLoggedIn ? toggleDropdown : openModal}
+        />
         <button
           className={styles.profile}
           onClick={isLoggedIn ? toggleDropdown : openModal} // 로그인 상태에 따라 함수 변경
@@ -61,11 +68,13 @@ function Profile() {
             }`}
           >
             <ul>
-              <li>My Page</li>
+              <li className={styles.dropProfile}>LCH</li>
               <Link to="/Feedback">
                 <li
                   onClick={() => {
                     console.log(user);
+
+                    setDropdownOpen(false);
                   }}
                 >
                   Feedback

@@ -8,6 +8,8 @@ import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";
 import { useAuth } from "../AuthContext.jsx";
+import starY from "../assets/Star1.svg";
+import starG from "../assets/Star2.svg";
 
 function Pureplate() {
   const { id } = useParams(); // URL에서 레스토랑 ID를 추출
@@ -71,7 +73,7 @@ function Pureplate() {
         >
           {/* 모달 콘텐츠를 감싸는 컨테이너 추가. 여기에는 onClick 이벤트를 추가하지 않습니다. */}
           <div
-            // className={styles.modalContent}
+            className={styles.modalContainer}
             onClick={(e) => {
               // 모달 콘텐츠 클릭 시 이벤트가 상위로 전파되지 않도록 방지
               e.stopPropagation();
@@ -94,7 +96,7 @@ function Pureplate() {
           <img className={styles.purePlateIcon} src={logo_icon} alt="logo" />
         </Link>
         <SearchBar />
-        <button
+        {/* <button
           onClick={bookmarkToggle}
           style={{
             border: "solid 1px",
@@ -107,7 +109,19 @@ function Pureplate() {
           }}
         >
           {bookmarksToggle ? "개짜증나" : "즐겨찾기 진짜"}{" "}
-        </button>
+        </button>{" "} */}
+        {!isRestModalOpen && (
+          <img
+            className={styles.starIcon}
+            onClick={bookmarkToggle}
+            style={{
+              // border: "solid 1px",
+              display: isLoggedIn ? "block" : "none",
+            }}
+            alt="search"
+            src={bookmarksToggle ? starY : starG}
+          />
+        )}
         <Attributes />
         <Profile />
       </header>

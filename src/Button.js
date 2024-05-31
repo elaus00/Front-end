@@ -75,7 +75,7 @@ function Button({ attribute }) {
 
   return (
     <>
-      {windowWidth > 768 ? (
+      {windowWidth > 900 ? (
         // JSX 내에서 style 수정
         <div
           className={className}
@@ -89,7 +89,12 @@ function Button({ attribute }) {
           {attribute}
         </div>
       ) : (
-        <img onClick={onClick} src={list[attribute]} alt="search" />
+        <img
+          className={styles.toggleIcon}
+          onClick={onClick}
+          src={list[attribute]}
+          alt="search"
+        />
       )}
     </>
   );
