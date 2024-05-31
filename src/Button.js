@@ -14,6 +14,12 @@ import lactoIcon1 from "./assets/Icons/flag_loctosfree1.svg";
 import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
+  const [cssList, setCssList] = useState({
+    Vegan: "selectedTrueV",
+    Halal: "selectedTrueH",
+    "Gluten-Free": "selectedTrueG",
+    "Lacto-Free": "selectedTrueL",
+  });
   const [list, setList] = useState({
     Vegan: veganIcon,
     Halal: halalIcon,
@@ -66,10 +72,10 @@ function Button({ attribute }) {
     });
     setList(updatedList);
   }, [dietToggle, icons]);
-  // ${
-  //   dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  // } ${trueStyles.distance}
-  const iconClass = ``;
+
+  const iconClass = `${
+    dietToggle[attribute] ? styles.{cssList[`${attribute}`]} : styles.selectedFalse
+  } ${trueStyles.distance}`;
 
   return (
     <>
