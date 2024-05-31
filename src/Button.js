@@ -1,5 +1,3 @@
-import trueStyles from "./AttributesButtonSelectedTrue/AttributesButtonSelectedTrue.module.css";
-import falseStyles from "./AttributesButtonSelectedFalse/AttributesButtonSelectedFalse.module.css";
 import { useAuth } from "./AuthContext";
 import styles from "./Button.module.css";
 import halalIcon from "./assets/Icons/flag_halal.svg";
@@ -28,10 +26,10 @@ function Button({ attribute }) {
     "Lacto-Free": lactoIcon,
   });
   const [icons, setIcons] = useState({
-    Vegan: { default: veganIcon, active: veganIcon1 },
-    Halal: { default: halalIcon, active: halalIcon1 },
-    "Gluten-Free": { default: glutenIcon, active: glutenIcon1 },
-    "Lacto-Free": { default: lactoIcon, active: lactoIcon1 },
+    Vegan: { default: veganIcon1, active: veganIcon },
+    Halal: { default: halalIcon1, active: halalIcon },
+    "Gluten-Free": { default: glutenIcon1, active: glutenIcon },
+    "Lacto-Free": { default: lactoIcon1, active: lactoIcon },
   });
 
   const { dietToggle, setDietToggle } = useAuth();
@@ -62,7 +60,7 @@ function Button({ attribute }) {
 
   const className = `${
     dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  } ${trueStyles.distance}`;
+  } ${styles.distance}`;
 
   useEffect(() => {
     // 모든 attribute에 대해 아이콘 업데이트
@@ -74,10 +72,6 @@ function Button({ attribute }) {
     });
     setList(updatedList);
   }, [dietToggle, icons]);
-
-  const iconClass = `${
-    dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  } ${trueStyles.distance}`;
 
   return (
     <>
@@ -95,12 +89,7 @@ function Button({ attribute }) {
           {attribute}
         </div>
       ) : (
-        <img
-          className={iconClass}
-          onClick={onClick}
-          src={list[attribute]}
-          alt="search"
-        />
+        <img onClick={onClick} src={list[attribute]} alt="search" />
       )}
     </>
   );
