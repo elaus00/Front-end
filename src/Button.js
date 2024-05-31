@@ -1,7 +1,7 @@
 import trueStyles from "./AttributesButtonSelectedTrue/AttributesButtonSelectedTrue.module.css";
 import falseStyles from "./AttributesButtonSelectedFalse/AttributesButtonSelectedFalse.module.css";
 import { useAuth } from "./AuthContext";
-// import styles from "./Button.module.css";
+import styles from "./Button.module.css";
 import halalIcon from "./assets/Icons/flag_halal.svg";
 import veganIcon from "./assets/Icons/flag_vegan.svg";
 import glutenIcon from "./assets/Icons/flag_glutenfree.svg";
@@ -20,6 +20,13 @@ function Button({ attribute }) {
     "Gluten-Free": glutenIcon,
     "Lacto-Free": lactoIcon,
   });
+  const [icons, setIcons] = useState({
+    Vegan: { default: veganIcon, active: veganIcon1 },
+    Halal: { default: halalIcon, active: halalIcon1 },
+    "Gluten-Free": { default: glutenIcon, active: glutenIcon1 },
+    "Lacto-Free": { default: lactoIcon, active: lactoIcon1 },
+  });
+
   const { dietToggle, setDietToggle } = useAuth();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -49,9 +56,21 @@ function Button({ attribute }) {
     dietToggle[attribute] ? trueStyles.selectedTrue : falseStyles.selectedFalse
   } ${trueStyles.distance}`;
 
-  // const iconClass = `${
+  useEffect(() => {
+    // 모든 attribute에 대해 아이콘 업데이트
+    const updatedList = {};
+    Object.keys(icons).forEach((key) => {
+      updatedList[key] = dietToggle[key]
+        ? icons[key].active
+        : icons[key].default;
+    });
+    setList(updatedList);
+  }, [dietToggle, icons]);
+  // ${
   //   dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  // } ${trueStyles.distance}`;
+  // } ${trueStyles.distance}
+  const iconClass = ``;
+
   return (
     <>
       {windowWidth > 768 ? (
