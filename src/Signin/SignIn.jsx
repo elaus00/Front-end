@@ -12,9 +12,9 @@ function SignIn() {
 
   const validate = () => {
     let tempErrors = {};
-    tempErrors.email = email ? "" : "ID를 입력해주세요.";
+    tempErrors.email = email ? "" : "Please enter your email address";
     tempErrors.password =
-      password.length >= 6 ? "" : "비밀번호는 6자 이상이어야 합니다.";
+      password.length >= 6 ? "" : "Password must be 6+ characters";
     setErrors(tempErrors);
     return Object.values(tempErrors).every((x) => x === "");
   };
@@ -31,7 +31,7 @@ function SignIn() {
         // 로그인 실패 시, 오류 메시지를 처리합니다.
         setErrors({
           ...errors,
-          form: "로그인에 실패하였습니다. 이메일 또는 비밀번호를 확인해주세요.",
+          form: "Login failed. Please check your email or password.",
         });
       }
     } else {
@@ -43,7 +43,7 @@ function SignIn() {
     <div className={styles.signInArea}>
       <form className={styles.frame33} onSubmit={onSubmit}>
         <SignInInputField
-          label="email"
+          label="Email"
           value={email}
           onChange={handleIdChange}
           errorMessage={errors.email}
@@ -55,9 +55,8 @@ function SignIn() {
           onChange={handlePasswordChange}
           errorMessage={errors.password}
         />
-        {errors.form && <div className={styles.error}>{errors.form}</div>}{" "}
-        {/* 폼 전체에 대한 오류 메시지 표시 */}
-        <SignInButton onSubmit={onSubmit} label="Sign-In" />
+        {errors.form && <div className={styles.error}>{errors.form}</div>}
+        <SignInButton onSubmit={onSubmit} label="Sign In" />
       </form>
     </div>
   );

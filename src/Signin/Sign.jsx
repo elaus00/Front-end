@@ -18,7 +18,7 @@ function Sign({ isOpen, close }) {
     <div className={styles.modal}>
       <div className={styles.signIn}>
         <div className={styles.signInMain}>
-          {isSignUp ? "Sign-Up" : "Sign-In"}
+          {isSignUp ? "Sign Up" : "Sign In"}
         </div>
         {/* <div className={styles.frame37}> */}
         <div className={styles.frame36}>
@@ -39,7 +39,7 @@ function Sign({ isOpen, close }) {
                 className={styles.signUp}
                 onClick={isSignUp ? switchToSignIn : switchToSignUp}
               >
-                {isSignUp ? "Sign-In" : "Sign-Up"}
+                {isSignUp ? "Sign In" : "Sign Up"}
               </div>
             </div>
           </div>
