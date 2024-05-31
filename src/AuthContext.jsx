@@ -26,8 +26,8 @@ function AuthProvider({ children }) {
   }, [dietToggle]);
 
   // const URL = "http://pureplate.site:8000";
-  const URL = "http://127.0.0.1:8000";
-  // const URL = "http://pureplate.site:443";
+  // const URL = "http://127.0.0.1:8000";
+  const URL = "http://pureplate.site:443";
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
     const storedToken = sessionStorage.getItem("token");
@@ -41,6 +41,10 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  function showCustomAlert(message) {
+    window.alert(`localhost says: ${message}`);
+  }
+
   // Login
   const login = async (username, password) => {
     try {
@@ -53,7 +57,8 @@ function AuthProvider({ children }) {
       setUserToken(response.data.token);
       sessionStorage.setItem("user", response.data.nickname);
       sessionStorage.setItem("token", response.data.token);
-      alert("logged in!");
+      // alert("Logged in!");
+      showCustomAlert("Logged in!");
 
       await bookmarkGet(response.data.token);
     } catch (error) {
