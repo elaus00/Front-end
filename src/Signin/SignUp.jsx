@@ -18,15 +18,15 @@ function SignUp({ switchToSignIn, close }) {
   const validateField = (key, value) => {
     let tempErrors = { ...errors };
     if (key === "name") {
-      tempErrors.name = value ? "" : "name을 입력해주세요.";
+      tempErrors.name = value ? "" : "Enter name.";
     } else if (key === "email") {
-      tempErrors.email = value ? "" : "email을 입력해주세요.";
+      tempErrors.email = value ? "" : "Enter email.";
     } else if (key === "password") {
       tempErrors.password =
-        value.length >= 6 ? "" : "비밀번호는 6자 이상이어야 합니다.";
+        value.length >= 6 ? "" : "Password must be 6+ chars.";
     } else if (key === "confirmPassword") {
       tempErrors.confirmPassword =
-        password === value ? "" : "비밀번호가 다릅니다.";
+        password === value ? "" : "Passwords do not match.";
     }
 
     setErrors(tempErrors);
@@ -51,12 +51,12 @@ function SignUp({ switchToSignIn, close }) {
 
   const validate = () => {
     let tempErrors = {};
-    tempErrors.name = name ? "" : "name을 입력해주세요.";
-    tempErrors.email = email ? "" : "email을 입력해주세요.";
+    tempErrors.name = name ? "" : "Enter name.";
+    tempErrors.email = email ? "" : "Enter email.";
     tempErrors.password =
-      password.length >= 6 ? "" : "비밀번호는 6자 이상이어야 합니다.";
+      password.length >= 6 ? "" : "Password must be 6+ chars.";
     tempErrors.confirmPassword =
-      password === confirmPassword ? "" : "비밀번호가 다릅니다.";
+      password === confirmPassword ? "" : "Passwords do not match.";
 
     setErrors(tempErrors);
 
@@ -72,7 +72,6 @@ function SignUp({ switchToSignIn, close }) {
         password: password,
         // confirmPassword는 서버에서 처리하지 않을 수도 있습니다.
       };
-      // console.log(data);
 
       const SIGNUP_URL = `${URL}/api/account/register/`;
       try {
@@ -107,7 +106,7 @@ function SignUp({ switchToSignIn, close }) {
         errorMessage={errors.name}
       />
       <SignInInputField
-        label="email"
+        label="Email"
         type="email"
         value={email}
         onChange={handleEmailChange}
@@ -127,7 +126,7 @@ function SignUp({ switchToSignIn, close }) {
         onChange={handleConfirmPasswordChange}
         errorMessage={errors.confirmPassword}
       />
-      <SignInButton onSubmit={onSubmit} label="submit" />
+      <SignInButton onSubmit={onSubmit} label="Submit" />
     </form>
   );
 }

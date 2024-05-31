@@ -48,7 +48,7 @@ function Profile() {
         >
           {!isLoggedIn ? (
             // <div className={styles.signin}>Sign-in</div>
-            <span style={{ width: "100%" }}>Sign-in</span>
+            <span style={{ width: "100%" }}>Sign In</span>
           ) : (
             <>
               {/* <img className={styles.profileImage} src="profile-image0.png" /> */}
