@@ -16,8 +16,16 @@ const MapNaverCur = () => {
   const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 });
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [RestaurantData, setRestaurantData] = useState([]);
-  const { URL, bookmarks, bookmarksToggle } = useAuth();
+  const {
+    URL,
+    bookmarks,
+    bookmarksToggle,
+    dietToggle,
+    setDietToggle,
+    isLoggedIn,
+  } = useAuth();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
 
   // Update viewport size
   useEffect(() => {
@@ -39,16 +47,29 @@ const MapNaverCur = () => {
     }
   }, []);
 
-  // Get data from server
+  // // Get data from server
+  // useEffect(() => {
+  //   axios
+  //     .get(`${URL}/api/restaurant/list`)
+  //     .then((response) => {
+  //       setRestaurantData(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching restraunt data:", error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    axios
-      .get(`${URL}/api/restaurant/list`)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${URL}/api/restaurant/list`);
         setRestaurantData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching restraunt data:", error);
-      });
+      } catch (error) {
+        console.error("Error fetching restaurant data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   function success(position) {
@@ -79,7 +100,7 @@ const MapNaverCur = () => {
 
     const mapOptions = {
       center: location,
-      zoom: 12,
+      zoom: 15,
       zoomControl: true,
       zoomControlOptions: {
         style: naver.maps.ZoomControlStyle.SMALL,
@@ -108,13 +129,17 @@ const MapNaverCur = () => {
       zoom,
       navigate,
       bookmarksToggle,
-      bookmarks
+      bookmarks,
+      dietToggle,
+      setDietToggle,
+      isLoggedIn
     );
-  }, [myLocation, naver, RestaurantData, bookmarksToggle]);
+  }, [myLocation, naver, RestaurantData, bookmarksToggle, dietToggle]);
 
   // 마커 추가
   //   addMarkers(naver, map, totalDataArray, windowWidth, zoom);
   // }, [myLocation, naver]);
+  // 로딩 중일 때 로딩 화면을 보여줌
 
   return <div ref={mapElement} style={{ minHeight: "100vh" }} />;
 };

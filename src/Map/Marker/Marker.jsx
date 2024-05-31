@@ -3,7 +3,7 @@ import { createInfoWindow } from "../InfoWindow/InfoWindow.jsx";
 // import MarkerClustering from "./MarkerClustering.js";
 
 // Create an array to hold markers
-export const markers = [];
+export let markers = [];
 
 // update markers
 function updateMarkers(map, markers) {
@@ -33,7 +33,13 @@ function hideMarker(map, marker) {
   if (!marker.getMap()) return;
   marker.setMap(null);
 }
-
+// remove all markers from map
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
 // add a single marker
 // 마커 추가.
 export const addMarker = (
@@ -127,20 +133,77 @@ export const addMarkers = (
   zoom,
   navigate,
   bookmarkToggleBool,
-  bookmarks
+  bookmarks,
+  dietToggle,
+  setDietToggle,
+  isLoggedIn
 ) => {
   if (!Array.isArray(MarkerData)) {
     console.error("MarkerData is not an array:", MarkerData);
     return;
   }
 
+  // for (let i = 0; i < MarkerData.length; i++) {
+  //   let markerObj = MarkerData[i];
+  //   // console.log(markerObj);
+
+  //   addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+  // }
+  clearMarkers();
+  // Check if all dietToggle values are false
+  const allFalse =
+    !dietToggle.Vegan &&
+    !dietToggle.Halal &&
+    !dietToggle["Gluten-Free"] &&
+    !dietToggle["Lacto-Free"];
+
+  // Iterate through the MarkerData array
   for (let i = 0; i < MarkerData.length; i++) {
     let markerObj = MarkerData[i];
-    if (bookmarkToggleBool === true) {
-      if (bookmarks[markerObj.Id]) {
-        // bookmark 객체의 키 값으로 존재하면 addMarker 실행
-        addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
-      }
-    } else addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+
+    // Determine if the marker should be added based on the dietToggle state
+    const shouldAddMarker =
+      allFalse ||
+      ((!dietToggle.Vegan || markerObj.Vegan) &&
+        (!dietToggle.Halal || markerObj.Halal) &&
+        (!dietToggle["Gluten-Free"] || markerObj.GlutenFree) &&
+        (!dietToggle["Lacto-Free"] || markerObj.LactoFree));
+
+    // Add only the markers that match the conditions
+    if (shouldAddMarker) {
+      addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+    }
   }
+  // for (let i = 0; i < MarkerData.length; i++) {
+  //   let markerObj = MarkerData[i];
+
+  //   // Check if all dietToggle values are false
+  //   const allFalse = Object.values(dietToggle).every(
+  //     (value) => value === false
+  //   );
+
+  //   // Filter markers based on the dietToggle state
+  //   const shouldAddMarker =
+  //     allFalse ||
+  //     (dietToggle.Vegan && markerObj.Vegan) ||
+  //     (dietToggle.Halal && markerObj.Halal) ||
+  //     (dietToggle["Gluten-Free"] && markerObj.GlutenFree) ||
+  //     (dietToggle["Lacto-Free"] && markerObj.LactoFree);
+
+  //   // Add only the markers that match the conditions
+  //   if (shouldAddMarker) {
+  //     addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+  //   }
+  // }
 };
+
+// for (let i = 0; i < MarkerData.length; i++) {
+//   let markerObj = MarkerData[i];
+//   // console.log(markerObj);
+//   if (bookmarkToggleBool === true) {
+//     if (bookmarks[markerObj.Id]) {
+//       // bookmark 객체의 키 값으로 존재하면 addMarker 실행
+//       addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+//     }
+//   } else addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+// }

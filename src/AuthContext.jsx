@@ -7,18 +7,25 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [bookmarks, SetBookmarks] = useState({});
   const [bookmarksToggle, SetBookmarksToggle] = useState(false);
   const [restaurantModalOpen, setRestaurantModalOpen] = useState();
+  const [dietToggle, setDietToggle] = useState({
+    Vegan: false,
+    Halal: false,
+    "Gluten-Free": false,
+    "Lacto-Free": false,
+  });
 
-  // const URL = "http://ec2-3-39-217-221.ap-northeast-2.compute.amazonaws.com";
+  useEffect(() => {
+    console.log(dietToggle);
+  }, [dietToggle]);
 
   const URL = "http://pureplate.site:443";
-
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
     const storedToken = sessionStorage.getItem("token");
@@ -123,9 +130,13 @@ export function AuthProvider({ children }) {
         setRestaurantModalOpen,
         restaurantModalOpen,
         URL,
+        dietToggle,
+        setDietToggle,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
+
+export default AuthProvider;

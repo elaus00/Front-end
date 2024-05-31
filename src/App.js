@@ -1,5 +1,5 @@
 // import "./styles.css";
-import { AuthProvider } from "./AuthContext";
+import AuthProvider from "./AuthContext";
 import Pureplate from "./Pureplate/Pureplate";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Restaurant from "./Restaurant/Restaurant";
