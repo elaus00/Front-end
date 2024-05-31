@@ -19,7 +19,6 @@ const CustomMapMarker = ({
     return "";
   };
 
-
   const mobileContentArray = [
     '<div style="margin: 0; display: flex; align-items: center; padding: 0.5rem; border-radius: 2.3rem; border: 0.2rem solid var(--color--darkgreen); background: #D9F2EF; cursor: pointer; position: relative; z-index: 2">',
     '<div style="width: 2.5rem; height: 2.5rem; background-image: url(Images/markerIcon.svg); background-size: cover; background-position: center; background-repeat: no-repeat; margin-right: 0.5rem;"></div>',
@@ -27,13 +26,13 @@ const CustomMapMarker = ({
 
     // 텍스트 컨테이너
     `<div style="flex-grow: 1; max-width: calc(100% - 2.5rem); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1.05rem; letter-spacing: -0.028rem; font-weight: 600; line-height: 2.5rem;">${title}</div>`,
-    
+
     // 이미지 컨테이너 조건부 렌더링
     renderImageContainer(VEGAN, "./assets/flag_vegan.svg"),
     renderImageContainer(HALAL, "./assets/flag_halal.svg"),
     renderImageContainer(GLUTEN_FREE, "./assets/flag_glutenfree.svg"),
     renderImageContainer(LOCTO_FREE, "./assets/flag_loctosfree.svg"),
-    '</div>',
+    "</div>",
     "</div>",
   ];
 

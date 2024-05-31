@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SignUp from "./SignUp.jsx";
 import styles from "./Signin.module.css";
 import SignIn from "./SignIn.jsx";
+import xIcon from "../assets/Icons/x0.svg";
 
 function Sign({ isOpen, close }) {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -46,7 +47,7 @@ function Sign({ isOpen, close }) {
         {/* </div> */}
         <img
           className={styles.x}
-          src="x0.svg"
+          src={xIcon}
           alt="Close"
           onClick={handleClose}
         />
