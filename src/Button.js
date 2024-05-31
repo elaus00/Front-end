@@ -43,7 +43,6 @@ function Button({ attribute }) {
     const updatedDietToggle = { ...dietToggle };
     // 해당 attribute의 값을 반전
     updatedDietToggle[attribute] = !updatedDietToggle[attribute];
-    // 상태 업데이트
     setDietToggle(updatedDietToggle);
   };
   const className = `${
