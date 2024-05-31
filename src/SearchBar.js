@@ -2,25 +2,33 @@
 // import Search2 from "./Search2.jsx";
 import SearchButton from "./Search/SearchButton.jsx";
 import { useEffect, useState } from "react";
-
 import styles from "./SearchBar.module.css";
 import axios from "axios";
 import { useAuth } from "./AuthContext.jsx";
+import searchIcon from "./assets/Icons/searchIcon.svg";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   // GET test
   const [restaurants, setRestaurants] = useState([]);
+  const [restaurantsSet, setRestaurantsSet] = useState();
   const [query, setQuery] = useState("");
   const [isHaveQuery, setIsHaveQuery] = useState(false);
   const [dropDownList, setDropDownList] = useState(restaurants);
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
   const { URL } = useAuth();
+  const navigate = useNavigate();
 
   const fetchRestaurant = async () => {
     try {
       const response = await axios.get(`${URL}/api/restaurant/list`);
 
       const restaurantNames = response.data.data.map((element) => element.Name);
+      const restaurantSet = response.data.data.reduce((acc, element) => {
+        acc[element.Name] = element.Id;
+        return acc;
+      }, {});
+      setRestaurantsSet(restaurantSet);
       setRestaurants(restaurantNames);
     } catch (error) {
       if (error.response) {
@@ -50,6 +58,9 @@ function SearchBar() {
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(query);
+    console.log(restaurantsSet[`${query}`]);
+    const link = restaurantsSet[`${query}`];
+    navigate(`/${link}`);
     if (query === "") {
       return;
     }
@@ -129,11 +140,7 @@ function SearchBar() {
                   dropDownItemIndex === dropDownIndex ? styles.selected : ""
                 }`}
               >
-                <img
-                  className={styles.union}
-                  src="searchIcon.svg"
-                  alt="search"
-                />
+                <img className={styles.union} src={searchIcon} alt="search" />
                 <div className={styles.searchHistory}>
                   <span className={styles.recentSearch12}>{dropDownItem}</span>
                 </div>
