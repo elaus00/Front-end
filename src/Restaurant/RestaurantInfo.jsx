@@ -2,6 +2,7 @@ import styles from "./Restaurant.module.css"; // CSS 모듈 불러오기
 // import rectangle1850 from "./review/rectangle-1850.png";
 import star0 from "./review/star0.svg";
 import iconPhoneTelephone0 from "./review/icon-phone-telephone0.svg";
+import { useEffect } from "react";
 
 function RestaurantInfo({ RestInfo }) {
   return (
@@ -9,8 +10,7 @@ function RestaurantInfo({ RestInfo }) {
       <div className={styles.restPicture}>
         <img
           className={styles.rectangle185}
-          // src={rectangle1850}
-          src={RestInfo.photo}
+          src={`https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/halal/${RestInfo.id}.jpg`}
           alt="Restaurant"
         />
       </div>

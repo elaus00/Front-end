@@ -1,6 +1,6 @@
 import memil from "../../assets/Icons/memil.svg";
 
-const CustomWindow = ({ title, image }) => {
+const CustomWindow = ({ title, id }) => {
   const htmlString = `
         <!-- Sikdang-pin-->
         <div style="
@@ -46,7 +46,8 @@ const CustomWindow = ({ title, image }) => {
                             align-self: stretch;
                             border-radius: 7.005px 7.005px 0px 0px;
                             border-bottom: 1.2px solid #76C7B7;
-                            background: url(${image || memil});
+                            background-size: auto 100%;
+                            background: url('https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/halal/${id}.jpg') center / auto 100% no-repeat;;
                         ">
                         </div>
                         <!-- Textbox -->

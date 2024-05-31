@@ -3,6 +3,7 @@ import CustomWindow from "./CustomInfoWindow.jsx";
 export const createInfoWindow = (naver, map, marker, name, Id, navigate) => {
   const InfoWindowContent = CustomWindow({
     title: name,
+    id: Id,
   });
   const infowindow = new naver.maps.InfoWindow({
     content: InfoWindowContent,

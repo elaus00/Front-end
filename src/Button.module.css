@@ -5,36 +5,11 @@ rgba(254, 246, 176, 1) */
 
 .selectedTrue {
   /* background: rgba(169, 234, 195, 0.62); */
-  border-radius: 1.875rem;
-  border-style: solid;
   border-color: transparent;
-  border-width: 0.03125rem;
-  padding: 0.625rem 1rem 0.625rem 1rem;
-  display: flex;
-  flex-direction: row;
-  gap: 0.625rem;
-  align-items: center;
-  justify-content: center;
-  height: 2.875rem;
-  position: relative;
-  cursor: pointer;
 }
-
 .selectedFalse {
   /* background: #ffffff; */
-  border-radius: 1.875rem;
-  border-style: solid;
   border-color: #3e4958;
-  border-width: 0.03125rem;
-  padding: 0.625rem 1rem 0.625rem 1rem;
-  display: flex;
-  flex-direction: row;
-  gap: 0.625rem;
-  align-items: center;
-  justify-content: center;
-  height: 2.875rem;
-  position: relative;
-  cursor: pointer;
 }
 
 .distance {
@@ -45,4 +20,24 @@ rgba(254, 246, 176, 1) */
   line-height: 1.5rem;
   font-weight: 300;
   position: relative;
+
+  border-radius: 1.875rem;
+  border-style: solid;
+  border-width: 0.03125rem;
+  padding: 0.625rem 1rem 0.625rem 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+  height: 2.875rem;
+  position: relative;
+  cursor: pointer;
+}
+/* 1050px 이하의 화면 크기에서 스타일 적용 */
+@media (max-width: 1050px) {
+  .distance {
+    font-size: 0.875rem; /* 폰트 사이즈 줄임 */
+    padding: 0.5rem 0.875rem; /* 상하, 좌우 패딩 줄임 */
+  }
 }
