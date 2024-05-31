@@ -49,9 +49,9 @@ function Button({ attribute }) {
     dietToggle[attribute] ? trueStyles.selectedTrue : falseStyles.selectedFalse
   } ${trueStyles.distance}`;
 
-  const iconClass = `${
-    dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  } ${trueStyles.distance}`;
+  // const iconClass = `${
+  //   dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
+  // } ${trueStyles.distance}`;
   return (
     <>
       {windowWidth > 768 ? (
