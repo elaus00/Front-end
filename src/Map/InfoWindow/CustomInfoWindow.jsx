@@ -47,7 +47,7 @@ const CustomWindow = ({ title, id }) => {
                             border-radius: 7.005px 7.005px 0px 0px;
                             border-bottom: 1.2px solid #76C7B7;
                             background-size: auto 100%;
-                            background: url('https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/halal/${id}.jpg') center / auto 100% no-repeat;;
+                            background: url('https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/images/${id}.jpg') center / auto 100% no-repeat;;
                         ">
                         </div>
                         <!-- Textbox -->

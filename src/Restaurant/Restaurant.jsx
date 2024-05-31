@@ -186,19 +186,19 @@ function Restaurant({ id, closeModal }) {
       <>
         {/* <div className={styles.container} style={{}}> */}
         <div className={styles.container}>
-          <div className={styles.header}>
-            <RestaurantInfo RestInfo={RestInfo} />
-            <img
-              className={styles.bookmarkIcon}
-              onClick={toggleBookmark}
-              style={{
-                cursor: "pointer",
-                display: isLoggedIn ? "block" : "none",
-              }}
-              src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}
-              alt="Bookmark"
-            />
-          </div>
+          {/* <div className={styles.header}> */}
+          <RestaurantInfo RestInfo={RestInfo} />
+          <img
+            className={styles.bookmarkIcon}
+            onClick={toggleBookmark}
+            style={{
+              cursor: "pointer",
+              display: isLoggedIn ? "block" : "none",
+            }}
+            src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}
+            alt="Bookmark"
+          />
+          {/* </div> */}
           <div className={styles.body}>
             <div className={styles.review}>
               <div className={styles.review2}>Review</div>

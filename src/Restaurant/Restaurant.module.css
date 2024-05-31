@@ -99,7 +99,7 @@
   flex-shrink: 0;
   position: relative;
 }
-/* 
+
 .restInfo {
   border-style: solid;
   border-color: #3e4958;
@@ -118,8 +118,10 @@
 @media (max-width: 600px) {
   .restInfo {
     flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
   }
-} */
+}
 .restPicture {
   display: flex;
   flex-direction: row;
@@ -171,7 +173,7 @@
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 678px) {
+@media (max-width: 600px) {
   .restName {
     font-size: 1.5rem;
   }
@@ -281,7 +283,7 @@
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 678px) {
+@media (max-width: 600px) {
   .restAddress {
     font-size: 0.97rem;
   }

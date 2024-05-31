@@ -10,7 +10,7 @@ function RestaurantInfo({ RestInfo }) {
       <div className={styles.restPicture}>
         <img
           className={styles.rectangle185}
-          src={`https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/halal/${RestInfo.id}.jpg`}
+          src={`https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/images/${RestInfo.id}.jpg`}
           alt="Restaurant"
         />
       </div>
