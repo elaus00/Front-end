@@ -157,44 +157,43 @@ export const addMarkers = (
     !dietToggle["Gluten-Free"] &&
     !dietToggle["Lacto-Free"];
 
-  // Iterate through the MarkerData array
-  for (let i = 0; i < MarkerData.length; i++) {
-    let markerObj = MarkerData[i];
-
-    // Determine if the marker should be added based on the dietToggle state
-    const shouldAddMarker =
+  function shouldAddMarker(markerObj, dietToggle, allFalse) {
+    return (
       allFalse ||
       ((!dietToggle.Vegan || markerObj.Vegan) &&
         (!dietToggle.Halal || markerObj.Halal) &&
         (!dietToggle["Gluten-Free"] || markerObj.GlutenFree) &&
-        (!dietToggle["Lacto-Free"] || markerObj.LactoFree));
+        (!dietToggle["Lacto-Free"] || markerObj.LactoFree))
+    );
+  }
 
-    // Add only the markers that match the conditions
-    if (shouldAddMarker) {
-      addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+  if (isLoggedIn) {
+    for (let i = 0; i < MarkerData.length; i++) {
+      let markerObj = MarkerData[i];
+      // console.log(markerObj);
+      if (bookmarkToggleBool) {
+        if (
+          bookmarks[markerObj.Id] &&
+          shouldAddMarker(markerObj, dietToggle, allFalse)
+        ) {
+          addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+        }
+      } else {
+        if (shouldAddMarker(markerObj, dietToggle, allFalse)) {
+          addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+        }
+      }
+    }
+  } else {
+    // Iterate through the MarkerData array
+
+    for (let i = 0; i < MarkerData.length; i++) {
+      let markerObj = MarkerData[i];
+      if (shouldAddMarker(markerObj, dietToggle, allFalse)) {
+        addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
+      }
     }
   }
-  // for (let i = 0; i < MarkerData.length; i++) {
-  //   let markerObj = MarkerData[i];
-
-  //   // Check if all dietToggle values are false
-  //   const allFalse = Object.values(dietToggle).every(
-  //     (value) => value === false
-  //   );
-
-  //   // Filter markers based on the dietToggle state
-  //   const shouldAddMarker =
-  //     allFalse ||
-  //     (dietToggle.Vegan && markerObj.Vegan) ||
-  //     (dietToggle.Halal && markerObj.Halal) ||
-  //     (dietToggle["Gluten-Free"] && markerObj.GlutenFree) ||
-  //     (dietToggle["Lacto-Free"] && markerObj.LactoFree);
-
-  //   // Add only the markers that match the conditions
-  //   if (shouldAddMarker) {
-  //     addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
-  //   }
-  // }
 };
 
 // for (let i = 0; i < MarkerData.length; i++) {

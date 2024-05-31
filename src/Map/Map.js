@@ -100,7 +100,7 @@ const MapNaverCur = () => {
 
     const mapOptions = {
       center: location,
-      zoom: 15,
+      zoom: 12,
       zoomControl: true,
       zoomControlOptions: {
         style: naver.maps.ZoomControlStyle.SMALL,
@@ -134,7 +134,14 @@ const MapNaverCur = () => {
       setDietToggle,
       isLoggedIn
     );
-  }, [myLocation, naver, RestaurantData, bookmarksToggle, dietToggle]);
+  }, [
+    myLocation,
+    naver,
+    RestaurantData,
+    bookmarksToggle,
+    dietToggle,
+    isLoggedIn,
+  ]);
 
   // 마커 추가
   //   addMarkers(naver, map, totalDataArray, windowWidth, zoom);
