@@ -1,7 +1,7 @@
 import trueStyles from "./AttributesButtonSelectedTrue/AttributesButtonSelectedTrue.module.css";
 import falseStyles from "./AttributesButtonSelectedFalse/AttributesButtonSelectedFalse.module.css";
 import { useAuth } from "./AuthContext";
-import styles from "./Button.module.css";
+// import styles from "./Button.module.css";
 import halalIcon from "./assets/Icons/flag_halal.svg";
 import veganIcon from "./assets/Icons/flag_vegan.svg";
 import glutenIcon from "./assets/Icons/flag_glutenfree.svg";
@@ -14,7 +14,7 @@ import lactoIcon1 from "./assets/Icons/flag_loctosfree1.svg";
 import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
-  const { list, setList } = useState({
+  const [list, setList] = useState({
     Vegan: veganIcon,
     Halal: halalIcon,
     "Gluten-Free": glutenIcon,
