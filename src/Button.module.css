@@ -4,7 +4,7 @@ rgba(247, 247, 247, 1)
 rgba(254, 246, 176, 1) */
 
 .selectedTrue {
-  background: rgba(169, 234, 195, 0.62);
+  /* background: rgba(169, 234, 195, 0.62); */
   border-radius: 1.875rem;
   border-style: solid;
   border-color: transparent;
@@ -21,7 +21,7 @@ rgba(254, 246, 176, 1) */
 }
 
 .selectedFalse {
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 1.875rem;
   border-style: solid;
   border-color: #3e4958;

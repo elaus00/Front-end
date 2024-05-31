@@ -15,11 +15,12 @@ import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
   const [cssList, setCssList] = useState({
-    Vegan: "selectedTrueV",
-    Halal: "selectedTrueH",
-    "Gluten-Free": "selectedTrueG",
-    "Lacto-Free": "selectedTrueL",
+    Vegan: "rgba(118, 199, 183, 0.8)",
+    Halal: "rgba(118, 199, 131, 0.8)",
+    "Gluten-Free": "rgba(247, 247, 247, 0.8)",
+    "Lacto-Free": "rgba(254, 246, 176, 0.8) ",
   });
+
   const [list, setList] = useState({
     Vegan: veganIcon,
     Halal: halalIcon,
@@ -58,8 +59,9 @@ function Button({ attribute }) {
     updatedDietToggle[attribute] = !updatedDietToggle[attribute];
     setDietToggle(updatedDietToggle);
   };
+
   const className = `${
-    dietToggle[attribute] ? trueStyles.selectedTrue : falseStyles.selectedFalse
+    dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
   } ${trueStyles.distance}`;
 
   useEffect(() => {
@@ -74,13 +76,22 @@ function Button({ attribute }) {
   }, [dietToggle, icons]);
 
   const iconClass = `${
-    dietToggle[attribute] ? styles.{cssList[`${attribute}`]} : styles.selectedFalse
+    dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
   } ${trueStyles.distance}`;
 
   return (
     <>
       {windowWidth > 768 ? (
-        <div className={className} onClick={onClick}>
+        // JSX 내에서 style 수정
+        <div
+          className={className}
+          onClick={onClick}
+          style={
+            dietToggle[attribute]
+              ? { backgroundColor: cssList[`${attribute}`] }
+              : {}
+          }
+        >
           {attribute}
         </div>
       ) : (
