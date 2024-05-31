@@ -23,17 +23,6 @@
   align-items: center;
   background: rgba(255, 255, 255, 0.6);
 }
-
-.rectangle8 {
-  border-radius: 1rem;
-  border-style: solid;
-  border-color: #c73697;
-  border-width: 0.0625rem;
-  align-self: stretch;
-  flex: 1;
-  position: relative;
-  object-fit: cover;
-}
 .vector {
   flex-shrink: 0;
   width: 47.09%;
@@ -50,136 +39,6 @@
   width: 38.673125rem;
   height: 20.769375rem;
   position: static;
-}
-.mapPinInstance {
-  /* border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;  */
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 33.24625rem !important;
-  top: 34.71125rem !important;
-}
-.mapPinInstance2 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 37.9425rem !important;
-  top: 25.736875rem !important;
-}
-.mapPinInstance3 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 55.245625rem !important;
-  top: 16.314375rem !important;
-}
-.mapPinInstance4 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 64.45875rem !important;
-  top: 19.84rem !important;
-}
-.mapPinInstance5 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 58.221875rem !important;
-  top: 23.814375rem !important;
-}
-.mapPinInstance6 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 49.396875rem !important;
-  top: 32.34rem !important;
-}
-.mapPinInstance7 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 53.161875rem !important;
-  top: 22.8525rem !important;
-}
-.mapPinInstance8 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 64.45875rem !important;
-  top: 26.955rem !important;
-}
-.mapPinInstance9 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 58.221875rem !important;
-  top: 30.929375rem !important;
-}
-.mapPinInstance10 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 63.27875rem !important;
-  top: 34.070625rem !important;
-}
-.mapPinInstance11 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 32.2575rem !important;
-  top: 22.468125rem !important;
-}
-.mapPinInstance12 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 44.925rem !important;
-  top: 26.955rem !important;
-}
-.mapPinInstance13 {
-  border-style: solid !important;
-  border-color: #5e81f4 !important;
-  border-width: 0.0625rem !important;
-  width: 6.471875rem !important;
-  height: 2.371875rem !important;
-  position: absolute !important;
-  left: 38.688125rem !important;
-  top: 30.929375rem !important;
 }
 .propertyCard {
   flex-shrink: 0;
@@ -342,20 +201,6 @@
   bottom: 0%;
   top: 0%;
 }
-.plusInstance {
-  width: 1.4625rem !important;
-  height: 1.4625rem !important;
-  position: absolute !important;
-  left: calc(50% - 0.70625rem) !important;
-  top: 0.39375rem !important;
-}
-.minusInstance {
-  width: 1.4625rem !important;
-  height: 1.4625rem !important;
-  position: absolute !important;
-  left: calc(50% - 0.70625rem) !important;
-  top: 2.8125rem !important;
-}
 .seperator {
   background: #d3d3d3;
   width: 100%;
@@ -402,7 +247,6 @@
   flex-shrink: 0;
   width: 29.9375rem;
   height: 4.125rem;
-  /* position: absolute; */
   left: 47.3125rem;
   top: 1.375rem;
   overflow: hidden;

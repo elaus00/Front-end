@@ -26,8 +26,8 @@ function AuthProvider({ children }) {
   }, [dietToggle]);
 
   // const URL = "http://pureplate.site:8000";
-  // const URL = "http://127.0.0.1:8000";
-  const URL = "http://pureplate.site:443";
+  const URL = "http://127.0.0.1:8000";
+  // const URL = "http://pureplate.site:443";
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
     const storedToken = sessionStorage.getItem("token");

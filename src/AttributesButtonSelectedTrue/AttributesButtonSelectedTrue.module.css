@@ -2,7 +2,7 @@
 .attributesButtonSelectedTrue * {
   box-sizing: border-box;
 }
-.attributesButtonSelectedTrue {
+.selectedTrue {
   background: rgba(169, 234, 195, 0.62);
   border-radius: 1.875rem;
   border-style: solid;

@@ -78,9 +78,9 @@ const MapNaverCur = () => {
       longitude: position.coords.longitude,
     });
   }
-
+  // 37.631445, 127.077293
   function error() {
-    setMyLocation({ latitude: 37.4979517, longitude: 127.0276188 });
+    setMyLocation({ latitude: 37.631445, longitude: 127.077293 });
   }
 
   // Initialize Map

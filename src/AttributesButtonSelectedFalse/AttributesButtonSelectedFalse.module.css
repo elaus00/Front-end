@@ -2,7 +2,7 @@
 .attributesButtonSelectedFalse * {
   box-sizing: border-box;
 }
-.attributesButtonSelectedFalse {
+.selectedFalse {
   background: #ffffff;
   border-radius: 1.875rem;
   border-style: solid;

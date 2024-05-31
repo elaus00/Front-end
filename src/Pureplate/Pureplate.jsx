@@ -84,8 +84,8 @@ function Pureplate() {
       <header
         className={styles.header}
         style={{
-          backgroundColor: "white",
-          opacity: 1,
+          // backgroundColor: "white",
+          // opacity: 1,
           width: "100%",
           // display: "none",
         }}
