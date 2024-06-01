@@ -1,6 +1,4 @@
-import memil from "../../assets/Icons/memil.svg";
-
-const CustomWindow = ({ title, id }) => {
+const CustomWindow = ({ title, id, ReviewCount, Rating }) => {
   const htmlString = `
         <!-- Sikdang-pin-->
         <div style="
@@ -46,7 +44,7 @@ const CustomWindow = ({ title, id }) => {
                             align-self: stretch;
                             border-radius: 7.005px 7.005px 0px 0px;
                             border-bottom: 1.2px solid #76C7B7;
-                            background-size: auto 100%;
+                            background-size: cover;
                             background: url('https://raw.githubusercontent.com/Pure-Plate/DB-Photo/main/images/${id}.jpg') center / auto 100% no-repeat;;
                         ">
                         </div>
@@ -68,14 +66,17 @@ const CustomWindow = ({ title, id }) => {
                                 align-items: center;
                             ">
                                 <h3 style="
-                                    color: #3E4958;
-                                    text-align: center;
-                                    font-family: 'Anek Bangla';
-                                    font-size: 16.554px;
-                                    font-style: normal;
-                                    font-weight: 800;
-                                    line-height: 149.8%; /* 24.798px */
-                                ">${title}</h3>
+                                color: #3E4958;
+                                text-align: center;
+                                font-family: 'Anek Bangla';
+                                font-size: 16.554px;
+                                font-style: normal;
+                                font-weight: 800;
+                                line-height: 149.8%; 
+                                padding-left: 10px; 
+                                padding-right: 10px;
+                                word-wrap: break-word; // 줄 바꿈 문제 해결
+                            ">${title}</h3>
                             </div>
                             <!-- Rate -->
                             <div style="
@@ -91,7 +92,7 @@ const CustomWindow = ({ title, id }) => {
                                     font-style: normal;
                                     font-weight: 300;
                                     line-height: normal;
-                                ">★4.5</h1>
+                                ">★${Rating}</h1>
                                 <!-- Rate -->
                                 <div style="
                                     width: 1.035px;
@@ -107,7 +108,7 @@ const CustomWindow = ({ title, id }) => {
                                     font-style: normal;
                                     font-weight: 300;
                                     line-height: normal;
-                                ">48 Reviews</h1>
+                                ">${ReviewCount} ${ReviewCount === 1 ? 'Review' : 'Reviews'}</h1>
                             </div>
                         </div>
                     </div>

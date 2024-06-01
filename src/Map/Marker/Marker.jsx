@@ -1,6 +1,5 @@
 import CustomMapMarker from "./CustomMapMarker";
 import { createInfoWindow } from "../InfoWindow/InfoWindow.jsx";
-// import MarkerClustering from "./MarkerClustering.js";
 
 // Create an array to hold markers
 export let markers = [];
@@ -40,8 +39,8 @@ function clearMarkers() {
   }
   markers = [];
 }
+
 // add a single marker
-// 마커 추가.
 export const addMarker = (
   naver,
   map,
@@ -95,7 +94,7 @@ export const addMarker = (
     // Add marker to the marker list
     markers.push(newMarker);
 
-    // marker update considering current map bounds
+    // To show marker whch is on user's view, set bounds and show markers following the bounds.
     naver.maps.Event.addListener(map, "zoom_changed", function () {
       updateMarkers(map, markers);
     });
@@ -112,13 +111,8 @@ export const addMarker = (
       Name,
       Id,
       navigate,
-      Address,
-      Time,
-      Photo,
-      Phone,
       ReviewCount,
       Rating,
-      Id
     );
   } catch (e) {
     console.error(e);

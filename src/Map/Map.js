@@ -1,31 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import {
-  // BrowserRouter as Router,
-  // Route,
-  // Switch,
-  useNavigate,
-} from "react-router-dom";
-import { addMarkers } from "./Marker/Marker.jsx"; // markers.js 파일에서 함수 import
+import { useNavigate } from "react-router-dom";
+import { addMarkers } from "./Marker/Marker.jsx"; // Import the addMarkers function from markers.js
 import { useAuth } from "../AuthContext.jsx";
-// import MarkerCluster from "./Marker/MarkerCluster.jsx";
 
 const MapNaverCur = () => {
-  const mapElement = useRef(null);
-  const { naver } = window;
-  const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 });
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  const [RestaurantData, setRestaurantData] = useState([]);
-  const {
-    URL,
-    bookmarks,
-    bookmarksToggle,
-    dietToggle,
-    setDietToggle,
-    isLoggedIn,
-  } = useAuth();
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
+  const mapElement = useRef(null); // Reference to the map container
+  const { naver } = window; // Naver Maps object
+  const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 }); // User's current location
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth); // Viewport width state
+  const [RestaurantData, setRestaurantData] = useState([]); // Restaurant data state
+  const { URL, bookmarks, bookmarksToggle, dietToggle, setDietToggle, isLoggedIn } = useAuth(); // Authentication context values
+  const navigate = useNavigate(); // Navigation hook
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
   // Update viewport size
   useEffect(() => {
@@ -46,19 +33,8 @@ const MapNaverCur = () => {
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }, []);
-
-  // // Get data from server
-  // useEffect(() => {
-  //   axios
-  //     .get(`${URL}/api/restaurant/list`)
-  //     .then((response) => {
-  //       setRestaurantData(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching restraunt data:", error);
-  //     });
-  // }, []);
-
+  
+  // Fetch restaurant data from server
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -72,31 +48,25 @@ const MapNaverCur = () => {
     fetchData();
   }, []);
 
+  // Success callback for geolocation
   function success(position) {
     setMyLocation({
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     });
   }
-  // 37.631445, 127.077293
+
+  // Error callback for geolocation
   function error() {
     setMyLocation({ latitude: 37.631445, longitude: 127.077293 });
   }
 
   // Initialize Map
   useEffect(() => {
-    if (
-      !mapElement.current ||
-      !naver ||
-      !myLocation.latitude ||
-      !myLocation.longitude
-    )
+    if (!mapElement.current || !naver || !myLocation.latitude || !myLocation.longitude)
       return;
 
-    const location = new naver.maps.LatLng(
-      myLocation.latitude,
-      myLocation.longitude
-    );
+    const location = new naver.maps.LatLng(myLocation.latitude, myLocation.longitude);
 
     const mapOptions = {
       center: location,
@@ -120,7 +90,7 @@ const MapNaverCur = () => {
     const windowWidth = window.innerWidth;
     const MarkerData = RestaurantData.data;
 
-    // 서버에서 받아온 데이터로 마커 추가
+    // Add markers to the map using fetched data
     addMarkers(
       naver,
       map,
@@ -143,12 +113,7 @@ const MapNaverCur = () => {
     isLoggedIn,
   ]);
 
-  // 마커 추가
-  //   addMarkers(naver, map, totalDataArray, windowWidth, zoom);
-  // }, [myLocation, naver]);
-  // 로딩 중일 때 로딩 화면을 보여줌
-
-  return <div ref={mapElement} style={{ minHeight: "100vh" }} />;
+  return <div ref={mapElement} style={{ minHeight: "100vh" }} />; // Return Map container
 };
 
 export default MapNaverCur;

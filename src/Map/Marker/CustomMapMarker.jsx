@@ -1,7 +1,3 @@
-/*
-  CustomMapMaker은 htmlElement의 요소로, html리터럴로 작성되어야 한다. 이를 수정하려고 할 경우, 에러가 날 수 있다.
-*/
-
 const CustomMapMarker = ({
   title,
   windowWidth,
