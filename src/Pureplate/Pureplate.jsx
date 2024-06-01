@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
 import Attributes from "../Attributes.js";
-import SearchBar from "../SearchBar.js";
+import SearchBar from "../Search/SearchBar.js";
 import Profile from "../Profile/Profile.jsx";
 import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
@@ -22,7 +22,6 @@ function Pureplate() {
     SetBookmarksToggle(!bookmarksToggle);
   };
 
-  //
   // URL에 ID가 있을 경우 모달을 엽니다.
   useEffect(() => {
     if (id) {
@@ -61,7 +60,6 @@ function Pureplate() {
         </div>
       </div>
       <Outlet />
-      {/* {isRestModalOpen && <Restaurant id={id} />} */}
       {isRestModalOpen && (
         <div
           ref={restModalRef}
@@ -83,39 +81,16 @@ function Pureplate() {
           </div>
         </div>
       )}
-      <header
-        className={styles.header}
-        style={{
-          // backgroundColor: "white",
-          // opacity: 1,
-          width: "100%",
-          // display: "none",
-        }}
-      >
+      <header className={styles.header}>
         <Link to="/">
           <img className={styles.purePlateIcon} src={logo_icon} alt="logo" />
         </Link>
         <SearchBar />
-        {/* <button
-          onClick={bookmarkToggle}
-          style={{
-            border: "solid 1px",
-            width: "50px",
-            height: "50px",
-            position: "absolute",
-            right: "50px",
-            top: "100px",
-            display: isLoggedIn ? "block" : "none",
-          }}
-        >
-          {bookmarksToggle ? "개짜증나" : "즐겨찾기 진짜"}{" "}
-        </button>{" "} */}
         {!isRestModalOpen && (
           <img
             className={styles.starIcon}
             onClick={bookmarkToggle}
             style={{
-              // border: "solid 1px",
               display: isLoggedIn ? "block" : "none",
             }}
             alt="search"

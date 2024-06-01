@@ -1,11 +1,9 @@
-// import styles from "./Pureplate/Pureplate.module.css";
-// import Search2 from "./Search2.jsx";
-import SearchButton from "./Search/SearchButton.jsx";
 import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
 import axios from "axios";
-import { useAuth } from "./AuthContext.jsx";
-import searchIcon from "./assets/Icons/searchIcon.svg";
+import { useAuth } from "../AuthContext.jsx";
+import findIcon from "../assets/Icons/searchIcon.svg";
+import historySearchIcon from "../assets/Icons/historySearchIcon.svg";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
@@ -115,7 +113,7 @@ function SearchBar() {
     <div className={styles.searchBar}>
       <form className={styles.searchForm} onSubmit={onSubmit}>
         <input
-          className={styles.search}
+          className={styles.searchInput}
           type="text"
           name="search"
           id="searchInput"
@@ -140,7 +138,7 @@ function SearchBar() {
                   dropDownItemIndex === dropDownIndex ? styles.selected : ""
                 }`}
               >
-                <img className={styles.union} src={searchIcon} alt="search" />
+                <img className={styles.union} src={historySearchIcon} alt="search" />
                 <div className={styles.searchHistory}>
                   <span className={styles.recentSearch12}>{dropDownItem}</span>
                 </div>
@@ -149,7 +147,13 @@ function SearchBar() {
           </ul>
         )}
       </form>
-      <SearchButton onSubmit={onSubmit} />
+      <button className={styles.searchButton} onClick={onSubmit}>
+        <img
+          className={styles.searchIcon}
+          src={findIcon}
+          alt="Search"
+        />
+    </button>
     </div>
   );
 }

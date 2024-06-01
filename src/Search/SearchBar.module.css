@@ -1,5 +1,5 @@
+/* Entire Search Area*/
 .searchBar {
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
   gap: 0rem;
@@ -7,35 +7,19 @@
   justify-content: flex-start;
   flex-grow: 0;
   flex-shrink: 1;
-  flex-basis: 30rem;
+  flex-basis: 24rem;
   min-width: 15rem;
-  /* width: 37.8125rem; */
-  height: 3.5rem;
+  height: 3.2rem;
   position: relative;
   padding-right: 15px;
 }
 
-@media (max-width: 1150px) {
-  .searchBar {
-    height: 3.1rem;
-    padding-right: 7px;
-  }
-}
-/* 화면 너비가 768px 이상 900px 이하일 때 적용되는 스타일 */
-@media (min-width: 768px) and (max-width: 900px) {
-  .searchBar {
-    /* 이 부분에 768px부터 900px 사이에서 적용할 스타일을 작성합니다 */
-    /* 예시 */
-    height: 3.3rem;
-    padding-right: px;
-  }
-}
+/* Where Search form is input */
 .searchForm {
   background: rgba(255, 255, 255, 0.96);
   border-style: solid;
-  border-color: #d3d3d3;
-  border-width: 0.0625rem;
-  /* padding: 0.75rem 1rem 0.75rem 1rem; */
+  border-color: #d1d1d167;
+  border-width: 0.0525rem;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
@@ -44,58 +28,29 @@
   flex: 1;
   height: 100%;
   position: relative;
-  /* overflow: hidden; */
-  /* search2 속성 복붙 */
   color: rgba(0, 0, 0, 0.5);
-  /* text-align: center; */
   font-family: "AnekBangla-ExtraLight", sans-serif;
   font-size: 1.3rem;
   font-weight: 200;
   border-radius: 0.5rem 0rem 0rem 0.5rem;
 }
-.search {
+
+.searchInput {
   color: rgba(0, 0, 0, 0.5);
-  /* text-align: center; */
   font-family: "AnekBangla-ExtraLight", sans-serif;
   font-size: 1.4rem;
   font-weight: 200;
-
   line-height: 149.8%;
   position: relative;
   width: 100%;
   height: 100%;
-
-  /* width: 6.125rem; */
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding-left: 20px;
 }
 
-@media (max-width: 1050px) {
-  .search {
-    color: rgba(0, 0, 0, 0.5);
-    /* text-align: center; */
-    font-family: "AnekBangla-ExtraLight", sans-serif;
-    font-size: 1.3rem;
-    font-weight: 200;
-
-    line-height: 149.8%;
-    position: relative;
-    width: 100%;
-    height: 100%;
-
-    /* width: 6.125rem; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding-left: 20px;
-  }
-}
-
-.button {
+.searchButton {
   flex-shrink: 0;
   width: 3.875rem;
   height: 100%;
@@ -105,70 +60,20 @@
   border-radius: 0rem 0.5rem 0.5rem 0rem;
   cursor: pointer;
 }
-/* .rectangle2 {
-    background: rgba(74, 124, 89, 0.96);
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
-    position: absolute;
-    right: 0rem;
-    left: 0rem;
-    bottom: 0rem;
-    top: 0rem;
-  } */
-.searchInstance {
-  width: 1.625rem !important;
-  height: 1.625rem !important;
-  position: absolute !important;
-  left: calc(50% - 0.8125rem) !important;
-  top: calc(50% - 0.75rem) !important;
-}
-
-/*  */
-
-.AutoSearchData:hover {
-  background-color: #edf5f5;
-  cursor: pointer;
-}
-
-.AutoSearchData img {
-  position: absolute;
-  right: 5px;
-  width: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-/*  */
 
 .dropDownBox {
   z-index: 3;
-  /* margin: 0 auto; */
-
-  /* padding: 8px 0; */
-  /* 
-  display: block;
-
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
-  
-   */
-
   background: rgba(255, 255, 255, 0.96);
   border-radius: 0rem 0rem 0.5rem 0.5rem;
-  /* padding: 1.25rem; */
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
   align-items: center;
   justify-content: flex-start;
-  /* height: 15.75rem; */
   position: relative;
   box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
-
   list-style-type: none;
-  /* autosearchcontainer */
   width: 100%;
   position: absolute;
   top: 3.5rem; /* searchForm의 높이에 맞춰 조정 */
@@ -177,32 +82,16 @@
 .dropDownItem {
   padding: 10px 8px;
   width: 100%;
-  /* font-size: 14px; */
-  /* font-weight: bold; */
   z-index: 4;
   letter-spacing: 2px;
-  /* position: relative; */
-
-  /*  */
   display: flex;
   flex-direction: row;
-  /* gap: 0.21125rem; */
   align-items: center;
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
-  /* 
-   */
-  /* color: rgba(53, 53, 53, 0.75);
-  text-align: left;
-  font-family: "NotoSansKr-Regular", sans-serif;
-  font-size: 1.1275362968444824rem;*/
   font-weight: 400;
-  /*  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; */
 }
 
 .dropDownItem.selected {
@@ -220,6 +109,7 @@
   height: auto;
   position: relative;
   overflow: visible;
+  fill: #AAAAAA;
 }
 
 .recentSearch12 {
@@ -245,3 +135,20 @@
   flex: 1;
   position: relative;
 }
+
+.searchIcon {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+}
+
+@media (max-width: 1050px) {
+  .searchBar {
+    width: auto;
+    height: 90%;
+  }
+}
+
+
