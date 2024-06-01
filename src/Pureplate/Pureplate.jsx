@@ -3,7 +3,7 @@ import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
 import Attributes from "../Attributes.js";
 import SearchBar from "../SearchBar.js";
-import Profile from "../Profile.jsx";
+import Profile from "../Profile/Profile.jsx";
 import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";

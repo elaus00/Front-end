@@ -1,12 +1,11 @@
-// import styles from "./Pureplate/Pureplate.module.css";
-import styles from "./Profile.module.css";
-import { ChevronDown } from "./ChevronDown/ChevronDown.jsx";
+import { ChevronDown } from "../ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
-// import SignC from "./Signin/SignC.jsx";
-import Sign from "./Signin/Sign.jsx";
-import { useAuth } from "./AuthContext.jsx";
+import { useAuth } from "../AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import profileIcon from "./assets/Icons/profile.svg";
+
+import Sign from "./Signin/Sign.jsx";
+import styles from "./Profile.module.css";
+import profileIcon from "../assets/Icons/profile.svg";
 
 function Profile() {
   const { isLoggedIn, login, logout, user } = useAuth();
@@ -47,7 +46,6 @@ function Profile() {
           onClick={isLoggedIn ? toggleDropdown : openModal} // 로그인 상태에 따라 함수 변경
         >
           {!isLoggedIn ? (
-            // <div className={styles.signin}>Sign-in</div>
             <span style={{ width: "100%" }}>Sign In</span>
           ) : (
             <>
@@ -92,7 +90,6 @@ function Profile() {
             </ul>
           </div>
         )}
-        {/* <SignC isOpen={isModalOpen} close={closeModal} /> */}
         <Sign isOpen={isModalOpen} close={closeModal} />
       </div>
     </div>

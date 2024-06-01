@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignInInputField from "./SignInInputField.jsx";
 import SignInButton from "./SignInButton.jsx";
-import { useAuth } from "../AuthContext.jsx";
+import { useAuth } from "../../AuthContext.jsx";
 import styles from "./Signin.module.css";
 
 function SignIn() {

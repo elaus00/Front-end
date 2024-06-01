@@ -9,10 +9,8 @@ a:visited {
 }
 
 .profileContainer {
-  position: absolute; /* 이전에는 relative였지만 이제는 absolute를 사용합니다 */
-  top: calc(50% - 1.4375rem); /* profile 버튼의 원래 top 위치 */
+  position: absolute;
   right: 1.6875rem; /* profile 버튼의 원래 right 위치 */
-  /* 필요하다면 width와 height 설정 */
 }
 
 .profile {
