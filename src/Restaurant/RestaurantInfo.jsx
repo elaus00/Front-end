@@ -1,10 +1,10 @@
 import styles from "./Restaurant.module.css";
-import star0 from "./review/star0.svg";
-import iconPhoneTelephone0 from "./review/icon-phone-telephone0.svg";
+import star0 from "../assets/Icons/Review/star0.svg";
+import iconPhoneTelephone0 from "../assets/Icons/Review/icon-phone-telephone0.svg";
 import { useEffect } from "react";
 
 // Component to display restaurant information
-function RestaurantInfo({ RestInfo }) {
+function RestaurantInfo({ RestInfo, closeModal }) {
   return (
     <div className={styles.restInfo}>
       {/* Container for restaurant picture */}
@@ -15,8 +15,9 @@ function RestaurantInfo({ RestInfo }) {
           alt="Restaurant"
         />
       </div>
-      {/* Container for restaurant description */}
       <div className={styles.restDescription}>
+      {/* Container for restaurant description */}
+      <button onClick={closeModal} className={styles.closeButton}></button>
         {/* Restaurant name */}
         <div className={styles.restName}>{RestInfo.name}</div>
         {/* Container for rating and reviews */}

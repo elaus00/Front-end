@@ -25,6 +25,7 @@ function Button({ attribute }) {
     "Gluten-Free": glutenIcon,
     "Lacto-Free": lactoIcon,
   });
+    
   const [icons, setIcons] = useState({
     Vegan: { default: veganIcon1, active: veganIcon },
     Halal: { default: halalIcon1, active: halalIcon },

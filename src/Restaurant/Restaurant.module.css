@@ -1,11 +1,6 @@
 /* styles.module.css */
 
 .bookmarkIcon {
-  /* position: absolute;
-  top: -70px;
-  right: -70px;
-  width: 3rem; */
-
   width: 100px;
   height: 100px;
   position: fixed;
@@ -122,6 +117,7 @@
     justify-content: center;
   }
 }
+
 .restPicture {
   display: flex;
   flex-direction: row;
@@ -134,16 +130,29 @@
   position: relative;
 }
 
-.rectangle185 {
+.RestarauntPicFrame {
   width: 100%;
   border-radius: 0.4375rem;
   border-style: solid;
   border-color: transparent;
   border-width: 0.073125rem;
   align-self: stretch;
-  flex: 1;
+  padding-top: 0.04rem;
   position: relative;
   object-fit: cover;
+}
+
+.closeButton {
+  position: absolute;
+  right: 0.625rem;
+  top: 0.625rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: url("../assets/Icons/Review/close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border: none;
 }
 
 .restDescription {

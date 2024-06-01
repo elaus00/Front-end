@@ -1,6 +1,4 @@
 import styles from "./Pureplate/Pureplate.module.css";
-// import { AttributesButtonSelectedTrue } from "./AttributesButtonSelectedTrue/AttributesButtonSelectedTrue.jsx";
-// import { AttributesButtonSelectedFalse } from "./AttributesButtonSelectedFalse/AttributesButtonSelectedFalse.jsx";
 import Button from "./Button.js";
 import { useAuth } from "./AuthContext.jsx";
 

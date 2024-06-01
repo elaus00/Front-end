@@ -1,6 +1,5 @@
-// import React from "react";
 import axios from "axios";
-import styles from "./Restaurant.module.css"; // CSS 모듈 불러오기
+import styles from "./Restaurant.module.css";
 import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
@@ -40,11 +39,11 @@ function Restaurant({ id, closeModal }) {
     const reviewDate = new Date(visit_date);
 
     const now = new Date();
-    // 두 날짜의 UTC 시간 차이를 구합니다.
+    // Get the UTC time difference between the two dates.
     const diffTime = Math.abs(now.getTime() - reviewDate.getTime());
-    // 차이 값을 일 단위로 계산합니다.
+    // Calculate the difference in days.
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    // 남은 시간 값을 시간 단위로 계산합니다.
+    // Calculate the remaining time in hours.
     const diffHours = Math.floor(
       (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
@@ -71,48 +70,46 @@ function Restaurant({ id, closeModal }) {
       });
     } catch (error) {
       if (error.response) {
-        // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
+        // When the server responds but the status code is out of the 2xx range
         console.error(
-          "서버 응답 오류:",
+          "Server response error:",
           error.response.status,
           error.response.data
         );
       } else if (error.request) {
-        // 요청이 만들어졌으나 응답을 받지 못했을 때
+        // When the request was made but no response was received
         console.error(
-          "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
+          "No response from the server. It could be a network issue.",
           error.request
         );
       } else {
-        // 요청 설정 중에 오류가 발생했을 때
-        console.error("요청 설정 중 오류가 발생했습니다:", error.message);
+        // When an error occurred in setting up the request
+        console.error("Error in setting up the request:", error.message);
       }
     }
   };
   const ReviewOn = async (name) => {
     try {
-      // console.log(name);
       const response = await axios.get(`${URL}/api/review/view?name=${name}`);
-
       setReviews(response.data.reviews);
       const reviewData = response.data.reviews[0];
     } catch (error) {
       if (error.response) {
-        // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
+        // When the server responds but the status code is out of the 2xx range
         console.error(
-          "서버 응답 오류:",
+          "Server response error:",
           error.response.status,
           error.response.data
         );
       } else if (error.request) {
-        // 요청이 만들어졌으나 응답을 받지 못했을 때
+        // When the request was made but no response was received
         console.error(
-          "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
+          "No response from the server. It could be a network issue.",
           error.request
         );
       } else {
-        // 요청 설정 중에 오류가 발생했을 때
-        console.error("요청 설정 중 오류가 발생했습니다:", error.message);
+        // When an error occurred in setting up the request
+        console.error("Error in setting up the request:", error.message);
       }
     }
   };
@@ -122,26 +119,25 @@ function Restaurant({ id, closeModal }) {
       RestOn(restId);
     }
   }, [restId]);
+
   useEffect(() => {
     if (RestInfo.name !== "") {
       ReviewOn(RestInfo.name);
     }
-  }, [RestInfo.name]); // RestInfo.name이 변경될 때마다 ReviewOn 함수를 호출
-  //
+  }, [RestInfo.name]); // Call ReviewOn function whenever RestInfo.name changes
 
-  //북마크
-
-  // 북마크 상태를 관리하기 위한 useState 추가
+  // Bookmark
+  // Add useState to manage bookmark state
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     bookmarks[RestInfo.id] ? setIsBookmarked(true) : setIsBookmarked(false);
   });
 
-  // 북마크 상태를 토글하는 함수
+  // Function to toggle bookmark state
   const toggleBookmark = async () => {
-    // 북마크가 이미 설정되어 있는 경우, 북마크를 삭제합니다.
     if (isBookmarked) {
+      // If the bookmark is already set, delete the bookmark.
       try {
         const response = await axios.delete(
           `${URL}/api/favorite/delete/${RestInfo.name}/`,
@@ -153,13 +149,13 @@ function Restaurant({ id, closeModal }) {
           }
         );
         console.log(response.data);
-        setIsBookmarked(false); // 북마크 상태를 업데이트합니다.
+        setIsBookmarked(false); // Update bookmark state
         bookmarkGet(userToken);
       } catch (error) {
         console.error(error.response ? error.response.data : error);
       }
     } else {
-      // 북마크가 설정되어 있지 않은 경우, 북마크를 추가합니다.
+      // If the bookmark is not set, add the bookmark.
       try {
         const response = await axios.post(
           `${URL}/api/favorite/add/${RestInfo.name}/`,
@@ -172,7 +168,7 @@ function Restaurant({ id, closeModal }) {
           }
         );
         console.log(response.data);
-        setIsBookmarked(true); // 북마크 상태를 업데이트합니다.
+        setIsBookmarked(true); // Update bookmark state
         bookmarkGet(userToken);
       } catch (error) {
         console.error(error.response ? error.response.data : error);
@@ -182,12 +178,9 @@ function Restaurant({ id, closeModal }) {
 
   if (id != 0) {
     return (
-      // <div className={styles.RestaurantContainer}>
       <>
-        {/* <div className={styles.container} style={{}}> */}
         <div className={styles.container}>
-          {/* <div className={styles.header}> */}
-          <RestaurantInfo RestInfo={RestInfo} />
+          <RestaurantInfo RestInfo={RestInfo} closeModal={closeModal} />
           <img
             className={styles.bookmarkIcon}
             onClick={toggleBookmark}
@@ -198,7 +191,6 @@ function Restaurant({ id, closeModal }) {
             src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}
             alt="Bookmark"
           />
-          {/* </div> */}
           <div className={styles.body}>
             <div className={styles.review}>
               <div className={styles.review2}>Review</div>
@@ -207,7 +199,7 @@ function Restaurant({ id, closeModal }) {
             <div className={styles.reviewContainer}>
               {reviews.map((ReviewInfo) => (
                 <Review
-                  key={ReviewInfo.review_id} // 고유한 key 프로퍼티 추가
+                  key={ReviewInfo.review_id} // Add a unique key property
                   userName={ReviewInfo.user_name}
                   date={ReviewInfo.visit_date}
                   content={ReviewInfo.review_text}
@@ -217,13 +209,8 @@ function Restaurant({ id, closeModal }) {
               ))}
             </div>
           </div>
-          <button onClick={closeModal} className={styles.closeButton}>
-            Close
-          </button>
         </div>
-        {/* </div> */}
       </>
-      // </div>
     );
   }
 }

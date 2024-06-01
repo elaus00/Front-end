@@ -41,12 +41,6 @@
   top: 23.46%;
   overflow: visible;
 }
-.mapPin {
-  flex-shrink: 0;
-  width: 38.673125rem;
-  height: 20.769375rem;
-  position: static;
-}
 .propertyCard {
   flex-shrink: 0;
   width: 8.375rem;

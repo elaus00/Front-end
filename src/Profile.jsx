@@ -51,7 +51,6 @@ function Profile() {
             <span style={{ width: "100%" }}>Sign In</span>
           ) : (
             <>
-              {/* <img className={styles.profileImage} src="profile-image0.png" /> */}
               <div className={styles.jiwoo}>{user} </div>
               <ChevronDown
                 className={styles.chevronDownInstance2}
