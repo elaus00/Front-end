@@ -68,6 +68,7 @@
 
 @media (max-width: 678px) {
   .container {
+    padding-top: 20px;
     box-sizing: border-box;
     border-radius: 0;
     border-style: none;
