@@ -1,5 +1,4 @@
 name: Deploy Frontend to EC2 (elaus)
-name: Deploy Frontend to EC2 (elaus)
 
 on:
   push:
