@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; // React Router Dom for navigation
-import styles from "./Map.module.css";
-import profile from "../Profile.jsx";
-import CustomMapMarker from "./Marker/CustomMapMarker.jsx";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { addMarkers } from "./Marker/Marker.jsx"; // Import the addMarkers function from markers.js
+import { useAuth } from "../AuthContext.jsx";
 
 const MapNaverCur = () => {
-  const mapElement = useRef(null);
-  const { naver } = window;
-  const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 });
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  const navigate = useNavigate(); // Hook for navigation
+  const mapElement = useRef(null); // Reference to the map container
+  const { naver } = window; // Naver Maps object
+  const [myLocation, setMyLocation] = useState({ latitude: 0, longitude: 0 }); // User's current location
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth); // Viewport width state
+  const [RestaurantData, setRestaurantData] = useState([]); // Restaurant data state
+  const { URL, bookmarks, bookmarksToggle, dietToggle, setDietToggle, isLoggedIn } = useAuth(); // Authentication context values
+  const navigate = useNavigate(); // Navigation hook
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  // 윈도우 사이즈에 따라 viewportWidth 설정
+  // Update viewport size
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
@@ -24,131 +27,28 @@ const MapNaverCur = () => {
     };
   }, []);
 
-  // 현재 위치 가져오기
+  // Get User's current location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }, []);
-
+  
+  // Fetch restaurant data from server
   useEffect(() => {
-    if (
-      !mapElement.current ||
-      !naver ||
-      !myLocation.latitude ||
-      !myLocation.longitude
-    )
-      return;
-
-    const location = new naver.maps.LatLng(
-      myLocation.latitude,
-      myLocation.longitude
-    );
-
-    const mapOptions = {
-      center: location,
-      zoom: 17,
-      zoomControl: true,
-      // 슬라이더 있으려면 스타일을 LARGE로. 없으면 SMALL
-      zoomControlOptions: {
-        style: naver.maps.ZoomControlStyle.SMALL,
-        position: naver.maps.Position.RIGHT_CENTER,
-      },
-      // 네이버 로고 위치 변경. 없애는 것은 네이버 정책상 불가.
-      logoControlOptions: {
-        position: naver.maps.Position.LEFT_BOTTOM,
-      },
-      scaleControl: false,
-      mapDataControl: false,
-    };
-
-    const map = new naver.maps.Map(mapElement.current, mapOptions);
-    const name = "잘빠진 메밀";
-
-    // 기본 마커 추가
-    const marker = new naver.maps.Marker({
-      position: location,
-      map: map,
-      title: name,
-      icon: {
-        content: CustomMapMarker({ title: name, windowWidth: viewportWidth }),
-        // 마커의 크기 지정
-        size: new naver.maps.Size(38, 58),
-        // 마커의 기준위치 지정
-        anchor: new naver.maps.Point(19, 58),
-      },
-    });
-
-    // 마커를 담을 배열
-    const createMarkerList = [];
-
-    // 데이터 배열 순회하면서 마커 생성 진행
-    /**** 여기서 백엔드 연결해서 데이터 받아와야함! ****/
-    const totalDataArray = [
-      // Add your data here
-      {
-        dom_id: "1",
-        title: "Marker 1",
-        lat: 37.4979517,
-        lng: 127.0276188,
-        Vegan: true,
-        Halal: true,
-        GlutenFree: true,
-        LoctoFree: true,
-      },
-      {
-        dom_id: "2",
-        title: "Marker 2",
-        lat: 37.4979517,
-        lng: 127.0276188,
-        Vegan: true,
-        Halal: true,
-        GlutenFree: true,
-        LoctoFree: true,
-      },
-      // More data...
-    ];
-
-    // 마커 추가 함수
-    const addMarkers = () => {
-      for (let i = 0; i < totalDataArray.length; i++) {
-        let markerObj = totalDataArray[i];
-        const { dom_id, title, lat, lng } = markerObj;
-        addMarker(dom_id, title, lat, lng);
-      }
-    };
-
-    // 마커 생성하고 createMarkerList에 추가
-    const addMarker = (id, name, lat, lng) => {
+    const fetchData = async () => {
       try {
-        let newMarker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(lat, lng),
-          map,
-          title: name,
-          clickable: true,
-        });
-        newMarker.setTitle(name);
-        // 마커 리스트에 추가
-        createMarkerList.push(newMarker);
-        // 마커에 이벤트 핸들러 등록
-        naver.maps.Event.addListener(newMarker, "click", () =>
-          markerClickHandler(id)
-        );
-      } catch (e) {
-        console.error(e);
+        const response = await axios.get(`${URL}/api/restaurant/list`);
+        setRestaurantData(response.data);
+      } catch (error) {
+        console.error("Error fetching restaurant data:", error);
       }
     };
 
-    // 마커를 클릭했을 때 실행할 이벤트 핸들러
-    const markerClickHandler = (id) => {
-      navigate(`/ground/${id}`);
-    };
+    fetchData();
+  }, []);
 
-    addMarkers(); // 마커 추가 함수 호출
-  }, [myLocation, naver]);
-
-  return <div ref={mapElement} style={{ minHeight: "100vh" }} />;
-
+  // Success callback for geolocation
   function success(position) {
     setMyLocation({
       latitude: position.coords.latitude,
@@ -156,9 +56,64 @@ const MapNaverCur = () => {
     });
   }
 
+  // Error callback for geolocation
   function error() {
-    setMyLocation({ latitude: 37.4979517, longitude: 127.0276188 });
+    setMyLocation({ latitude: 37.631445, longitude: 127.077293 });
   }
+
+  // Initialize Map
+  useEffect(() => {
+    if (!mapElement.current || !naver || !myLocation.latitude || !myLocation.longitude)
+      return;
+
+    const location = new naver.maps.LatLng(myLocation.latitude, myLocation.longitude);
+
+    const mapOptions = {
+      center: location,
+      zoom: 12,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: naver.maps.ZoomControlStyle.SMALL,
+        position: naver.maps.Position.RIGHT_CENTER,
+      },
+      logoControlOptions: {
+        position: naver.maps.Position.LEFT_BOTTOM,
+      },
+      scaleControl: false,
+      mapDataControl: false,
+    };
+
+    // Map implementation
+    const map = new naver.maps.Map(mapElement.current, mapOptions);
+
+    const zoom = mapOptions.zoom;
+    const windowWidth = window.innerWidth;
+    const MarkerData = RestaurantData.data;
+
+    // Add markers to the map using fetched data
+    addMarkers(
+      naver,
+      map,
+      MarkerData,
+      windowWidth,
+      zoom,
+      navigate,
+      bookmarksToggle,
+      bookmarks,
+      dietToggle,
+      setDietToggle,
+      isLoggedIn
+    );
+  }, [
+    myLocation,
+    naver,
+    RestaurantData,
+    bookmarksToggle,
+    dietToggle,
+    isLoggedIn,
+  ]);
+
+  return <div ref={mapElement} style={{ minHeight: "100vh" }} />; // Return Map container
 };
 
 export default MapNaverCur;

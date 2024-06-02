@@ -26,3 +26,7 @@ test.html
 src/AutoComplete.jsx
 src/AutoComplete.module.css
 src/Signin/SignC.jsx
+register.json
+
+
+#   "proxy": "http://127.0.0.1:8000",

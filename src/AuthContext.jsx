@@ -1,46 +1,158 @@
 import axios from "axios";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
+// Create an AuthContext
 const AuthContext = createContext();
 
+// Custom hook to use the AuthContext
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) {
+// AuthProvider component
+function AuthProvider({ children }) {
+  // State declarations
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+  const [bookmarks, SetBookmarks] = useState({});
+  const [bookmarksToggle, SetBookmarksToggle] = useState(false);
+  const [restaurantModalOpen, setRestaurantModalOpen] = useState();
+  const [dietToggle, setDietToggle] = useState({
+    Vegan: false,
+    Halal: false,
+    "Gluten-Free": false,
+    "Lacto-Free": false,
+  });
 
-  const login = async (id, password) => {
+  // Effect to log dietToggle state changes
+  useEffect(() => {
+    console.log(dietToggle);
+  }, [dietToggle]);
+
+  const URL = "http://pureplate.site:8000";
+  // const URL = "http://127.0.0.1:8000";
+  // const URL = "http://pureplate.site:443";
+
+  // Effect to load user data from session storage on component mount
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem("user");
+    const storedToken = sessionStorage.getItem("token");
+    const storedBookmarks = JSON.parse(sessionStorage.getItem("bookmarks"));
+
+    if (storedUser && storedToken && storedBookmarks) {
+      setUser(storedUser);
+      setIsLoggedIn(true);
+      setUserToken(storedToken);
+      SetBookmarks(storedBookmarks);
+    }
+  }, []);
+
+  // Function to show a custom alert message
+  function showCustomAlert(message) {
+    window.alert(`localhost says: ${message}`);
+  }
+
+  // Login function
+  const login = async (username, password) => {
     try {
-      const response = await axios.post("http://yourbackend.com/api/login", {
-        id,
+      const response = await axios.post(`${URL}/api/account/login/`, {
+        username,
         password,
       });
-      // 요청 성공 후 응답에서 사용자 정보를 가져와 상태를 업데이트합니다.
-      setUser(response.data.user);
+      setUser(response.data.nickname);
       setIsLoggedIn(true);
+      setUserToken(response.data.token);
+      sessionStorage.setItem("user", response.data.nickname);
+      sessionStorage.setItem("token", response.data.token);
+      showCustomAlert("Logged in!");
+
+      await bookmarkGet(response.data.token);
     } catch (error) {
-      // 에러 처리를 개선합니다.
       if (error.response) {
-        // 서버 응답이 있는 경우, 서버에서 보낸 오류 메시지를 사용합니다.
-        console.error("로그인 실패:", error.response.data);
+        console.error("Login failed:", error.response.data); // Translate the Korean comment
       } else {
-        // 서버 응답이 없는 경우, 예를 들어 네트워크 문제 등
-        console.error("요청 처리 중 문제가 발생했습니다.", error.message);
+        console.error("An error occurred during the request.", error.message); // Translate the Korean comment
       }
       setIsLoggedIn(false);
     }
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     setIsLoggedIn(false);
+    setUserToken(null);
+    SetBookmarks([]);
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("bookmarks");
+    SetBookmarksToggle(false);
+  };
+
+  // Function to get user bookmarks
+  const bookmarkGet = async (token) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    };
+    try {
+      const response = await axios.get(`${URL}/api/favorite/user`, config);
+      // Convert received array to object
+      const bookmarksObj = response.data.favorites.reduce((acc, cur) => {
+        acc[cur.restaurant_id] = cur.restaurant_name;
+        return acc;
+      }, {});
+      // Update state
+      SetBookmarks(bookmarksObj);
+      sessionStorage.setItem("bookmarks", JSON.stringify(bookmarksObj));
+    } catch (error) {
+      if (error.response) {
+        // When the server returns a response but the status code is out of the 2xx range
+        console.error(
+          "Server response error:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        // When the request is made but no response is received
+        console.error(
+          "No response from the server. It might be a network issue.",
+          error.request
+        );
+      } else {
+        // When an error occurs in setting up the request
+        console.error("An error occurred while setting up the request:", error.message);
+      }
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        user,
+        setUser,
+        login,
+        logout,
+        userToken,
+        setUserToken,
+        bookmarks,
+        bookmarkGet,
+        bookmarksToggle,
+        SetBookmarksToggle,
+        setRestaurantModalOpen,
+        restaurantModalOpen,
+        URL,
+        dietToggle,
+        setDietToggle,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
+
+export default AuthProvider;

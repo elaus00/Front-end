@@ -1,15 +1,19 @@
-// import "./styles.css";
-import { AuthProvider } from "./AuthContext";
+import AuthProvider from "./AuthContext";
 import Pureplate from "./Pureplate/Pureplate";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Restaurant from "./Restaurant/Restaurant";
+import FeedbackPage from "./Feedback/FeedbackPage";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
-          <Pureplate />
-        </div>
+        <Routes>
+          <Route path="/" element={<Pureplate />}>
+            <Route path=":id" element={<Restaurant id="0" none="none" />} />
+            <Route path="feedback" element={<FeedbackPage />} />
+          </Route>
+        </Routes>
       </Router>
     </AuthProvider>
   );

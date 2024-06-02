@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Outlet } from "react-router-dom";
 import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
-import Attributes from "../Attributes.js";
-import SearchBar from "../SearchBar.js";
-import Profile from "../Profile.jsx";
-import Header from "../Header.js";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Link } from "react-router-dom";
+import RestaurantModal from "./RestaurantModal.jsx";
+import Header from "./Header.jsx";
+import { useAuth } from "../AuthContext.jsx";
 
 function Pureplate() {
+  const { id } = useParams(); // Extract restaurant ID from URL
+  const [isRestModalOpen, setIsRestModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const { bookmarksToggle, SetBookmarksToggle } = useAuth();
+
+  const bookmarkToggle = () => {
+    SetBookmarksToggle(!bookmarksToggle);
+  };
+
+  useEffect(() => {
+    if (id) {
+      setIsRestModalOpen(true);
+    }
+  }, [id]);
+
+  const closeRestModal = () => {
+    setIsRestModalOpen(false);
+    navigate("/");
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.homeLogedIn}>
@@ -16,21 +34,11 @@ function Pureplate() {
           <MapNaverCur />
         </div>
       </div>
-      <header
-        className={styles.header}
-        style={{
-          backgroundColor: "white",
-          opacity: 1,
-          width: "100%",
-        }}
-      >
-        <Link to="/">
-          <img className={styles.purePlateIcon} src="pure-plate-icon0.png" />{" "}
-        </Link>
-        <SearchBar />
-        <Attributes />
-        <Profile />
-      </header>
+      <Outlet />
+      {isRestModalOpen && (
+        <RestaurantModal id={id} closeModal={closeRestModal} />
+      )}
+      <Header isRestModalOpen={isRestModalOpen} bookmarkToggle={bookmarkToggle} />
     </div>
   );
 }
