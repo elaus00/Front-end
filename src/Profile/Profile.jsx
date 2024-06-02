@@ -4,13 +4,15 @@ import { useAuth } from "../AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 import Sign from "./Signin/Sign.jsx";
+import LogoutConfirmModal from "./Logout/LogoutConfirmModal.jsx";
 import styles from "./Profile.module.css";
 import profileIcon from "../assets/Icons/profile.svg";
 
 function Profile() {
   const { isLoggedIn, login, logout, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false); // 드롭다운 메뉴 상태 관리
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false); // Logout confirmation modal state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +34,22 @@ function Profile() {
       setDropdownOpen(!dropdownOpen);
     }
   };
+
+  const openLogoutConfirm = () => {
+    setIsLogoutConfirmOpen(true);
+    setDropdownOpen(false);
+  };
+
+  const closeLogoutConfirm = () => {
+    setIsLogoutConfirmOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsLogoutConfirmOpen(false);
+    navigate("/");
+  };
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.dropdownContainer}>
@@ -43,20 +61,18 @@ function Profile() {
         />
         <button
           className={styles.profile}
-          onClick={isLoggedIn ? toggleDropdown : openModal} // 로그인 상태에 따라 함수 변경
+          onClick={isLoggedIn ? toggleDropdown : openModal}
         >
           {!isLoggedIn ? (
             <span style={{ width: "100%" }}>Sign In</span>
           ) : (
             <>
-              <div className={styles.jiwoo}>{user} </div>
-              <ChevronDown
-                className={styles.chevronDownInstance2}
-              ></ChevronDown>
+              <div className={styles.jiwoo}>{user}</div>
+              <ChevronDown className={styles.chevronDownInstance2}></ChevronDown>
             </>
           )}
         </button>
-        {dropdownOpen && ( // 드롭다운 메뉴 표시 조건
+        {dropdownOpen && (
           <div
             className={`${styles.dropdownMenu} ${
               dropdownOpen
@@ -70,7 +86,6 @@ function Profile() {
                 <li
                   onClick={() => {
                     console.log(user);
-
                     setDropdownOpen(false);
                   }}
                 >
@@ -78,19 +93,19 @@ function Profile() {
                 </li>
               </Link>
               <li
-                onClick={() => {
-                  logout();
-                  setDropdownOpen(false);
-                  navigate("/");
-                }}
+                onClick={openLogoutConfirm}
               >
                 Logout
               </li>
-              {/* 로그아웃 처리 */}
             </ul>
           </div>
         )}
         <Sign isOpen={isModalOpen} close={closeModal} />
+        <LogoutConfirmModal
+          isOpen={isLogoutConfirmOpen}
+          onClose={closeLogoutConfirm}
+          onConfirm={handleLogout}
+        />
       </div>
     </div>
   );
