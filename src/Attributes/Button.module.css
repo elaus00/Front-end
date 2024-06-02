@@ -1,10 +1,10 @@
 .selectedTrue {
-  border-color: transparent;
+  border-color: #a6b9b1c5;
 }
 
 /* Default (not selected) */
 .selectedFalse {
-  border-color: #a6b9b18c;
+  border-color: #a6b9b1c5;
 }
 
 .distance {

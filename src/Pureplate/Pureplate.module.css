@@ -293,24 +293,8 @@
 .attributeInstance {
   flex-shrink: 0 !important;
 }
-.starIcon {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  right: 50px;
-  top: 100px;
-  cursor: pointer;
-  filter: drop-shadow(2px 8px 5px rgba(0, 0, 0, 0.4));
-}
 
-@media (max-width: 600px) {
-  .starIcon {
-    width: 50px;
-    height: 50px;
-    right: 35px;
-    top: 80px;
-  }
-}
+
 
 @media (max-width: 678px) {
   .modalContainer {

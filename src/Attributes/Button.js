@@ -15,7 +15,7 @@ function Button({ attribute }) {
   const [cssList, setCssList] = useState({
     Vegan: "rgba(118, 199, 183, 0.85)",
     Halal: "rgba(118, 199, 131, 0.85)",
-    "Gluten-Free": "rgba(242, 255, 248, 0.85)",
+    "Gluten-Free": "rgba(233, 250, 234, 0.9)",
     "Lacto-Free": "rgba(254, 246, 176, 0.85) ",
   });
 
