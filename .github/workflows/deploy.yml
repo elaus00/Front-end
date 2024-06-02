@@ -1,9 +1,9 @@
-name: Deploy Frontend to EC2 (elaus)
+name: Deploy Frontend to EC2 (main)
 
 on:
   push:
     branches:
-      - mergeForDebug1
+      - main
 
 jobs:
   deploy:
