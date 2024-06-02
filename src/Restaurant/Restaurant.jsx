@@ -185,7 +185,6 @@ function Restaurant({ id, closeModal }) {
             className={styles.bookmarkIcon}
             onClick={toggleBookmark}
             style={{
-              cursor: "pointer",
               display: isLoggedIn ? "block" : "none",
             }}
             src={isBookmarked ? bookmarkIconYellow : bookmarkIconGray}

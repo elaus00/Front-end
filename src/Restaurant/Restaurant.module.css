@@ -9,13 +9,7 @@
   cursor: pointer;
   filter: drop-shadow(2px 4px 3px rgba(242, 242, 242, 0.4));
 }
-@media (max-width: 678px) {
-  .bookmarkIcon {
-    position: fixed;
-    top: 100px; /* 상단에서의 거리 조절 */
-    right: 20px; /* 오른쪽에서의 거리 조절 */
-  }
-}
+
 @media (max-width: 900px) {
   .bookmarkIcon {
     width: 70px;
@@ -26,7 +20,15 @@
     cursor: pointer;
     filter: drop-shadow(2px 4px 3px rgba(242, 242, 242, 0.4));
   }
+@media (max-width: 678px) {
+  .bookmarkIcon {
+    position: fixed;
+    top: 100px; /* 상단에서의 거리 조절 */
+    right: 20px; /* 오른쪽에서의 거리 조절 */
+  }
 }
+
+} 
 .reviewContainer {
   max-height: 324px; /* 원하는 높이로 설정 */
   overflow-y: auto; /* 세로로 스크롤 가능하게 설정 */
@@ -52,7 +54,7 @@
   box-sizing: border-box;
   border-radius: 0.5625rem;
   border-style: solid;
-  border-color: #3e4958;
+  border-color: #cfcfcf8e;
   border-width: 0.0625rem;
   display: flex;
   flex-direction: column;
@@ -61,6 +63,7 @@
   justify-content: flex-start;
   position: relative;
   background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 678px) {
@@ -97,15 +100,14 @@
 
 .restInfo {
   border-style: solid;
-  border-color: #3e4958;
-  border-width: 0rem 0rem 0.0625rem 0rem;
-  padding: 0rem 0rem 0.15625rem 0rem;
+  border-color: #85858588;
+  border-width: 0rem 0rem 0.0825rem 0rem;
+  padding: 0rem 0rem 0rem 0rem;
   display: flex;
   flex-direction: row;
   gap: 0rem;
   align-items: center;
   justify-content: flex-start;
-  align-self: stretch;
   flex-shrink: 0;
   height: 13.8125rem;
   position: relative;
@@ -132,13 +134,10 @@
 
 .RestarauntPicFrame {
   width: 100%;
-  border-radius: 0.4375rem;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 0.073125rem;
+  border-top-left-radius: 0.4375rem;
+  border-top-right-radius: 0.4375rem;
+  border-bottom-right-radius: 0.4375rem;
   align-self: stretch;
-  padding-top: 0.04rem;
-  position: relative;
   object-fit: cover;
 }
 
@@ -371,7 +370,7 @@
 
 .line1 {
   border-style: solid;
-  border-color: rgba(66, 76, 89, 0.7);
+  border-color: #85858588;
   border-width: 0.09375rem 0 0 0;
   flex-shrink: 0;
   width: 30.3125rem;
@@ -381,7 +380,7 @@
 
 .reviewItem {
   border-style: solid;
-  border-color: #3e4958;
+  border-color: #85858588;
   border-width: 0.0625rem 0rem 0rem 0rem;
   display: flex;
   flex-direction: row;
@@ -394,6 +393,7 @@
   position: relative;
   overflow: hidden;
 }
+
 /* ProfileStyles.module.css */
 .profile {
   display: flex;
@@ -431,7 +431,7 @@
 }
 .starContainer {
   border-style: solid;
-  border-color: #000000;
+  border-color: #85858588;
   border-width: 0.0625rem 0rem 0.0625rem 0rem;
   padding: 0.4375rem;
   display: flex;
@@ -476,11 +476,7 @@
   position: relative;
 }
 .contents {
-  /* background: #ffffff; */
-  /* border-style: solid;
-  border-color: #000000;
-  border-width: 0.0625rem; */
-  border-left: 0.0625rem solid #000000;
+  border-left: 0.0625rem solid #85858588;
 
   padding: 0.625rem 1.25rem 0.625rem 1.25rem;
   display: flex;
