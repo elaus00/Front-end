@@ -14,7 +14,6 @@
   padding-right: 15px;
 }
 
-/* Where Search form is input */
 .searchForm {
   background: rgba(255, 255, 255, 0.96);
   border-style: solid;
@@ -35,6 +34,7 @@
   border-radius: 0.5rem 0rem 0rem 0.5rem;
 }
 
+/* Actual Input occured here */
 .searchInput {
   color: rgba(0, 0, 0, 0.5);
   font-family: "AnekBangla-ExtraLight", sans-serif;
@@ -48,6 +48,11 @@
   align-items: center;
   justify-content: center;
   padding-left: 20px;
+}
+
+.searchInput:focus {
+  border: 0px solid #cfcfcf7a;
+  outline: none; /* 기본 outline 제거 (선택 사항) */
 }
 
 .searchButton {
@@ -70,13 +75,12 @@
   gap: 0.625rem;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
   box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
   list-style-type: none;
   width: 100%;
   position: absolute;
-  top: 3.5rem; /* searchForm의 높이에 맞춰 조정 */
+  top: 104%; /* searchForm의 높이에 맞춰 조정 */
 }
 
 .dropDownItem {
