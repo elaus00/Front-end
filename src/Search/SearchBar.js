@@ -7,7 +7,7 @@ import historySearchIcon from "../assets/Icons/historySearchIcon.svg";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
-  // GET test
+  // State to store restaurant data
   const [restaurants, setRestaurants] = useState([]);
   const [restaurantsSet, setRestaurantsSet] = useState();
   const [query, setQuery] = useState("");
@@ -17,6 +17,7 @@ function SearchBar() {
   const { URL } = useAuth();
   const navigate = useNavigate();
 
+  // Fetch restaurant data from the API
   const fetchRestaurant = async () => {
     try {
       const response = await axios.get(`${URL}/api/restaurant/list`);
@@ -30,21 +31,21 @@ function SearchBar() {
       setRestaurants(restaurantNames);
     } catch (error) {
       if (error.response) {
-        // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
+        // The server responded with a status code outside the 2xx range
         console.error(
-          "서버 응답 오류:",
+          "Server response error:",
           error.response.status,
           error.response.data
         );
       } else if (error.request) {
-        // 요청이 만들어졌으나 응답을 받지 못했을 때
+        // The request was made but no response was received
         console.error(
-          "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
+          "No response from server. This could be a network issue.",
           error.request
         );
       } else {
-        // 요청 설정 중에 오류가 발생했을 때
-        console.error("요청 설정 중 오류가 발생했습니다:", error.message);
+        // An error occurred in setting up the request
+        console.error("Error in setting up request:", error.message);
       }
     }
   };
@@ -53,25 +54,24 @@ function SearchBar() {
     fetchRestaurant();
   }, []);
 
+  // Handle form submission
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(query);
-    console.log(restaurantsSet[`${query}`]);
-    const link = restaurantsSet[`${query}`];
-    navigate(`/${link}`);
-    if (query === "") {
-      return;
+    const link = restaurantsSet[query.trim()];
+    if (link) {
+      navigate(`/${link}`);
+      setQuery("");
     }
-    setQuery("");
   };
+  
 
+  // Handle input change
   const onChange = (event) => {
     setQuery(event.target.value);
-    console.log(query);
     setIsHaveQuery(true);
   };
 
-  //한글
+  // Update dropdown list based on query
   const showDropDownList = () => {
     if (query === "") {
       setIsHaveQuery(false);
@@ -84,29 +84,35 @@ function SearchBar() {
       setDropDownList(choosenTextList);
     }
   };
+
+  // Handle click on dropdown item
   const clickDropDownItem = (clickedItem) => {
     setQuery(clickedItem);
     setIsHaveQuery(false);
   };
 
+  // Handle keyboard navigation in dropdown
   const handleDropDownKey = (event) => {
-    if (isHaveQuery) {
-      if (
-        event.key === "ArrowDown" &&
-        dropDownList.length - 1 > dropDownItemIndex
-      ) {
-        setDropDownItemIndex(dropDownItemIndex + 1);
-      }
-
-      if (event.key === "ArrowUp" && dropDownItemIndex >= 0)
-        setDropDownItemIndex(dropDownItemIndex - 1);
-      if (event.key === "Enter" && dropDownItemIndex >= 0) {
+    if (event.key === "ArrowDown" && dropDownList.length - 1 > dropDownItemIndex) {
+      setDropDownItemIndex(dropDownItemIndex + 1);
+    }
+  
+    if (event.key === "ArrowUp" && dropDownItemIndex >= 0) {
+      setDropDownItemIndex(dropDownItemIndex - 1);
+    }
+  
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (dropDownItemIndex >= 0) {
         clickDropDownItem(dropDownList[dropDownItemIndex]);
-        setDropDownItemIndex(-1);
+      } else if (restaurantsSet[query.trim()]) {
+        onSubmit(event);  // Trigger form submission if the query is valid
+      } else {
       }
+      setDropDownItemIndex(-1);
     }
   };
-
+  
   useEffect(showDropDownList, [query]);
 
   return (
@@ -123,11 +129,10 @@ function SearchBar() {
           value={query}
           autoComplete="off"
         />
-
         {isHaveQuery && (
           <ul className={styles.dropDownBox}>
             {dropDownList.length === 0 && (
-              <li className={styles.dropDownItem}>해당하는 단어가 없습니다</li>
+              <li className={styles.dropDownItem}>No matching words found</li>
             )}
             {dropDownList.map((dropDownItem, dropDownIndex) => (
               <li
@@ -148,12 +153,8 @@ function SearchBar() {
         )}
       </form>
       <button className={styles.searchButton} onClick={onSubmit}>
-        <img
-          className={styles.searchIcon}
-          src={findIcon}
-          alt="Search"
-        />
-    </button>
+        <img className={styles.searchIcon} src={findIcon} alt="Search" />
+      </button>
     </div>
   );
 }
