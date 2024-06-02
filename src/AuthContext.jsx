@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
+// Create an AuthContext
 const AuthContext = createContext();
 
+// Custom hook to use the AuthContext
 export function useAuth() {
   return useContext(AuthContext);
 }
 
+// AuthProvider component
 function AuthProvider({ children }) {
+  // State declarations
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
@@ -21,6 +25,7 @@ function AuthProvider({ children }) {
     "Lacto-Free": false,
   });
 
+  // Effect to log dietToggle state changes
   useEffect(() => {
     console.log(dietToggle);
   }, [dietToggle]);
@@ -28,6 +33,8 @@ function AuthProvider({ children }) {
   const URL = "http://pureplate.site:8000";
   // const URL = "http://127.0.0.1:8000";
   // const URL = "http://pureplate.site:443";
+
+  // Effect to load user data from session storage on component mount
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
     const storedToken = sessionStorage.getItem("token");
@@ -41,11 +48,12 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  // Function to show a custom alert message
   function showCustomAlert(message) {
     window.alert(`localhost says: ${message}`);
   }
 
-  // Login
+  // Login function
   const login = async (username, password) => {
     try {
       const response = await axios.post(`${URL}/api/account/login/`, {
@@ -57,20 +65,20 @@ function AuthProvider({ children }) {
       setUserToken(response.data.token);
       sessionStorage.setItem("user", response.data.nickname);
       sessionStorage.setItem("token", response.data.token);
-      // alert("Logged in!");
       showCustomAlert("Logged in!");
 
       await bookmarkGet(response.data.token);
     } catch (error) {
       if (error.response) {
-        console.error("로그인 실패:", error.response.data);
+        console.error("Login failed:", error.response.data); // Translate the Korean comment
       } else {
-        console.error("요청 처리 중 문제가 발생했습니다.", error.message);
+        console.error("An error occurred during the request.", error.message); // Translate the Korean comment
       }
       setIsLoggedIn(false);
     }
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     setIsLoggedIn(false);
@@ -82,6 +90,7 @@ function AuthProvider({ children }) {
     SetBookmarksToggle(false);
   };
 
+  // Function to get user bookmarks
   const bookmarkGet = async (token) => {
     const config = {
       headers: {
@@ -91,34 +100,34 @@ function AuthProvider({ children }) {
     };
     try {
       const response = await axios.get(`${URL}/api/favorite/user`, config);
-      // 받아온 배열을 객체로 변환
+      // Convert received array to object
       const bookmarksObj = response.data.favorites.reduce((acc, cur) => {
         acc[cur.restaurant_id] = cur.restaurant_name;
         return acc;
       }, {});
-      // 상태 업데이트
+      // Update state
       SetBookmarks(bookmarksObj);
       sessionStorage.setItem("bookmarks", JSON.stringify(bookmarksObj));
     } catch (error) {
       if (error.response) {
-        // 서버가 응답을 반환했으나 상태 코드가 2xx 범위를 벗어났을 때
+        // When the server returns a response but the status code is out of the 2xx range
         console.error(
-          "서버 응답 오류:",
+          "Server response error:",
           error.response.status,
           error.response.data
         );
       } else if (error.request) {
-        // 요청이 만들어졌으나 응답을 받지 못했을 때
+        // When the request is made but no response is received
         console.error(
-          "서버로부터 응답이 없습니다. 네트워크 문제일 수 있습니다.",
+          "No response from the server. It might be a network issue.",
           error.request
         );
       } else {
-        // 요청 설정 중에 오류가 발생했을 때
-        console.error("요청 설정 중 오류가 발생했습니다:", error.message);
+        // When an error occurs in setting up the request
+        console.error("An error occurred while setting up the request:", error.message);
       }
     }
-  }; //
+  };
 
   return (
     <AuthContext.Provider
