@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
-import Attributes from "../Attributes.js";
+import Attributes from "../Attributes/Attributes.js";
 import SearchBar from "../Search/SearchBar.js";
 import Profile from "../Profile/Profile.jsx";
 import { Link, useParams, useNavigate, Outlet } from "react-router-dom";

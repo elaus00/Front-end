@@ -1,15 +1,10 @@
-/* rgba(118, 199, 183, 0.)
-rgba(118, 199, 131, 1)
-rgba(247, 247, 247, 1)
-rgba(254, 246, 176, 1) */
-
 .selectedTrue {
-  /* background: rgba(169, 234, 195, 0.62); */
   border-color: transparent;
 }
+
+/* Default (not selected) */
 .selectedFalse {
-  /* background: #ffffff; */
-  border-color: #3e4958;
+  border-color: #a6b9b18c;
 }
 
 .distance {

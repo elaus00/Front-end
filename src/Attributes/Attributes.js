@@ -1,6 +1,6 @@
-import styles from "./Pureplate/Pureplate.module.css";
+import styles from "../Pureplate/Pureplate.module.css";
 import Button from "./Button.js";
-import { useAuth } from "./AuthContext.jsx";
+import { useAuth } from "../AuthContext.jsx";
 
 function Attributes() {
   const { dietToggle, setDietToggle } = useAuth();

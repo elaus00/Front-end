@@ -1,22 +1,22 @@
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../AuthContext";
 import styles from "./Button.module.css";
-import halalIcon from "./assets/Icons/flag_halal.svg";
-import veganIcon from "./assets/Icons/flag_vegan.svg";
-import glutenIcon from "./assets/Icons/flag_glutenfree.svg";
-import lactoIcon from "./assets/Icons/flag_loctosfree.svg";
+import halalIcon from "../assets/Icons/flag_halal.svg";
+import veganIcon from "../assets/Icons/flag_vegan.svg";
+import glutenIcon from "../assets/Icons/flag_glutenfree.svg";
+import lactoIcon from "../assets/Icons/flag_loctosfree.svg";
 
-import halalIcon1 from "./assets/Icons/flag_halal1.svg";
-import veganIcon1 from "./assets/Icons/flag_vegan1.svg";
-import glutenIcon1 from "./assets/Icons/flag_glutenfree1.svg";
-import lactoIcon1 from "./assets/Icons/flag_loctosfree1.svg";
+import halalIcon1 from "../assets/Icons/flag_halal1.svg";
+import veganIcon1 from "../assets/Icons/flag_vegan1.svg";
+import glutenIcon1 from "../assets/Icons/flag_glutenfree1.svg";
+import lactoIcon1 from "../assets/Icons/flag_loctosfree1.svg";
 import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
   const [cssList, setCssList] = useState({
-    Vegan: "rgba(118, 199, 183, 0.8)",
-    Halal: "rgba(118, 199, 131, 0.8)",
-    "Gluten-Free": "rgba(247, 247, 247, 0.8)",
-    "Lacto-Free": "rgba(254, 246, 176, 0.8) ",
+    Vegan: "rgba(118, 199, 183, 0.85)",
+    Halal: "rgba(118, 199, 131, 0.85)",
+    "Gluten-Free": "rgba(242, 255, 248, 0.85)",
+    "Lacto-Free": "rgba(254, 246, 176, 0.85) ",
   });
 
   const [list, setList] = useState({
@@ -26,6 +26,7 @@ function Button({ attribute }) {
     "Lacto-Free": lactoIcon,
   });
     
+  // Icons for different states (default and active)
   const [icons, setIcons] = useState({
     Vegan: { default: veganIcon1, active: veganIcon },
     Halal: { default: halalIcon1, active: halalIcon },
@@ -33,38 +34,37 @@ function Button({ attribute }) {
     "Lacto-Free": { default: lactoIcon1, active: lactoIcon },
   });
 
-  const { dietToggle, setDietToggle } = useAuth();
+  const { dietToggle, setDietToggle } = useAuth(); 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  // Handle window resize
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
 
+  // Add resize event listener
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
+    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  useEffect(() => {
-    console.log(list.Vegan);
-  }, []);
+  // Handle button click
   const onClick = () => {
-    // dietToggle 객체를 스프레드 연산자로 복사
-    const updatedDietToggle = { ...dietToggle };
-    // 해당 attribute의 값을 반전
-    updatedDietToggle[attribute] = !updatedDietToggle[attribute];
+    const updatedDietToggle = { ...dietToggle }; // Copy dietToggle object
+    updatedDietToggle[attribute] = !updatedDietToggle[attribute]; // Toggle the attribute value
     setDietToggle(updatedDietToggle);
   };
 
+  // Determine the className based on the attribute's state
   const className = `${
     dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
   } ${styles.distance}`;
 
+  // Update icons based on dietToggle state
   useEffect(() => {
-    // 모든 attribute에 대해 아이콘 업데이트
     const updatedList = {};
     Object.keys(icons).forEach((key) => {
       updatedList[key] = dietToggle[key]
@@ -77,7 +77,7 @@ function Button({ attribute }) {
   return (
     <>
       {windowWidth > 900 ? (
-        // JSX 내에서 style 수정
+        // Render a div with the attribute name and appropriate style
         <div
           className={className}
           onClick={onClick}
@@ -90,6 +90,7 @@ function Button({ attribute }) {
           {attribute}
         </div>
       ) : (
+        // Render an image icon for smaller screens
         <img
           className={styles.toggleIcon}
           onClick={onClick}
@@ -101,4 +102,4 @@ function Button({ attribute }) {
   );
 }
 
-export default Button;
+export default Button; 
