@@ -1,28 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Outlet } from "react-router-dom";
 import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
-import Attributes from "../Attributes/Attributes.js";
-import SearchBar from "../Search/SearchBar.js";
-import Profile from "../Profile/Profile.jsx";
-import { Link, useParams, useNavigate, Outlet } from "react-router-dom";
-import Restaurant from "../Restaurant/Restaurant.jsx";
-import logo_icon from "../assets/Icons/logo_icon.png";
+import RestaurantModal from "./RestaurantModal.jsx";
+import Header from "./Header.jsx";
 import { useAuth } from "../AuthContext.jsx";
-import starY from "../assets/Star1.svg";
-import starG from "../assets/Star2.svg";
 
 function Pureplate() {
-  const { id } = useParams(); // URL에서 레스토랑 ID를 추출
+  const { id } = useParams(); // Extract restaurant ID from URL
   const [isRestModalOpen, setIsRestModalOpen] = useState(false);
   const navigate = useNavigate();
-  const restModalRef = useRef();
-  const { isLoggedIn, bookmarksToggle, SetBookmarksToggle } = useAuth();
+  const { bookmarksToggle, SetBookmarksToggle } = useAuth();
 
   const bookmarkToggle = () => {
     SetBookmarksToggle(!bookmarksToggle);
   };
 
-  // URL에 ID가 있을 경우 모달을 엽니다.
   useEffect(() => {
     if (id) {
       setIsRestModalOpen(true);
@@ -34,24 +27,6 @@ function Pureplate() {
     navigate("/");
   };
 
-  // 모달 외부 클릭 감지
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        restModalRef.current &&
-        !restModalRef.current.contains(event.target)
-      ) {
-        closeRestModal();
-      }
-    }
-    // 이벤트 리스너 등록
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // 컴포넌트 언마운트 시 이벤트 리스너 제거
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [restModalRef]);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.homeLogedIn}>
@@ -61,45 +36,9 @@ function Pureplate() {
       </div>
       <Outlet />
       {isRestModalOpen && (
-        <div
-          ref={restModalRef}
-          className={styles.modalWrapper}
-          onClick={(e) => {
-            // 모달 백그라운드 클릭 시 모달 닫기
-            closeRestModal();
-          }}
-        >
-          {/* 모달 콘텐츠를 감싸는 컨테이너 추가. 여기에는 onClick 이벤트를 추가하지 않습니다. */}
-          <div
-            className={styles.modalContainer}
-            onClick={(e) => {
-              // 모달 콘텐츠 클릭 시 이벤트가 상위로 전파되지 않도록 방지
-              e.stopPropagation();
-            }}
-          >
-            <Restaurant id={id} closeModal={closeRestModal} />
-          </div>
-        </div>
+        <RestaurantModal id={id} closeModal={closeRestModal} />
       )}
-      <header className={styles.header}>
-        <Link to="/">
-          <img className={styles.purePlateIcon} src={logo_icon} alt="logo" />
-        </Link>
-        <SearchBar />
-        {!isRestModalOpen && (
-          <img
-            className={styles.starIcon}
-            onClick={bookmarkToggle}
-            style={{
-              display: isLoggedIn ? "block" : "none",
-            }}
-            alt="search"
-            src={bookmarksToggle ? starY : starG}
-          />
-        )}
-        <Attributes />
-        <Profile />
-      </header>
+      <Header isRestModalOpen={isRestModalOpen} bookmarkToggle={bookmarkToggle} />
     </div>
   );
 }

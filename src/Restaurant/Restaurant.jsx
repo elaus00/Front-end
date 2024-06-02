@@ -4,8 +4,8 @@ import RestaurantInfo from "./RestaurantInfo";
 import Review from "./Review";
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext";
-import bookmarkIconGray from "../assets/bookmarkGray.svg";
-import bookmarkIconYellow from "../assets/bookmarkYellow.svg";
+import bookmarkIconGray from "../assets/Icons/Bookmark/bookmarkGray.svg";
+import bookmarkIconYellow from "../assets/Icons/Bookmark/bookmarkYellow.svg";
 
 function Restaurant({ id, closeModal }) {
   const { isLoggedIn, userToken, bookmarks, bookmarkGet, URL } = useAuth();

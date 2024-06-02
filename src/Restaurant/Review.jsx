@@ -1,7 +1,7 @@
 // import React from "react";
 import styles from "./Restaurant.module.css"; // CSS 모듈 불러오기
 import profilePic from "../assets/Icons/Review/div4.svg";
-import star1 from "../assets/Star1.svg";
+import star1 from "../assets/Icons/Review/Star1.svg";
 
 function Review({ userName, date, content, timeAgo, rating }) {
   const renderStars = () => {
