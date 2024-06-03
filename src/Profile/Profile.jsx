@@ -68,7 +68,9 @@ function Profile() {
           ) : (
             <>
               <div className={styles.jiwoo}>{user}</div>
-              <ChevronDown className={styles.chevronDownInstance2}></ChevronDown>
+              <ChevronDown
+                className={styles.chevronDownInstance2}
+              ></ChevronDown>
             </>
           )}
         </button>
@@ -82,21 +84,18 @@ function Profile() {
           >
             <ul>
               <li className={styles.dropProfile}>LCH</li>
-              <Link to="/Feedback">
+              <Link to="/Feedback" style={{ color: "black" }}>
                 <li
                   onClick={() => {
                     console.log(user);
                     setDropdownOpen(false);
                   }}
+                  style={{ color: "black" }}
                 >
                   Feedback
                 </li>
               </Link>
-              <li
-                onClick={openLogoutConfirm}
-              >
-                Logout
-              </li>
+              <li onClick={openLogoutConfirm}>Logout</li>
             </ul>
           </div>
         )}
