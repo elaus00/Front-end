@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
-
+import Swal from "sweetalert2";
+import "./custom-swal.css";
 // Create an AuthContext
 const AuthContext = createContext();
 
@@ -50,9 +51,17 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  const showAlert = (username) => {
+    Swal.fire({
+      title: "You have successfully logged in!", // Alert title
+      text: `Hello, ${username}!!`, // Alert contents
+      icon: "success", // Alert type (success, error, warning, info, question)
+    });
+  };
+
   // Function to show a custom alert message
-  function showCustomAlert(message) {
-    window.alert(`localhost says: ${message}`);
+  function showCustomAlert(username) {
+    showAlert(username);
   }
 
   // Login function
@@ -67,7 +76,7 @@ function AuthProvider({ children }) {
       setUserToken(response.data.token);
       sessionStorage.setItem("user", response.data.nickname);
       sessionStorage.setItem("token", response.data.token);
-      showCustomAlert("Logged in!");
+      showCustomAlert(response.data.nickname);
 
       await bookmarkGet(response.data.token);
     } catch (error) {
