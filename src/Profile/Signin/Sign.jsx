@@ -58,6 +58,7 @@ function Sign({ isOpen, close }) {
           src={xIcon}
           alt="Close"
           onClick={handleClose}
+          style={{ cursor: "pointer" }}
         />
       </div>
     </div>
