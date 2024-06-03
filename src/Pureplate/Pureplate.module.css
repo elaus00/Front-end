@@ -234,19 +234,19 @@
 
 @media (max-width: 1000px) {
   .header {
-    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    padding: 0.625rem 8rem 0.625rem 0.625rem;
   }
 }
 
 .purePlateIcon {
-  flex-shrink: 1;
   width: 70%;
   height: 70%;
-  min-width: 50%;
-  min-height: 50%;
-  position: relative;
-  align-items: center;
-  object-fit: contain;
+  min-width: 45px;
+  min-height: 45px;
+
+  margin-right: 5px;
+  /* position: relative; */
+  /* object-fit: contain; */
 }
 
 .attributes {
@@ -265,7 +265,7 @@
 }
 
 /* 화면 너비가 768px 이상 900px 이하일 때 적용되는 스타일 */
-@media (min-width: 768px) and (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 1000px) {
   .attributes {
     padding-left: 2rem;
   }
@@ -275,10 +275,8 @@
     position: absolute;
     left: 2rem;
     top: 4.7rem;
-    /* background-color: rgba(222, 239, 205, 0.8); */
     width: auto;
     border-radius: 20px;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
   }
 }
 

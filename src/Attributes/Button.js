@@ -15,7 +15,7 @@ function Button({ attribute }) {
   const [cssList, setCssList] = useState({
     Vegan: "rgba(118, 199, 183, 1)",
     Halal: "rgba(118, 199, 131, 1)",
-    "Gluten-Free": "rgba(233, 250, 234, 1)",
+    "Gluten-Free": "rgba(247, 247, 247, 1)",
     "Lacto-Free": "rgba(254, 246, 176, 1) ",
   });
 
@@ -84,7 +84,7 @@ function Button({ attribute }) {
           style={
             dietToggle[attribute]
               ? { backgroundColor: cssList[`${attribute}`] }
-              : { backgroundColor: "white" }
+              : { backgroundColor: "rgba(235, 235, 235, 0.5)" }
           }
         >
           {attribute}

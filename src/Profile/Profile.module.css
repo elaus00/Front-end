@@ -35,7 +35,7 @@ a:visited {
   cursor: pointer;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   .profile {
     font-size: 0.9rem; /* 폰트 사이즈 줄임 */
     width: 7rem;
