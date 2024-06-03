@@ -61,7 +61,7 @@ function FeedbackForm({ closeModal }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!isValidRestaurant) {
-      alert("Please enter a valid restaurant name.");
+      showFailAlert();
       return;
     }
     const data = {
