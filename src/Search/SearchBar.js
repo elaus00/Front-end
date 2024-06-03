@@ -5,26 +5,119 @@ import Dropdown from "./Dropdown";
 import useSearchRestaurants from "./useSearchRestaurants";
 
 function SearchBar() {
-  const {
-    query,
-    onChange,
-    onSubmit,
-    isHaveQuery,
-    dropDownList,
-    dropDownItemIndex,
-    handleDropDownKey,
-    clickDropDownItem,
-  } = useSearchRestaurants();
+  // State to store restaurant data
+  const [restaurants, setRestaurants] = useState([]);
+  const [restaurantsSet, setRestaurantsSet] = useState();
+  const [query, setQuery] = useState("");
+  const [isHaveQuery, setIsHaveQuery] = useState(false);
+  const [dropDownList, setDropDownList] = useState(restaurants);
+  const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
+  const { URL, setRestaurantNameList, restaurantNameList } = useAuth();
+  const navigate = useNavigate();
 
-  const searchFormRef = useRef(null);
-  const [dropdownWidth, setDropdownWidth] = useState("100%");
+  // Fetch restaurant data from the API
+  const fetchRestaurant = async () => {
+    try {
+      const response = await axios.get(`${URL}/api/restaurant/list`);
+
+      const restaurantNames = response.data.data.map((element) => element.Name);
+      const restaurantSet = response.data.data.reduce((acc, element) => {
+        acc[element.Name] = element.Id;
+        return acc;
+      }, {});
+      setRestaurantsSet(restaurantSet);
+      setRestaurants(restaurantNames);
+      setRestaurantNameList(restaurantNames);
+    } catch (error) {
+      if (error.response) {
+        // The server responded with a status code outside the 2xx range
+        console.error(
+          "Server response error:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error(
+          "No response from server. This could be a network issue.",
+          error.request
+        );
+      } else {
+        // An error occurred in setting up the request
+        console.error("Error in setting up request:", error.message);
+      }
+    }
+  };
+  useEffect(() => {
+    console.log(restaurantNameList);
+  }, [restaurantNameList]);
 
   useEffect(() => {
-    if (searchFormRef.current) {
-      setDropdownWidth(`${searchFormRef.current.offsetWidth}px`);
-    }
-  }, [query]);
+    fetchRestaurant();
+  }, []);
 
+  // Handle form submission
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const link = restaurantsSet[query.trim()];
+    if (link) {
+      navigate(`/${link}`);
+      setQuery("");
+    }
+  };
+
+  // Handle input change
+  const onChange = (event) => {
+    setQuery(event.target.value);
+    setIsHaveQuery(true);
+  };
+
+  // Update dropdown list based on query
+  const showDropDownList = () => {
+    if (query === "") {
+      setIsHaveQuery(false);
+      setDropDownList([]);
+    } else {
+      const lowerCaseQuery = query.toLowerCase();
+      const choosenTextList = restaurants.filter((textItem) =>
+        textItem.toLowerCase().includes(lowerCaseQuery)
+      );
+      setDropDownList(choosenTextList);
+    }
+  };
+
+  // Handle click on dropdown item
+  const clickDropDownItem = (clickedItem) => {
+    setQuery(clickedItem);
+    setIsHaveQuery(false);
+  };
+
+  // Handle keyboard navigation in dropdown
+  const handleDropDownKey = (event) => {
+    if (
+      event.key === "ArrowDown" &&
+      dropDownList.length - 1 > dropDownItemIndex
+    ) {
+      setDropDownItemIndex(dropDownItemIndex + 1);
+    }
+
+    if (event.key === "ArrowUp" && dropDownItemIndex >= 0) {
+      setDropDownItemIndex(dropDownItemIndex - 1);
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (dropDownItemIndex >= 0) {
+        clickDropDownItem(dropDownList[dropDownItemIndex]);
+      } else if (restaurantsSet[query.trim()]) {
+        onSubmit(event); // Trigger form submission if the query is valid
+      } else {
+      }
+      setDropDownItemIndex(-1);
+    }
+  };
+
+  useEffect(showDropDownList, [query]);
   return (
     <div className={styles.searchBar}>
       <div className={styles.searchLayer}>
@@ -42,13 +135,30 @@ function SearchBar() {
           />
         </form>
         {isHaveQuery && (
-          <Dropdown
-            dropDownList={dropDownList}
-            dropDownItemIndex={dropDownItemIndex}
-            clickDropDownItem={clickDropDownItem}
-            setDropDownItemIndex={() => {}}
-            dropdownWidth={dropdownWidth}
-          />
+          <ul className={styles.dropDownBox}>
+            {dropDownList.length === 0 && (
+              <li className={styles.dropDownItem}>No matching words found</li>
+            )}
+            {dropDownList.map((dropDownItem, dropDownIndex) => (
+              <li
+                key={dropDownIndex}
+                onClick={() => clickDropDownItem(dropDownItem)}
+                onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
+                className={`${styles.dropDownItem} ${
+                  dropDownItemIndex === dropDownIndex ? styles.selected : ""
+                }`}
+              >
+                <img
+                  className={styles.union}
+                  src={historySearchIcon}
+                  alt="search"
+                />
+                <div className={styles.searchHistory}>
+                  <span className={styles.recentSearch12}>{dropDownItem}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
       <button className={styles.searchButton} onClick={onSubmit}>
