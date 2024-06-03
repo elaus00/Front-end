@@ -20,15 +20,14 @@
     cursor: pointer;
     filter: drop-shadow(2px 4px 3px rgba(242, 242, 242, 0.4));
   }
-@media (max-width: 678px) {
-  .bookmarkIcon {
-    position: fixed;
-    top: 100px; /* 상단에서의 거리 조절 */
-    right: 20px; /* 오른쪽에서의 거리 조절 */
+  @media (max-width: 678px) {
+    .bookmarkIcon {
+      position: fixed;
+      top: 100px; /* 상단에서의 거리 조절 */
+      right: 20px; /* 오른쪽에서의 거리 조절 */
+    }
   }
 }
-
-} 
 .reviewContainer {
   max-height: 324px; /* 원하는 높이로 설정 */
   overflow-y: auto; /* 세로로 스크롤 가능하게 설정 */
@@ -377,6 +376,12 @@
   width: 30.3125rem;
   height: 0rem;
   position: relative;
+}
+
+@media (max-width: 678px) {
+  .line1 {
+    display: none;
+  }
 }
 
 .reviewItem {
