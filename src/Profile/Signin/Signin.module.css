@@ -219,15 +219,16 @@ h5,
   justify-content: center;
 }
 
-.frame32 {
+.signupAsking {
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   gap: 0.625rem;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   width: 19.3125rem;
-  position: relative;
+  /* position: relative; */
 }
 
 .signUpText {
@@ -237,12 +238,17 @@ h5,
   font-size: 1rem;
   line-height: 135.02%;
   font-weight: 400;
-  position: relative;
+  /* position: relative;
   align-self: stretch;
-  flex: 1;
+
+  flex-shrink: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap; */
+  flex: 1 1 auto; /* 요소가 자동으로 줄어들도록 설정 */
+  min-width: 10rem; /* 최소 너비 설정 */
+  margin: 0.2rem; /* 요소 간격 설정 */
 }
 
 .signUp {
@@ -252,13 +258,16 @@ h5,
   font-size: 1rem;
   line-height: 135.02%;
   font-weight: 400;
-  position: relative;
+  /* position: relative;
   width: 4.125rem;
   height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: pointer; */
+  flex: 1 1 auto; /* 요소가 자동으로 줄어들도록 설정 */
+  min-width: 10rem; /* 최소 너비 설정 */
+  margin: 0.2rem; /* 요소 간격 설정 */
 }
 
 /*  */

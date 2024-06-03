@@ -35,22 +35,22 @@ function Sign({ isOpen, close }) {
           ) : (
             <SignIn switchToSignUp={switchToSignUp} close={handleClose} />
           )}
-          <div className={styles.frame34}>
-            <div className={styles.frame32}>
-              <div className={styles.signUpText}>
-                {isSignUp
-                  ? "Already have an account?"
-                  : "Don’t you have any account?"}
-              </div>
-              {/* Switch between sign up and sign in on text click */}
-              <div
-                className={styles.signUp}
-                onClick={isSignUp ? switchToSignIn : switchToSignUp}
-              >
-                {isSignUp ? "Sign In" : "Sign Up"}
-              </div>
+          {/* <div className={styles.frame34}> */}
+          <div className={styles.signupAsking}>
+            <div className={styles.signUpText}>
+              {isSignUp
+                ? "Already have an account?"
+                : "Don’t you have any account?"}
+            </div>
+            {/* Switch between sign up and sign in on text click */}
+            <div
+              className={styles.signUp}
+              onClick={isSignUp ? switchToSignIn : switchToSignUp}
+            >
+              {isSignUp ? "Sign In" : "Sign Up"}
             </div>
           </div>
+          {/* </div> */}
         </div>
         {/* Close button */}
         <img
