@@ -94,7 +94,6 @@ function FeedbackForm({ closeModal }) {
       closeModal();
     } catch (error) {
       console.error(error.response ? error.response.data : error);
-      // alert("Wrong Restaurant Name");
       showFailAlert();
     }
   };
@@ -112,7 +111,6 @@ function FeedbackForm({ closeModal }) {
           name="restaurantName"
           value={restaurantName}
           onChange={handleNameChange}
-          // className={styles.input}
           className={`${styles.input} ${
             !isValidRestaurant ? styles.invalidInput : ""
           }`} // Apply invalidInput style if not valid

@@ -91,7 +91,7 @@ function Profile() {
             }`}
           >
             <ul>
-              <li className={styles.dropProfile}>LCH</li>
+              <li className={styles.dropProfile}>{user}</li>
               <Link to="/Feedback" style={{ color: "black" }}>
                 <li
                   onClick={() => {
