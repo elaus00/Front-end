@@ -34,23 +34,24 @@ function Restaurant({ id, closeModal }) {
     review_text: "",
     visit_date: "2024-05-26T00:00:00Z",
   });
-
   const calculateTimeAgo = (visit_date) => {
     const reviewDate = new Date(visit_date);
-
     const now = new Date();
-    // Get the UTC time difference between the two dates.
     const diffTime = Math.abs(now.getTime() - reviewDate.getTime());
-    // Calculate the difference in days.
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    // Calculate the remaining time in hours.
     const diffHours = Math.floor(
       (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    if (diffDays == 1) return `${diffDays} day ago`;
-    else return `${diffDays} days ago`;
-  };
 
+    if (diffDays < 30) {
+      if (diffDays == 1) return `${diffDays} day ago`;
+      else return `${diffDays} days ago`;
+    } else {
+      const diffMonths = Math.floor(diffDays / 30);
+      if (diffMonths == 1) return `${diffMonths} month ago`;
+      else return `${diffMonths} months ago`;
+    }
+  };
   const RestOn = async (restId) => {
     try {
       const response = await axios.get(`${URL}/api/restaurant/list`);
