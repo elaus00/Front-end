@@ -1,8 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
+import axios from "axios";
+import { useAuth } from "../AuthContext.jsx";
 import findIcon from "../assets/Icons/searchIcon.svg";
-import Dropdown from "./Dropdown";
-import useSearchRestaurants from "./useSearchRestaurants";
+import historySearchIcon from "../assets/Icons/historySearchIcon.svg";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   // State to store restaurant data
@@ -118,22 +120,21 @@ function SearchBar() {
   };
 
   useEffect(showDropDownList, [query]);
+
   return (
     <div className={styles.searchBar}>
-      <div className={styles.searchLayer}>
-        <form className={styles.searchForm} onSubmit={onSubmit} ref={searchFormRef}>
-          <input
-            className={`${styles.searchInput} ${query ? styles.hasValue : ""}`}
-            type="text"
-            name="search"
-            id="searchInput"
-            placeholder="Search"
-            onChange={onChange}
-            onKeyUp={handleDropDownKey}
-            value={query}
-            autoComplete="off"
-          />
-        </form>
+      <form className={styles.searchForm} onSubmit={onSubmit}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          name="search"
+          id="searchInput"
+          placeholder="Search"
+          onChange={onChange}
+          onKeyUp={handleDropDownKey}
+          value={query}
+          autoComplete="off"
+        />
         {isHaveQuery && (
           <ul className={styles.dropDownBox}>
             {dropDownList.length === 0 && (
@@ -160,7 +161,7 @@ function SearchBar() {
             ))}
           </ul>
         )}
-      </div>
+      </form>
       <button className={styles.searchButton} onClick={onSubmit}>
         <img className={styles.searchIcon} src={findIcon} alt="Search" />
       </button>
