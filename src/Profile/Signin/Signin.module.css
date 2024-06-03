@@ -468,5 +468,94 @@ input::placeholder {
 }
 /* error */
 .errorInput {
-  border: 2px solid red; /* 오류 경고를 위한 테두리 색상 변경 */
+  border: 1px solid red; /* 오류 경고를 위한 테두리 색상 변경 */
+}
+
+
+@media (max-width: 768px) {
+  .signIn {
+    width: 90%;
+    padding: 10px;
+    gap: 1.5rem;
+  }
+  .signInMain {
+    font-size: 1.5rem;
+  }
+  .signInTextBox,
+  .frame31 {
+    width: 100%;
+  }
+  .signInButton {
+    width: 100%;
+  }
+  .signUpText,
+  .signUp {
+    font-size: 0.9rem;
+  }
+  .loginModal {
+    width: 80%;
+    height: auto;
+    padding: 15px;
+    margin: 30px auto;
+  }
+}
+
+/* 화면 너비가 480px 이하일 때 적용 */
+@media (max-width: 480px) {
+  .signIn {
+    width: 100%;
+    padding: 5px;
+    gap: 1rem;
+  }
+  .signInMain {
+    font-size: 1.2rem;
+  }
+  .signInTextBox,
+  .frame31 {
+    width: 100%;
+  }
+  .signInButton {
+    width: 100%;
+    height: 2rem;
+  }
+  .signUpText,
+  .signUp {
+    font-size: 0.8rem;
+  }
+  .loginModal {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    margin: 20px auto;
+  }
+}
+
+/* 화면 너비가 360px 이하일 때 적용 */
+@media (max-width: 360px) {
+  .signIn {
+    width: 100%;
+    padding: 5px;
+    gap: 0.8rem;
+  }
+  .signInMain {
+    font-size: 1rem;
+  }
+  .signInTextBox,
+  .frame31 {
+    width: 100%;
+  }
+  .signInButton {
+    width: 100%;
+    height: 1.8rem;
+  }
+  .signUpText,
+  .signUp {
+    font-size: 0.7rem;
+  }
+  .loginModal {
+    width: 95%;
+    height: auto;
+    padding: 5px;
+    margin: 10px auto;
+  }
 }
