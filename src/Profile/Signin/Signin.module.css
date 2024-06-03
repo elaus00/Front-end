@@ -84,6 +84,12 @@ h5,
   justify-content: center;
 }
 
+@media (max-width: 480px) {
+  .signInMain {
+    font-size: 1.5rem;
+  }
+}
+
 .frame36 {
   /* margin: -0.875rem 0 0 0; */
   margin: 0 10px;
@@ -94,6 +100,12 @@ h5,
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
+}
+
+@media (max-width: 480px) {
+  .frame36 {
+    gap: 0;
+  }
 }
 
 .x {
@@ -131,18 +143,22 @@ h5,
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  .frame33 {
+    gap: 0.5rem;
+  }
+}
 .signInTextBox {
   flex-shrink: 0;
   width: 20rem;
   height: 4.375rem;
   position: relative;
-
   width: 100%;
 }
 
 .frame31 {
   width: 20rem;
-  height: 2.5rem;
+  /* height: 2.5rem; */
   position: absolute;
   left: 0;
   top: 1.875rem;
@@ -174,6 +190,15 @@ h5,
   display: flex;
 }
 
+@media (max-width: 480px) {
+  .placeholder {
+    height: 2rem;
+  }
+  .frame33 {
+    gap: 0.5rem;
+  }
+}
+
 .nameLabel {
   color: #000000;
   text-align: left;
@@ -198,6 +223,20 @@ h5,
   width: 8.75rem;
   height: 2.375rem;
   position: relative;
+}
+
+@media (max-width: 480px) {
+  .placeholder {
+    height: 2rem;
+  }
+  .frame33 {
+    gap: 0.5rem;
+  }
+  .nameLabel {
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: -1rem;
+  }
 }
 
 .signIn2 {
@@ -246,6 +285,12 @@ h5,
   /* flex-shrink: 0; */
   /* width: 19.3125rem; */
   /* position: relative; */
+}
+
+@media (max-width: 480px) {
+  .signupAsking {
+    gap: 0.1rem;
+  }
 }
 
 .signUpText {
