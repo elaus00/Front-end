@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./FeedbackForm.module.css";
 import axios from "axios";
 import { useAuth } from "../AuthContext";
+import Swal from "sweetalert2";
 
 // FeedbackForm component
 function FeedbackForm({ closeModal }) {
