@@ -16,6 +16,8 @@ function FeedbackForm({ closeModal }) {
   const [additionalComments, setAdditionalComments] = useState("");
   // New state for validation
   const [isValidRestaurant, setIsValidRestaurant] = useState(true);
+
+  // Destructuring URL and restaurantNameList from useAuth hook
   const { URL, restaurantNameList } = useAuth();
 
   // Handler for restaurant name input
@@ -37,6 +39,21 @@ function FeedbackForm({ closeModal }) {
   // Handler for additional comments textarea
   const handleCommentsChange = (e) => {
     setAdditionalComments(e.target.value);
+  };
+
+  const showSuccessAlert = (username) => {
+    Swal.fire({
+      title: "Thank you.", // Alert title
+      text: `We will carefully review your valuable feedback.`, // Alert contents
+      icon: "success", // Alert type (success, error, warning, info, question)
+    });
+  };
+  const showFailAlert = () => {
+    Swal.fire({
+      title: "There was a problem with the feedback submission.", // Alert title
+      text: "The restaurant name you entered is not found.", // Alert contents
+      icon: "error", // Alert type (success, error, warning, info, question)
+    });
   };
 
   // Handler for form submission

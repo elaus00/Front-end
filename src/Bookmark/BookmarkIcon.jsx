@@ -5,12 +5,15 @@ import bookmarkUnselected from "../assets/Icons/Bookmark/Star2.svg";
 import { useAuth } from "../AuthContext.jsx";
 
 function BookmarkIcon({ isRestModalOpen, bookmarkToggle }) {
+  // Get the isLoggedIn and bookmarksToggle values from the AuthContext
   const { isLoggedIn, bookmarksToggle } = useAuth();
 
+  // If the rest modal is open or the user is not logged in, don't render the component
   if (isRestModalOpen || !isLoggedIn) {
-    return null; // Return null if the modal is open or user is not logged in
+    return null;
   }
 
+  // Render the bookmark icon
   return (
     <img
       className={styles.starIcon}

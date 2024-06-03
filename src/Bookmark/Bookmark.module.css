@@ -1,3 +1,5 @@
+/* Styles for bookmark toggle icon */
+
 .starIcon {
   width: 4rem;
   height: 4rem;
@@ -15,20 +17,3 @@
     top: 6.5rem;
   }
 }
-/* 
-@media (max-width: 20rem) {
-  .starIcon {
-    width: 2.5rem;
-    height: 2.5rem;
-    right: 0.125rem;
-    top: 2rem;
-  }
-} */
-/* 
-@media (max-width: 10rem) {
-  .starIcon {
-    width: 2.5rem;
-    height: 2.5rem;
-    top: 0rem;
-  }
-} */
