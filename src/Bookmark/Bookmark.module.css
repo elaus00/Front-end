@@ -1,6 +1,6 @@
 .starIcon {
-  width: 5.625rem;
-  height: 5.625rem;
+  width: 4rem;
+  height: 4rem;
   position: absolute;
   right: 2.5rem;
   top: 5.25rem;
@@ -11,8 +11,8 @@
   .starIcon {
     width: 3.125rem;
     height: 3.125rem;
-    right: 0.5rem;
-    top: 6rem;
+    right: 0.9rem;
+    top: 6.5rem;
   }
 }
 /* 
