@@ -8,6 +8,7 @@
   border-color: #a6b9b1c5;
 }
 
+/* Style for the attributes buttons */
 .attrButtonStyle {
   color: #3e4958;
   text-align: center;
@@ -27,10 +28,10 @@
   align-items: center;
   justify-content: center;
   height: 2.875rem;
-  position: relative;
   cursor: pointer;
 }
 
+/* Media query for smaller screens */
 @media (max-width: 1050px) {
   .distance {
     font-size: 0.9rem;
@@ -39,11 +40,13 @@
   }
 }
 
+/* Style for the toggle icon */
 .toggleIcon {
   width: 35px;
   cursor: pointer;
 }
 
+/* Media query for medium-sized screens */
 @media (min-width: 768px) and (max-width: 900px) {
   .toggleIcon {
     width: 40px;
