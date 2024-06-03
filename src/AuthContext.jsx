@@ -51,7 +51,7 @@ function AuthProvider({ children }) {
     }
   }, []);
 
-  const showAlert = (username) => {
+  const showSuccessAlert = (username) => {
     Swal.fire({
       title: "You have successfully logged in!", // Alert title
       text: `Hello, ${username}!!`, // Alert contents
@@ -59,10 +59,13 @@ function AuthProvider({ children }) {
     });
   };
 
-  // Function to show a custom alert message
-  function showCustomAlert(username) {
-    showAlert(username);
-  }
+  const showFailAlert = () => {
+    Swal.fire({
+      title: "Login unsuccessful.", // Alert title
+      text: "Please verify your email and password and try again.", // Alert contents
+      icon: "error", // Alert type (success, error, warning, info, question)
+    });
+  };
 
   // Login function
   const login = async (username, password) => {
@@ -76,14 +79,15 @@ function AuthProvider({ children }) {
       setUserToken(response.data.token);
       sessionStorage.setItem("user", response.data.nickname);
       sessionStorage.setItem("token", response.data.token);
-      showCustomAlert(response.data.nickname);
+      showSuccessAlert(response.data.nickname);
 
       await bookmarkGet(response.data.token);
     } catch (error) {
       if (error.response) {
-        console.error("Login failed:", error.response.data); // Translate the Korean comment
+        console.error("Login failed:", error.response.data);
+        showFailAlert();
       } else {
-        console.error("An error occurred during the request.", error.message); // Translate the Korean comment
+        console.error("An error occurred during the request.", error.message);
       }
       setIsLoggedIn(false);
     }
