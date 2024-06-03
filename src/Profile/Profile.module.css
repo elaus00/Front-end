@@ -4,7 +4,6 @@ li {
   line-height: 149.8%;
   font-weight: 400;
 }
-
 a:visited {
   color: black;
 }
@@ -36,10 +35,22 @@ a:visited {
   cursor: pointer;
 }
 
+@media (max-width: 1050px) {
+  .profile {
+    font-size: 0.9rem; /* 폰트 사이즈 줄임 */
+    width: 7rem;
+    height: 2.8rem;
+  }
+}
+@media (max-width: 678px) {
+  .profile {
+    display: none;
+  }
+}
+
 .dropdownContainer {
   position: relative;
 }
-
 .profileImage {
   background: linear-gradient(to left, #d3d3d3, #d3d3d3);
   border-radius: 5rem;
@@ -89,6 +100,14 @@ a:visited {
   animation: dropdown 0.4s ease forwards;
 }
 
+@media (max-width: 678px) {
+  .dropdownMenu {
+    right: -10px;
+    width: 100px;
+    left: auto;
+  }
+}
+
 .dropdownMenu ul {
   list-style-type: none; /* 기본 목록 스타일 제거 */
   margin: 0;
@@ -105,7 +124,6 @@ a:visited {
   background-color: #f2f2f2;
   /* background-color: #f1f1f1; 항목에 마우스 오버 시 배경색 변경 */
 }
-
 .dropProfile {
   color: #3e4958;
   text-align: center;
@@ -115,9 +133,20 @@ a:visited {
   font-weight: 800;
   display: none;
 }
-
+@media (max-width: 678px) {
+  .dropProfile {
+    display: block;
+  }
+}
 .dropProfile:hover {
   background-color: transparent !important;
+}
+
+@media (min-width: 678px) {
+  .profileIcon {
+    display: none;
+    width: 35px;
+  }
 }
 
 @keyframes dropdown {
@@ -130,7 +159,6 @@ a:visited {
     opacity: 1;
   }
 }
-
 /*
 @keyframes dropdownClose {
   0% {
@@ -142,11 +170,11 @@ a:visited {
     opacity: 0;
   }
 } */
-
 /* .dropdownMenu.hide {
   animation: dropdownClose 0.4s ease forwards;
 } */
 
+/*  */
 /* 
 @keyframes slide-fade-in-dropdown-animation {
   0% {
@@ -193,38 +221,3 @@ a:visited {
   padding-left: 0;
   list-style: none;
 } */
-
-@media (max-width: 1050px) {
-  .profile {
-    font-size: 0.9rem; /* 폰트 사이즈 줄임 */
-    width: 7rem;
-    height: 2.8rem;
-  }
-}
-
-@media (max-width: 678px) {
-  .profile {
-    display: none;
-  }
-}
-
-@media (max-width: 678px) {
-  .dropdownMenu {
-    right: -10px;
-    width: 100px;
-    left: auto;
-  }
-}
-
-@media (max-width: 678px) {
-  .dropProfile {
-    display: block;
-  }
-}
-
-@media (min-width: 678px) {
-  .profileIcon {
-    display: none;
-    width: 35px;
-  }
-}

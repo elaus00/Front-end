@@ -3,7 +3,7 @@ import { useParams, useNavigate, Outlet } from "react-router-dom";
 import styles from "./Pureplate.module.css";
 import MapNaverCur from "../Map/Map.js";
 import RestaurantModal from "./RestaurantModal.jsx";
-import Header from "./Header/Header.jsx";
+import Header from "./Header.jsx";
 import { useAuth } from "../AuthContext.jsx";
 
 function Pureplate() {
@@ -38,7 +38,10 @@ function Pureplate() {
       {isRestModalOpen && (
         <RestaurantModal id={id} closeModal={closeRestModal} />
       )}
-      <Header isRestModalOpen={isRestModalOpen} bookmarkToggle={bookmarkToggle} />
+      <Header
+        isRestModalOpen={isRestModalOpen}
+        bookmarkToggle={bookmarkToggle}
+      />
     </div>
   );
 }
