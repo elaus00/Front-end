@@ -308,5 +308,6 @@
 @media (max-width: 480px) {
   .modalContainer {
     padding: 0;
+    margin-top: 0;
   }
 }

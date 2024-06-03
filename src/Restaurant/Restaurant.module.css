@@ -356,6 +356,12 @@
   margin: 0.625rem;
 }
 
+@media (max-width: 480px) {
+  .review {
+    padding: 0;
+  }
+}
+
 .review2 {
   color: #000000;
   text-align: center;
