@@ -41,7 +41,7 @@ function FeedbackForm({ closeModal }) {
     setAdditionalComments(e.target.value);
   };
 
-  const showSuccessAlert = (username) => {
+  const showSuccessAlert = () => {
     Swal.fire({
       title: "Thank you.", // Alert title
       text: `We will carefully review your valuable feedback.`, // Alert contents
@@ -77,7 +77,7 @@ function FeedbackForm({ closeModal }) {
       // Sending feedback data to the server
       const response = await axios.post(`${URL}/api/feedback/submit/`, data);
       console.log(response.data);
-      alert("submitted!");
+      showSuccessAlert();
 
       // Resetting the form fields after submission
       setRestaurantName("");
@@ -94,7 +94,7 @@ function FeedbackForm({ closeModal }) {
     } catch (error) {
       console.error(error.response ? error.response.data : error);
       // alert("Wrong Restaurant Name");
-      alert("Submission failed.");
+      showFailAlert();
     }
   };
 
