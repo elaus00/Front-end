@@ -14,7 +14,7 @@ function SearchBar() {
   const [isHaveQuery, setIsHaveQuery] = useState(false);
   const [dropDownList, setDropDownList] = useState(restaurants);
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
-  const { URL } = useAuth();
+  const { URL, setRestaurantNameList, restaurantNameList } = useAuth();
   const navigate = useNavigate();
 
   // Fetch restaurant data from the API
@@ -29,6 +29,7 @@ function SearchBar() {
       }, {});
       setRestaurantsSet(restaurantSet);
       setRestaurants(restaurantNames);
+      setRestaurantNameList(restaurantNames);
     } catch (error) {
       if (error.response) {
         // The server responded with a status code outside the 2xx range
@@ -49,6 +50,9 @@ function SearchBar() {
       }
     }
   };
+  useEffect(() => {
+    console.log(restaurantNameList);
+  }, [restaurantNameList]);
 
   useEffect(() => {
     fetchRestaurant();
@@ -63,7 +67,6 @@ function SearchBar() {
       setQuery("");
     }
   };
-  
 
   // Handle input change
   const onChange = (event) => {
@@ -93,26 +96,29 @@ function SearchBar() {
 
   // Handle keyboard navigation in dropdown
   const handleDropDownKey = (event) => {
-    if (event.key === "ArrowDown" && dropDownList.length - 1 > dropDownItemIndex) {
+    if (
+      event.key === "ArrowDown" &&
+      dropDownList.length - 1 > dropDownItemIndex
+    ) {
       setDropDownItemIndex(dropDownItemIndex + 1);
     }
-  
+
     if (event.key === "ArrowUp" && dropDownItemIndex >= 0) {
       setDropDownItemIndex(dropDownItemIndex - 1);
     }
-  
+
     if (event.key === "Enter") {
       event.preventDefault();
       if (dropDownItemIndex >= 0) {
         clickDropDownItem(dropDownList[dropDownItemIndex]);
       } else if (restaurantsSet[query.trim()]) {
-        onSubmit(event);  // Trigger form submission if the query is valid
+        onSubmit(event); // Trigger form submission if the query is valid
       } else {
       }
       setDropDownItemIndex(-1);
     }
   };
-  
+
   useEffect(showDropDownList, [query]);
 
   return (
@@ -143,7 +149,11 @@ function SearchBar() {
                   dropDownItemIndex === dropDownIndex ? styles.selected : ""
                 }`}
               >
-                <img className={styles.union} src={historySearchIcon} alt="search" />
+                <img
+                  className={styles.union}
+                  src={historySearchIcon}
+                  alt="search"
+                />
                 <div className={styles.searchHistory}>
                   <span className={styles.recentSearch12}>{dropDownItem}</span>
                 </div>

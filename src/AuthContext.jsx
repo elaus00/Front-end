@@ -25,6 +25,8 @@ function AuthProvider({ children }) {
     "Lacto-Free": false,
   });
 
+  const [restaurantNameList, setRestaurantNameList] = useState([]);
+
   // Effect to log dietToggle state changes
   useEffect(() => {
     console.log(dietToggle);
@@ -124,7 +126,10 @@ function AuthProvider({ children }) {
         );
       } else {
         // When an error occurs in setting up the request
-        console.error("An error occurred while setting up the request:", error.message);
+        console.error(
+          "An error occurred while setting up the request:",
+          error.message
+        );
       }
     }
   };
@@ -148,6 +153,8 @@ function AuthProvider({ children }) {
         URL,
         dietToggle,
         setDietToggle,
+        restaurantNameList,
+        setRestaurantNameList,
       }}
     >
       {children}
