@@ -12,6 +12,7 @@ import lactoIcon1 from "../assets/Icons/flag_loctosfree1.svg";
 import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
+  // State for CSS color styles for each diet types
   const [cssList, setCssList] = useState({
     Vegan: "rgba(118, 199, 183, 1)",
     Halal: "rgba(118, 199, 131, 1)",
@@ -19,6 +20,7 @@ function Button({ attribute }) {
     "Lacto-Free": "rgba(254, 246, 176, 1) ",
   });
 
+  // State for default icons
   const [list, setList] = useState({
     Vegan: veganIcon,
     Halal: halalIcon,
@@ -61,7 +63,7 @@ function Button({ attribute }) {
   // Determine the className based on the attribute's state
   const className = `${
     dietToggle[attribute] ? styles.selectedTrue : styles.selectedFalse
-  } ${styles.distance}`;
+  } ${styles.attrButtonStyle}`;
 
   // Update icons based on dietToggle state
   useEffect(() => {
@@ -76,6 +78,7 @@ function Button({ attribute }) {
 
   return (
     <>
+      {/* If the window width is greater than 900 pixels */}
       {windowWidth > 900 ? (
         // Render a div with the attribute name and appropriate style
         <div
