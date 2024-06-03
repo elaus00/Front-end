@@ -13,10 +13,10 @@ import { useEffect, useState } from "react";
 
 function Button({ attribute }) {
   const [cssList, setCssList] = useState({
-    Vegan: "rgba(118, 199, 183, 0.85)",
-    Halal: "rgba(118, 199, 131, 0.85)",
-    "Gluten-Free": "rgba(233, 250, 234, 0.9)",
-    "Lacto-Free": "rgba(254, 246, 176, 0.85) ",
+    Vegan: "rgba(118, 199, 183, 1)",
+    Halal: "rgba(118, 199, 131, 1)",
+    "Gluten-Free": "rgba(233, 250, 234, 1)",
+    "Lacto-Free": "rgba(254, 246, 176, 1) ",
   });
 
   const [list, setList] = useState({
@@ -25,7 +25,7 @@ function Button({ attribute }) {
     "Gluten-Free": glutenIcon,
     "Lacto-Free": lactoIcon,
   });
-    
+
   // Icons for different states (default and active)
   const [icons, setIcons] = useState({
     Vegan: { default: veganIcon1, active: veganIcon },
@@ -34,7 +34,7 @@ function Button({ attribute }) {
     "Lacto-Free": { default: lactoIcon1, active: lactoIcon },
   });
 
-  const { dietToggle, setDietToggle } = useAuth(); 
+  const { dietToggle, setDietToggle } = useAuth();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Handle window resize
@@ -84,7 +84,7 @@ function Button({ attribute }) {
           style={
             dietToggle[attribute]
               ? { backgroundColor: cssList[`${attribute}`] }
-              : {}
+              : { backgroundColor: "white" }
           }
         >
           {attribute}
@@ -102,4 +102,4 @@ function Button({ attribute }) {
   );
 }
 
-export default Button; 
+export default Button;
