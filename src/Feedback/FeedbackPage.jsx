@@ -4,7 +4,8 @@ import styles from "./FeedbackForm.module.css";
 import FeedbackForm from "./FeedbackForm"; // Import FeedbackForm component
 
 function FeedbackPage() {
-  const [isFbModalOpen, setIsFbModalOpen] = useState(true); // State to control modal visibility
+  // State to control modal visibility
+  const [isFbModalOpen, setIsFbModalOpen] = useState(true);
   const navigate = useNavigate();
   const fbModalRef = useRef();
 
@@ -19,7 +20,10 @@ function FeedbackPage() {
       {isFbModalOpen && (
         <div ref={fbModalRef} className={styles.modalWrapper}>
           <div className={styles.mainForm}>
-            <button onClick={closeFbModal} className={styles.closeButton}></button>
+            <button
+              onClick={closeFbModal}
+              className={styles.closeButton}
+            ></button>
             <FeedbackForm closeModal={closeFbModal} />
           </div>
         </div>
@@ -28,4 +32,4 @@ function FeedbackPage() {
   );
 }
 
-export default FeedbackPage; // Export the FeedbackPage component
+export default FeedbackPage;

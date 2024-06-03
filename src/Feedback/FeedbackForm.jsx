@@ -93,7 +93,6 @@ function FeedbackForm({ closeModal }) {
       // Close the modal after successful submission
       closeModal();
     } catch (error) {
-      console.error(error.response ? error.response.data : error);
       showFailAlert();
     }
   };

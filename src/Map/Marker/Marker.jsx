@@ -112,7 +112,7 @@ export const addMarker = (
       Id,
       navigate,
       ReviewCount,
-      Rating,
+      Rating
     );
   } catch (e) {
     console.error(e);
@@ -137,12 +137,6 @@ export const addMarkers = (
     return;
   }
 
-  // for (let i = 0; i < MarkerData.length; i++) {
-  //   let markerObj = MarkerData[i];
-  //   // console.log(markerObj);
-
-  //   addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
-  // }
   clearMarkers();
   // Check if all dietToggle values are false
   const allFalse =
@@ -164,7 +158,6 @@ export const addMarkers = (
   if (isLoggedIn) {
     for (let i = 0; i < MarkerData.length; i++) {
       let markerObj = MarkerData[i];
-      // console.log(markerObj);
       if (bookmarkToggleBool) {
         if (
           bookmarks[markerObj.Id] &&
@@ -189,14 +182,3 @@ export const addMarkers = (
     }
   }
 };
-
-// for (let i = 0; i < MarkerData.length; i++) {
-//   let markerObj = MarkerData[i];
-//   // console.log(markerObj);
-//   if (bookmarkToggleBool === true) {
-//     if (bookmarks[markerObj.Id]) {
-//       // bookmark 객체의 키 값으로 존재하면 addMarker 실행
-//       addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
-//     }
-//   } else addMarker(naver, map, markerObj, windowWidth, zoom, navigate);
-// }

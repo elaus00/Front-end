@@ -1,3 +1,4 @@
+// Define CustomMapMarker functional component with props for title, windowWidth, and dietary flags
 const CustomMapMarker = ({
   title,
   windowWidth,
@@ -6,6 +7,7 @@ const CustomMapMarker = ({
   GLUTEN_FREE,
   LOCTO_FREE,
 }) => {
+  // Function to conditionally render an image container based on a condition
   const renderImageContainer = (condition, imageUrl) => {
     if (condition) {
       return `<div style="display: flex; align-items: center; justify-content: center; width: 2.8rem; height: 2.8rem; margin-right: 0px;">
@@ -14,15 +16,15 @@ const CustomMapMarker = ({
     }
     return "";
   };
-
+  // Array to hold HTML content for mobile view
   const mobileContentArray = [
     '<div style="margin: 0; display: flex; align-items: center; padding: 0.5rem; border-radius: 2.3rem; border: 0.2rem solid var(--color--darkgreen); background: #D9F2EF; cursor: pointer; position: relative; z-index: 2">',
     '<div style="flex-grow: 1; display: flex; align-items: center; overflow: hidden;">',
 
-    // 텍스트 컨테이너
+    // Text container
     `<div style="flex-grow: 1; max-width: calc(100% - 2.5rem); padding-left: 0.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1.05rem; letter-spacing: -0.028rem; font-weight: 600; line-height: 2.5rem;">${title}</div>`,
 
-    // 이미지 컨테이너 조건부 렌더링
+    // Conditional rendering of image containers based on dietary flags
     renderImageContainer(VEGAN, "./assets/flag_vegan.svg"),
     renderImageContainer(HALAL, "./assets/flag_halal.svg"),
     renderImageContainer(GLUTEN_FREE, "./assets/flag_glutenfree.svg"),
@@ -31,29 +33,32 @@ const CustomMapMarker = ({
     "</div>",
   ];
 
+  // Array to hold HTML content for PC view
   const PCContentArray = [
-    // 외부 컨테이너. 내부 요소를 table-cell로 정렬할 수 있게 한다.
+    // Outer container allowing for table-cell alignment of inner elements
     '<div style="margin: 0; display: table; padding: 0.35rem; table-layout: auto; border-radius: 18.468px; border: 0.14rem solid var(--color--darkgreen); background: #D9F2EF; cursor: pointer; position: relative; z-index: 2; box-shadow:0px 24px 48px 0 rgba(0,0,0,0.16);">',
-    // 텍스트 컨테이너와 아이콘 컨테이너를 flex 컨테이너로 정렬
+    // Flex container to align text container and icon container
     '<div style="display: flex; align-items: center;">',
-    // 텍스트 컨테이너
+    // Text container
     '<div style="max-width: 16.1rem; height: 2.8rem; padding: 0 0.56rem 0 0.56rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: table-cell; vertical-align: middle; cursor: pointer; font-size: 1.05rem; letter-spacing: -0.028rem; font-weight: 600; line-height: 2.8rem;">',
     title,
     "</div>",
-    // 이미지 컨테이너 조건부 렌더링
+    // Conditional rendering of image containers based on dietary flags
     renderImageContainer(VEGAN, "./assets/flag_vegan.svg"),
     renderImageContainer(HALAL, "./assets/flag_halal.svg"),
     renderImageContainer(GLUTEN_FREE, "./assets/flag_glutenfree.svg"),
     renderImageContainer(LOCTO_FREE, "./assets/flag_loctosfree.svg"),
-    "</div>", // flex 컨테이너 닫기
-    // border 스타일 조정해서 역삼각형 만들기
+    "</div>", // Close flex container
+    // Style adjustments to create an inverted triangle
     '<span style="position: absolute; border-style: solid; border-width: 1.08rem 0.9rem 0 0.9rem; border-color: #D9F2EF transparent; display: block; width: 0; z-index: 0; top: 3.35rem; left: 1.8rem; box-shadow:0px 24px 48px 0 rgba(0,0,0,0.16);"></span>',
     "</div>",
   ];
 
+  // Return mobileContentArray as a string for window widths less than 768px, else return PCContentArray as a string
   if (windowWidth < 768) return mobileContentArray.join("");
 
   return PCContentArray.join("");
 };
 
+// Export CustomMapMarker as the default export of this module
 export default CustomMapMarker;
