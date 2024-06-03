@@ -34,26 +34,39 @@ h5,
 } */
 
 .signIn {
-  background: var(--white, #ffffff);
+  /* background: var(--white, #ffffff);
   border-radius: 0.625rem;
-  /* padding: 1.0625rem 0.3125rem; */
   display: flex;
   flex-direction: column;
   gap: 2.3125rem;
   align-items: center;
   justify-content: center;
-  /* height: 25.625rem; */
   box-shadow: 0 0 0.375rem rgba(0, 0, 0, 0.25);
-  /*  */
   width: 480px;
-  /* height: 621px; */
 
   min-height: 621px;
   background-color: white;
   position: relative;
   box-sizing: border-box;
   margin: 50px auto;
-  padding: 20px;
+  padding: 20px; */
+  /* width: 30rem; */
+  max-width: 30rem;
+  min-width: 200px;
+  width: 70%;
+  height: 31.25rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8125rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
 .signInMain {
@@ -249,7 +262,7 @@ h5,
 }
 
 /*  */
-.modal {
+.modalWrapper {
   position: fixed;
   top: 0;
   right: 0;
@@ -262,6 +275,10 @@ h5,
   flex-direction: row;
   justify-content: center;
   align-items: center; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loginModal {

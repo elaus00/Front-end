@@ -22,7 +22,7 @@ function Sign({ isOpen, close }) {
 
   // Render the modal only if isOpen is true
   return isOpen ? (
-    <div className={styles.modal}>
+    <div className={styles.modalWrapper}>
       <div className={styles.signIn}>
         {/* Main title showing whether it's sign up or sign in */}
         <div className={styles.signInMain}>
