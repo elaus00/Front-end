@@ -19,8 +19,8 @@ function SignInInputField({
         type={type} // Sets the input type (text, password, etc.).
         placeholder={errorMessage ? `⚠ ${errorMessage}` : label} // Shows an error message or label as the placeholder.
       />
-      <div className={styles.nameLabel}>{label}</div> // Displays the label
-      below the input field.
+      <div className={styles.nameLabel}>{label}</div>
+      {/* Displays the label below the input field. */}
     </div>
   );
 }
