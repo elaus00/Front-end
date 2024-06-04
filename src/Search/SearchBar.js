@@ -123,28 +123,33 @@ function SearchBar() {
 
   return (
     <div className={styles.searchBar}>
+      {/* Form for search input */}
       <form className={styles.searchForm} onSubmit={onSubmit}>
+        {/* Search input field */}
         <input
           className={styles.searchInput}
           type="text"
           name="search"
           id="searchInput"
           placeholder="Search"
-          onChange={onChange}
-          onKeyUp={handleDropDownKey}
-          value={query}
-          autoComplete="off"
+          onChange={onChange} // Handler for input change
+          onKeyUp={handleDropDownKey} // Handler for key up event
+          value={query} // Controlled input value
+          autoComplete="off" // Disable autocomplete
         />
+        {/* Conditional rendering of dropdown list */}
         {isHaveQuery && (
           <ul className={styles.dropDownBox}>
+            {/* Message when no matching words are found */}
             {dropDownList.length === 0 && (
               <li className={styles.dropDownItem}>No matching words found</li>
             )}
+            {/* Render each item in the dropdown list */}
             {dropDownList.map((dropDownItem, dropDownIndex) => (
               <li
                 key={dropDownIndex}
-                onClick={() => clickDropDownItem(dropDownItem)}
-                onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
+                onClick={() => clickDropDownItem(dropDownItem)} // Click handler for dropdown item
+                onMouseOver={() => setDropDownItemIndex(dropDownIndex)} // Mouse over handler for dropdown item
                 className={`${styles.dropDownItem} ${
                   dropDownItemIndex === dropDownIndex ? styles.selected : ""
                 }`}
@@ -162,6 +167,7 @@ function SearchBar() {
           </ul>
         )}
       </form>
+      {/* Search button */}
       <button className={styles.searchButton} onClick={onSubmit}>
         <img className={styles.searchIcon} src={findIcon} alt="Search" />
       </button>

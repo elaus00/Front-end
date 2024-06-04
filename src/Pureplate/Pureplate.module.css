@@ -12,6 +12,7 @@
   z-index: -2;
 }
 
+/* Styles for modal wrapper, covering the entire screen with a slightly transparent white background */
 .modalWrapper {
   z-index: 10;
   position: fixed;
@@ -139,7 +140,6 @@
   color: #3e4958;
   text-align: left;
   font-family: var(--light-font);
-  /* font-family: "AnekBangla-Light", sans-serif; */
   font-size: 0.75rem;
   font-weight: 300;
   position: relative;
@@ -150,8 +150,6 @@
   border-color: #e0e0e0;
   border-width: 0.0625rem;
   flex-shrink: 0;
-  /* width: 0.0625rem;
-  height: 1.1875rem; */
   position: relative;
 }
 .four8Reviews {
@@ -159,7 +157,6 @@
   text-align: left;
 
   font-family: var(--light-font);
-  /* font-family: "AnekBangla-Light", sans-serif; */
   font-size: 0.75rem;
   font-weight: 300;
   position: relative;
@@ -232,6 +229,7 @@
   box-shadow: 0rem 0.0625rem 1.875rem 0rem rgba(0, 0, 0, 0.06);
 }
 
+/* Adjusts padding in the header for screens smaller than 1000px */
 @media (max-width: 1000px) {
   .header {
     padding: 0.625rem 8rem 0.625rem 0.625rem;
@@ -243,10 +241,7 @@
   height: 70%;
   min-width: 45px;
   min-height: 45px;
-
   margin-right: 5px;
-  /* position: relative; */
-  /* object-fit: contain; */
 }
 
 .attributes {
@@ -264,7 +259,7 @@
   overflow: hidden;
 }
 
-/* 화면 너비가 768px 이상 900px 이하일 때 적용되는 스타일 */
+/* Adjustments to attributes for screens between 768px and 1000px wide */
 @media (min-width: 768px) and (max-width: 1000px) {
   .attributes {
     padding-left: 2rem;
@@ -289,6 +284,7 @@
   top: calc(50% - 0.75rem);
   overflow: visible;
 }
+/* Ensures attributeInstance does not shrink */
 .attributeInstance {
   flex-shrink: 0 !important;
 }

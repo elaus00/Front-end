@@ -4,17 +4,24 @@ import styles from "./Pureplate.module.css";
 import Restaurant from "../Restaurant/Restaurant.jsx";
 
 function RestaurantModal({ id, closeModal }) {
+  // Reference to the modal element
   const restModalRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Function to handle clicks outside the modal
     function handleClickOutside(event) {
-      if (restModalRef.current && !restModalRef.current.contains(event.target)) {
-        closeModal();
+      if (
+        restModalRef.current &&
+        !restModalRef.current.contains(event.target)
+      ) {
+        closeModal(); // Close the modal if the click is outside the modal
       }
     }
+    // Add event listener to detect clicks outside the modal
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
+      // Cleanup the event listener when the component unmounts
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [restModalRef, closeModal]);

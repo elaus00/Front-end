@@ -8,20 +8,23 @@ import { useAuth } from "../AuthContext.jsx";
 
 function Pureplate() {
   const { id } = useParams(); // Extract restaurant ID from URL
-  const [isRestModalOpen, setIsRestModalOpen] = useState(false);
+  const [isRestModalOpen, setIsRestModalOpen] = useState(false); // State to manage the visibility of the restaurant modal
   const navigate = useNavigate();
   const { bookmarksToggle, SetBookmarksToggle } = useAuth();
 
+  // Function to toggle bookmarks
   const bookmarkToggle = () => {
     SetBookmarksToggle(!bookmarksToggle);
   };
 
+  // Effect to open the restaurant modal if an ID is present in the URL
   useEffect(() => {
     if (id) {
       setIsRestModalOpen(true);
     }
   }, [id]);
 
+  // Function to close the restaurant modal and navigate to the home page
   const closeRestModal = () => {
     setIsRestModalOpen(false);
     navigate("/");

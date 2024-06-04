@@ -7,6 +7,7 @@ import Profile from "../Profile/Profile.jsx";
 import BookmarkIcon from "../Bookmark/BookmarkIcon.jsx";
 import logo_icon from "../assets/Icons/logo_icon.png";
 
+// Functional component for rendering the header section
 function Header({ isRestModalOpen, bookmarkToggle }) {
   return (
     <header className={styles.header}>
@@ -14,7 +15,10 @@ function Header({ isRestModalOpen, bookmarkToggle }) {
         <img className={styles.purePlateIcon} src={logo_icon} alt="logo" />
       </Link>
       <SearchBar />
-      <BookmarkIcon isRestModalOpen={isRestModalOpen} bookmarkToggle={bookmarkToggle} />
+      <BookmarkIcon
+        isRestModalOpen={isRestModalOpen}
+        bookmarkToggle={bookmarkToggle}
+      />
       <Attributes />
       <Profile />
     </header>

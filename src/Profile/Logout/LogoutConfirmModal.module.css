@@ -1,4 +1,7 @@
 /* LogoutConfirmModal.module.css */
+
+/* Styles for the modal overlay, which covers the entire screen */
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -10,6 +13,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  /* Ensures the modal is on top of other elements */
 }
 
 .modalContent {
@@ -22,7 +26,7 @@
 }
 
 .modalTitle {
-  margin-bottom: 8px; /* Added margin-bottom */
+  margin-bottom: 8px;
 }
 
 .buttonContainer {

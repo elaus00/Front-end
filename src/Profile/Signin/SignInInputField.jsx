@@ -1,5 +1,6 @@
 import styles from "./Signin.module.css";
 
+// Functional component for rendering a sign-in input field.
 function SignInInputField({
   label,
   value,
@@ -12,14 +13,14 @@ function SignInInputField({
       <input
         className={`${styles.placeholder} ${
           errorMessage ? styles.errorInput : ""
-        }`}
+        }`} // Apply error styling if there's an error.
         value={value}
-        onChange={onChange}
-        type={type}
-        placeholder={errorMessage ? `⚠ ${errorMessage}` : label} // placeholder도 prop으로부터 받은 label을 사용합니다.
-        // aria-describedby={error ? "error-msg" : undefined}
+        onChange={onChange} // Calls the onChange function passed as prop when the input changes.
+        type={type} // Sets the input type (text, password, etc.).
+        placeholder={errorMessage ? `⚠ ${errorMessage}` : label} // Shows an error message or label as the placeholder.
       />
-      <div className={styles.nameLabel}>{label}</div>
+      <div className={styles.nameLabel}>{label}</div> // Displays the label
+      below the input field.
     </div>
   );
 }

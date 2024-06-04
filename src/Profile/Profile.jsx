@@ -9,41 +9,48 @@ import profileIcon from "../assets/Icons/profile.svg";
 import Swal from "sweetalert2";
 
 function Profile() {
+  // Get login state and user information from the AuthContext
+
   const { isLoggedIn, login, logout, user } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false); // Logout confirmation modal state
   const navigate = useNavigate();
 
+  // Close the sign-in modal if the user is logged in
+
   useEffect(() => {
     if (isLoggedIn) {
       closeModal();
     }
   }, [isLoggedIn]);
-
+  // Open the sign-in modal
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+  // Close the sign-in modal
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  // Toggle the dropdown menu
   const toggleDropdown = () => {
     if (isLoggedIn) {
       setDropdownOpen(!dropdownOpen);
     }
   };
 
+  // Open the logout confirmation modal
   const openLogoutConfirm = () => {
     setIsLogoutConfirmOpen(true);
     setDropdownOpen(false);
   };
 
+  // Close the logout confirmation modal
   const closeLogoutConfirm = () => {
     setIsLogoutConfirmOpen(false);
   };
-
+  // Show a success alert when the user logs out
   const showAlert = () => {
     Swal.fire({
       title: "You have successfully logged out!", // Alert title
@@ -51,6 +58,8 @@ function Profile() {
       icon: "success", // Alert type (success, error, warning, info, question)
     });
   };
+
+  // Handle the logout process
   const handleLogout = () => {
     logout();
     showAlert();

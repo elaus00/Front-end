@@ -12,11 +12,13 @@ function Restaurant({ id, closeModal }) {
 
   let restId = null;
   if (id != 0) {
-    restId = id;
+    restId = id; // Assign the passed id to restId if it's not 0
   }
 
+  // State to hold reviews
   const [reviews, setReviews] = useState([]);
 
+  // State to hold restaurant information
   const [RestInfo, SetRestInfo] = useState({
     id: "",
     name: "",
@@ -26,6 +28,8 @@ function Restaurant({ id, closeModal }) {
     phone: "",
     photo: "",
   });
+
+  // State to hold a single review information
   const [ReviewInfo, SetReviewInfo] = useState({
     review_id: 0,
     user_id: 0,
@@ -33,7 +37,8 @@ function Restaurant({ id, closeModal }) {
     rating: 0,
     review_text: "",
     visit_date: "2024-05-26T00:00:00Z",
-  });
+  }); // Function to calculate how long ago a review was posted
+
   const calculateTimeAgo = (visit_date) => {
     const reviewDate = new Date(visit_date);
     const now = new Date();
@@ -52,11 +57,13 @@ function Restaurant({ id, closeModal }) {
       else return `${diffMonths} months ago`;
     }
   };
+  // Function to fetch restaurant details based on the restaurant ID
   const RestOn = async (restId) => {
     try {
       const response = await axios.get(`${URL}/api/restaurant/list`);
       response.data.data.forEach((element) => {
         if (element.Id == restId) {
+          // If the current element matches the restId, update the RestInfo state
           SetRestInfo((prevState) => ({
             ...prevState,
             id: element.Id,

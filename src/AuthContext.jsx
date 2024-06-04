@@ -71,15 +71,15 @@ function AuthProvider({ children }) {
   const login = async (username, password) => {
     try {
       const response = await axios.post(`${URL}/api/account/login/`, {
+        // Sends a POST request to the login endpoint
         username,
         password,
       });
-      setUser(response.data.nickname);
-      setIsLoggedIn(true);
-      setUserToken(response.data.token);
-      sessionStorage.setItem("user", response.data.nickname);
-      sessionStorage.setItem("token", response.data.token);
-      showSuccessAlert(response.data.nickname);
+      setUser(response.data.nickname); // Updates user state with response data
+      setIsLoggedIn(true); // Updates login status
+      setUserToken(response.data.token); // Updates token state with response data
+      sessionStorage.setItem("user", response.data.nickname); // Stores user in session storage
+      sessionStorage.setItem("token", response.data.token); // Stores token in session storage    showSuccessAlert(response.data.nickname);
 
       await bookmarkGet(response.data.token);
     } catch (error) {

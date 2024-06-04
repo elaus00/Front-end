@@ -10,11 +10,10 @@ a:visited {
 
 .profileContainer {
   position: absolute;
-  right: 1.6875rem; /* profile 버튼의 원래 right 위치 */
+  right: 1.6875rem;
 }
 
 .profile {
-  /* position 관련 스타일을 제거합니다. */
   border-radius: 1.0625rem;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
@@ -34,17 +33,17 @@ a:visited {
   font-weight: 800;
   cursor: pointer;
 }
-
+/* Media query for smaller screens */
 @media (max-width: 1100px) {
   .profile {
-    font-size: 0.9rem; /* 폰트 사이즈 줄임 */
+    font-size: 0.9rem;
     width: 7rem;
     height: 2.8rem;
   }
 }
 @media (max-width: 678px) {
   .profile {
-    display: none;
+    display: none; /* Hide the profile element on smaller screens */
   }
 }
 
@@ -70,8 +69,6 @@ a:visited {
   line-height: 149.8%;
   font-weight: 800;
   position: absolute;
-  /* left: calc(50% - 0.84375rem); */
-  /* top: calc(50% - 0.71875rem); */
   width: 2.625rem;
   display: flex;
   align-items: center;
@@ -90,12 +87,12 @@ a:visited {
   position: absolute; /* 드롭다운 메뉴의 위치를 조정하기 위해 상위 요소 대비 절대 위치 설정 */
   top: 100%; /* 버튼 바로 아래에 위치하도록 설정 */
   left: 0;
-  z-index: 1; /* 다른 요소들 위에 표시 */
-  width: 100%; /* 드롭다운 메뉴의 너비 */
-  background-color: #f9f9f9; /* 배경색 */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-  border-radius: 4px; /* 모서리 둥글게 */
-  padding: 12px 0; /* 상하 패딩 */
+  z-index: 1; /* Ensure the menu is displayed on top of other elements */
+  width: 100%;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 12px 0;
 
   animation: dropdown 0.4s ease forwards;
 }
@@ -109,20 +106,18 @@ a:visited {
 }
 
 .dropdownMenu ul {
-  list-style-type: none; /* 기본 목록 스타일 제거 */
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
 .dropdownMenu ul li {
-  padding: 8px 16px; /* 항목 내부 패딩 */
-  cursor: pointer; /* 마우스 오버 시 커서 변경 */
-  /* text-align: left; 텍스트 왼쪽 정렬 */
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 .dropdownMenu ul li:hover {
   background-color: #f2f2f2;
-  /* background-color: #f1f1f1; 항목에 마우스 오버 시 배경색 변경 */
 }
 .dropProfile {
   color: #3e4958;
@@ -133,15 +128,18 @@ a:visited {
   font-weight: 800;
   display: none;
 }
+/* Media query for smaller screens */
 @media (max-width: 678px) {
   .dropProfile {
-    display: block;
+    display: block; /* Show the dropProfile element on smaller screens */
   }
 }
+
 .dropProfile:hover {
-  background-color: transparent !important;
+  background-color: transparent !important; /* Ensure the hover effect is disabled */
 }
 
+/* Media query for larger screens */
 @media (min-width: 678px) {
   .profileIcon {
     display: none;
@@ -149,6 +147,7 @@ a:visited {
   }
 }
 
+/* Dropdown animation */
 @keyframes dropdown {
   0% {
     transform: translateY(-20px);
@@ -159,65 +158,3 @@ a:visited {
     opacity: 1;
   }
 }
-/*
-@keyframes dropdownClose {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-} */
-/* .dropdownMenu.hide {
-  animation: dropdownClose 0.4s ease forwards;
-} */
-
-/*  */
-/* 
-@keyframes slide-fade-in-dropdown-animation {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.slide-fade-in-dropdown {
-  overflow: hidden;
-}
-
-.slide-fade-in-dropdown > ul {
-  animation: slide-fade-in-dropdown-animation 0.4s ease;
-}
-
-@keyframes slide-fade-out-dropdown-animation {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-.slide-fade-out-dropdown {
-  overflow: hidden;
-}
-
-.slide-fade-out-dropdown > ul {
-  animation: slide-fade-out-dropdown-animation 0.4s ease;
-  animation-fill-mode: forwards;
-}
-
-.components-dropdown > ul {
-  position: relative;
-  top: 5px;
-  margin-top: 0;
-  margin-bottom: 5px;
-  padding-left: 0;
-  list-style: none;
-} */

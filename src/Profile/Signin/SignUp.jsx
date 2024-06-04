@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import "../../custom-swal.css";
 
 function SignUp({ switchToSignIn, close }) {
+  // State variables for form fields and errors
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +18,8 @@ function SignUp({ switchToSignIn, close }) {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { URL } = useAuth();
+
+  // Function to validate individual fields
 
   const validateField = (key, value) => {
     let tempErrors = { ...errors };
@@ -34,6 +38,7 @@ function SignUp({ switchToSignIn, close }) {
     setErrors(tempErrors);
   };
 
+  // Handlers for input changes
   const handleNameChange = (event) => {
     setName(event.target.value);
     validateField("name", event.target.value);
@@ -51,6 +56,7 @@ function SignUp({ switchToSignIn, close }) {
     validateField("confirmPassword", event.target.value);
   };
 
+  // Function to validate the entire form
   const validate = () => {
     let tempErrors = {};
     tempErrors.name = name ? "" : "Enter name.";
@@ -64,6 +70,7 @@ function SignUp({ switchToSignIn, close }) {
 
     return Object.values(tempErrors).every((x) => x === "");
   };
+  // Function to show success alert
 
   const showSuccessAlert = (username) => {
     Swal.fire({
@@ -73,6 +80,7 @@ function SignUp({ switchToSignIn, close }) {
     });
   };
 
+  // Function to show error alert
   const showErrorAlert = () => {
     Swal.fire({
       title: `This email is already registered.`, // Alert title
@@ -88,15 +96,13 @@ function SignUp({ switchToSignIn, close }) {
         nickname: name,
         username: email,
         password: password,
-        // confirmPassword는 서버에서 처리하지 않을 수도 있습니다.
+        // confirmPassword might not be handled on the server
       };
 
       const SIGNUP_URL = `${URL}/api/account/register/`;
       try {
         const response = await axios.post(SIGNUP_URL, data);
         console.log(response.data);
-        // 회원가입 성공 후의 로직을 여기에 작성하세요.
-        // 예: 로그인 페이지로 리다이렉트하기, 성공 메시지 표시하기 등
         close();
         navigate("/");
         showSuccessAlert(response.data.nickname, "success");
@@ -110,8 +116,7 @@ function SignUp({ switchToSignIn, close }) {
           "Error during sign up:",
           error.response ? error.response.data : error
         );
-        // 오류 처리 로직을 여기에 작성하세요.
-        // 예: 사용자에게 오류 메시지 표시하기 등
+        // Error handling logic, e.g., show error message to user
       }
     } else {
       console.error("Validation failed.");
