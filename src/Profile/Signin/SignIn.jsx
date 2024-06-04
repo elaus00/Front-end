@@ -5,10 +5,12 @@ import { useAuth } from "../../AuthContext.jsx";
 import styles from "./Signin.module.css";
 
 function SignIn() {
-  const { login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const { login } = useAuth(); // Get the login function from the authentication context
+  const [email, setEmail] = useState(""); // State to store the email input
+  const [password, setPassword] = useState(""); // State to store the password input
+  const [errors, setErrors] = useState({}); // State to store validation errors
+
+  // Function to validate the input fields
 
   const validate = () => {
     let tempErrors = {};
@@ -19,16 +21,18 @@ function SignIn() {
     return Object.values(tempErrors).every((x) => x === "");
   };
 
+  // Handler for email input change
   const handleIdChange = (event) => setEmail(event.target.value);
+  // Handler for password input change
   const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  // Handler for form submission
   const onSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
       try {
         await login(email, password);
-        // 성공적으로 로그인이 되면, 필요하다면 여기서 추가적인 작업을 수행합니다.
       } catch (error) {
-        // 로그인 실패 시, 오류 메시지를 처리합니다.
         setErrors({
           ...errors,
           form: "Login failed. Please check your email or password.",
