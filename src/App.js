@@ -1,8 +1,8 @@
-import AuthProvider from "./AuthContext";
-import Pureplate from "./Pureplate/Pureplate";
+import AuthProvider from "./context/AuthContext";
+import Pureplate from "./pages/Main/Pureplate";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Restaurant from "./Restaurant/Restaurant";
-import FeedbackPage from "./Feedback/FeedbackPage";
+import Restaurant from "./components/Restaurant/Restaurant";
+import FeedbackPage from "./pages/Feedback/FeedbackPage";
 
 function App() {
   return (
