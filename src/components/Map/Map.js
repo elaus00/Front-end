@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { addMarkers } from "./Marker/Marker.jsx"; // Import the addMarkers function from markers.js
-import { useAuth } from "../AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const MapNaverCur = () => {
   const mapElement = useRef(null); // Reference to the map container

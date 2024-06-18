@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { createContext, useContext, useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import "./custom-swal.css";
 // Create an AuthContext
 const AuthContext = createContext();
 
@@ -52,19 +50,11 @@ function AuthProvider({ children }) {
   }, []);
 
   const showSuccessAlert = (username) => {
-    Swal.fire({
-      title: "You have successfully logged in!", // Alert title
-      text: `Hello, ${username}!!`, // Alert contents
-      icon: "success", // Alert type (success, error, warning, info, question)
-    });
+    alert(`Hello, ${username}!!`);
   };
 
   const showFailAlert = () => {
-    Swal.fire({
-      title: "Login unsuccessful.", // Alert title
-      text: "Please verify your email and password and try again.", // Alert contents
-      icon: "error", // Alert type (success, error, warning, info, question)
-    });
+    alert("Login unsuccessful. Please verify your email and password and try again.");
   };
 
   // Login function

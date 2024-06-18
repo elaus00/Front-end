@@ -1,12 +1,11 @@
-import { ChevronDown } from "../ChevronDown/ChevronDown.jsx";
+import { ChevronDown } from "../../components/ChevronDown/ChevronDown.jsx";
 import { useEffect, useState } from "react";
-import { useAuth } from "../AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import Sign from "./Signin/Sign.jsx";
 import LogoutConfirmModal from "./Logout/LogoutConfirmModal.jsx";
 import styles from "./Profile.module.css";
-import profileIcon from "../assets/Icons/profile.svg";
-import Swal from "sweetalert2";
+import profileIcon from "../../assets/Icons/profile.svg";
 
 function Profile() {
   // Get login state and user information from the AuthContext
@@ -50,13 +49,10 @@ function Profile() {
   const closeLogoutConfirm = () => {
     setIsLogoutConfirmOpen(false);
   };
+
   // Show a success alert when the user logs out
   const showAlert = () => {
-    Swal.fire({
-      title: "You have successfully logged out!", // Alert title
-      text: `Goodbye!!`, // Alert contents
-      icon: "success", // Alert type (success, error, warning, info, question)
-    });
+    alert("You have successfully logged out! Goodbye!!");
   };
 
   // Handle the logout process

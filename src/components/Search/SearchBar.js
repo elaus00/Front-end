@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
 import axios from "axios";
-import { useAuth } from "../AuthContext.jsx";
-import findIcon from "../assets/Icons/searchIcon.svg";
-import historySearchIcon from "../assets/Icons/historySearchIcon.svg";
+import { useAuth } from "../../context/AuthContext.jsx";
+import findIcon from "../../assets/Icons/searchIcon.svg";
+import historySearchIcon from "../../assets/Icons/historySearchIcon.svg";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar() {

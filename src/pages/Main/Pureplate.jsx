@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
 import styles from "./Pureplate.module.css";
-import MapNaverCur from "../Map/Map.js";
+import MapNaverCur from "../../components/Map/Map.js";
 import RestaurantModal from "./RestaurantModal.jsx";
 import Header from "./Header.jsx";
-import { useAuth } from "../AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 function Pureplate() {
   const { id } = useParams(); // Extract restaurant ID from URL

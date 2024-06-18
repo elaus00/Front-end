@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignUp from "./SignUp.jsx";
 import styles from "./Signin.module.css";
 import SignIn from "./SignIn.jsx";
-import xIcon from "../../assets/Icons/x0.svg";
+import xIcon from "../../../assets/Icons/x0.svg";
 
 function Sign({ isOpen, close }) {
   // State to track whether the sign up form is displayed

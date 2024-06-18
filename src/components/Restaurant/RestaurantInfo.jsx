@@ -1,6 +1,6 @@
 import styles from "./Restaurant.module.css";
-import star0 from "../assets/Icons/Review/star0.svg";
-import iconPhoneTelephone0 from "../assets/Icons/Review/icon-phone-telephone0.svg";
+import star0 from "../../assets/Icons/Review/star0.svg";
+import iconPhoneTelephone0 from "../../assets/Icons/Review/icon-phone-telephone0.svg";
 import { useEffect } from "react";
 
 // Component to display restaurant information

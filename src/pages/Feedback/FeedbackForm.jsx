@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./FeedbackForm.module.css";
 import axios from "axios";
-import { useAuth } from "../AuthContext";
-import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthContext";
 
 // FeedbackForm component
 function FeedbackForm({ closeModal }) {
@@ -43,18 +42,10 @@ function FeedbackForm({ closeModal }) {
   };
 
   const showSuccessAlert = () => {
-    Swal.fire({
-      title: "Thank you.", // Alert title
-      text: `We will carefully review your valuable feedback.`, // Alert contents
-      icon: "success", // Alert type (success, error, warning, info, question)
-    });
+    alert("Thank you. We will carefully review your valuable feedback.");
   };
   const showFailAlert = () => {
-    Swal.fire({
-      title: "There was a problem with the feedback submission.", // Alert title
-      text: "The restaurant name you entered is not found.", // Alert contents
-      icon: "error", // Alert type (success, error, warning, info, question)
-    });
+    alert("There was a problem with the feedback submission. The restaurant name you entered is not found.");
   };
 
   // Handler for form submission

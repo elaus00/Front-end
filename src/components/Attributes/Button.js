@@ -1,14 +1,14 @@
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import styles from "./Button.module.css";
-import halalIcon from "../assets/Icons/flag_halal.svg";
-import veganIcon from "../assets/Icons/flag_vegan.svg";
-import glutenIcon from "../assets/Icons/flag_glutenfree.svg";
-import lactoIcon from "../assets/Icons/flag_loctosfree.svg";
+import halalIcon from "../../assets/Icons/flag_halal.svg";
+import veganIcon from "../../assets/Icons/flag_vegan.svg";
+import glutenIcon from "../../assets/Icons/flag_glutenfree.svg";
+import lactoIcon from "../../assets/Icons/flag_loctosfree.svg";
 
-import halalIcon1 from "../assets/Icons/flag_halal1.svg";
-import veganIcon1 from "../assets/Icons/flag_vegan1.svg";
-import glutenIcon1 from "../assets/Icons/flag_glutenfree1.svg";
-import lactoIcon1 from "../assets/Icons/flag_loctosfree1.svg";
+import halalIcon1 from "../../assets/Icons/flag_halal1.svg";
+import veganIcon1 from "../../assets/Icons/flag_vegan1.svg";
+import glutenIcon1 from "../../assets/Icons/flag_glutenfree1.svg";
+import lactoIcon1 from "../../assets/Icons/flag_loctosfree1.svg";
 import { useEffect, useState } from "react";
 
 function Button({ attribute }) {

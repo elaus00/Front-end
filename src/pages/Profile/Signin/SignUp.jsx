@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import SignInInputField from "./SignInInputField.jsx";
 import SignInButton from "./SignInButton.jsx";
-import { useAuth } from "../../AuthContext.jsx";
+import { useAuth } from "../../../context/AuthContext.jsx";
 import styles from "./Signin.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import "../../custom-swal.css";
 
 function SignUp({ switchToSignIn, close }) {
   // State variables for form fields and errors
@@ -73,20 +71,12 @@ function SignUp({ switchToSignIn, close }) {
   // Function to show success alert
 
   const showSuccessAlert = (username) => {
-    Swal.fire({
-      title: `Welcome to Pureplate, ${username}!`, // Alert title
-      text: "Please, sign in!", // Alert contents
-      icon: "success", // Alert type (success, error, warning, info, question)
-    });
+    alert(`Welcome to Pureplate, ${username}!`);
   };
 
   // Function to show error alert
   const showErrorAlert = () => {
-    Swal.fire({
-      title: `This email is already registered.`, // Alert title
-      text: " Please choose another email.", // Alert contents
-      icon: "error", // Alert type (success, error, warning, info, question)
-    });
+    alert("This email is already registered. Please choose another email.");
   };
 
   const onSubmit = async (event) => {

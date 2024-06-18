@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Bookmark.module.css";
-import bookmarkSelected from "../assets/Icons/Bookmark/Star1.svg";
-import bookmarkUnselected from "../assets/Icons/Bookmark/Star2.svg";
-import { useAuth } from "../AuthContext.jsx";
+import bookmarkSelected from "../../assets/Icons/Bookmark/Star1.svg";
+import bookmarkUnselected from "../../assets/Icons/Bookmark/Star2.svg";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 function BookmarkIcon({ isRestModalOpen, bookmarkToggle }) {
   // Get the isLoggedIn and bookmarksToggle values from the AuthContext
