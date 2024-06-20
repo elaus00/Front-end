@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Pureplate.module.css";
+import styles from "./Main.module.css";
 import Restaurant from "../../components/Restaurant/Restaurant.jsx";
 
 function RestaurantModal({ id, closeModal }) {

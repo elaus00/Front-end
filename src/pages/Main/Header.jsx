@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Pureplate.module.css";
+import styles from "./Header.module.css";
 import SearchBar from "../../components/Search/SearchBar.js";
 import Attributes from "../../components/Attributes/Attributes.js";
 import Profile from "../../pages/Profile/Profile.jsx";

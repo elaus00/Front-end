@@ -1,4 +1,4 @@
-import styles from "../../pages/Main/Pureplate.module.css";
+import styles from "./Attributes.module.css";
 import Button from "./Button.js";
 import { useAuth } from "../../context/AuthContext.jsx";
 

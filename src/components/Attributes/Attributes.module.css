@@ -1,0 +1,31 @@
+
+.attributes {
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 29.9375rem;
+  height: 4.125rem;
+  left: 47.3125rem;
+  top: 1.375rem;
+  overflow: hidden;
+}
+
+/* Adjustments to attributes for screens between 768px and 1000px wide */
+@media (min-width: 768px) and (max-width: 1000px) {
+  .attributes {
+    padding-left: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .attributes {
+    position: absolute;
+    left: 2rem;
+    top: 4.7rem;
+    width: auto;
+    border-radius: 20px;
+  }
+}
